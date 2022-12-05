@@ -1,0 +1,19 @@
+@use '../../styles/partials/mixins.scss' as *;
+@use '../../styles/partials/letters' as *;
+
+.volunteer-page{
+    width: 100%;
+    background-position: center;
+    background-size: cover;
+    background-image: url("../../assets/images/volunteerPageBackground.jpg");
+    box-shadow: inset 2000em 2000em rgba(50, 50, 50, 0.5);
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    border-top: 3px solid #323232;
+    border-bottom: 3px solid #323232;
+
+    @include tablet{
+        padding: 5rem;
+    }
+}

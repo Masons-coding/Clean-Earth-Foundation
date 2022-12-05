@@ -1,0 +1,25 @@
+@use '../../styles/partials/mixins.scss' as *;
+@use '../../styles/partials/letters' as *;
+
+.gallery-pictures{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+
+    &__img{
+        max-width: 100%;
+        border: 3px solid #fffefe;
+        border-radius: 1rem;
+
+        @include tablet{
+            max-width: 80%;
+        }
+
+        @include desktop{
+            max-height: 16rem;
+        }
+    }
+}

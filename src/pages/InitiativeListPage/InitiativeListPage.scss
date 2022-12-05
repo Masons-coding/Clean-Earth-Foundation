@@ -1,0 +1,42 @@
+@use '../../styles/partials/mixins.scss' as *;
+@use '../../styles/partials/letters' as *;
+
+.initiativeListPage{
+    width: 100%;
+    background-position: center;
+    background-size: cover;
+    background-image: url("../../assets/images/InitiativeListPageBackground.jpg");
+    box-shadow: inset 2000em 2000em rgba(50, 50, 50, 0.5);
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-top: 3px solid #323232;
+    border-bottom: 3px solid #323232;
+
+    &__container{
+    background-color: #002037;
+    border-radius: 0.5rem;
+    color: #fffefe;
+    padding: 1rem;
+    width: 88%;
+    border: 3px solid #323232;
+
+    @include tablet{
+        width: 93%;
+        padding: 2rem;
+    }
+
+    @include desktop{
+        width: 93%;
+    }
+
+    }
+
+    &__title{
+        font-family: 'avenir-next', sans-serif;
+        padding-top: 0.5rem;
+        border-bottom: 1px solid #0095FF;
+        font-weight: bold;
+    }
+}

@@ -1,0 +1,92 @@
+@use '../../styles/partials/mixins.scss' as *;
+@use '../../styles/partials/letters' as *;
+
+.initiatives-list{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+
+    &__container{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin: 1rem;
+
+        @include tablet{
+            flex-basis: 45%;
+        }
+
+    }
+
+    &__picture{
+        max-width: 100%;
+        border-radius: 0.5rem;
+        max-height: 20rem;
+        border: 3px solid #fffefe;
+    }
+
+    &__content{
+        background-color: #BDC1C7;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border-radius: 0.5rem;
+        margin-top: 0.5rem;
+        height: 36rem;
+        text-overflow: scroll;
+        overflow: scroll;
+        overflow-x: hidden;
+
+        @include tablet{
+            height: 27rem;
+        }
+
+        @include desktop{
+            height: 20rem;
+        }
+    }
+
+    &__content::-webkit-scrollbar {
+        width: 0.3rem;
+      }
+       
+    &__content::-webkit-scrollbar-thumb {
+        background-color: #002037;
+    }
+
+    &__heading{
+        font-family: 'avenir-next', sans-serif;
+        font-weight: bold;
+        color: #323232;
+        padding-top: 1rem;
+        font-size: 1.4rem;
+
+        @include tablet{
+            font-size: 1.5rem;
+        }
+    }
+
+    &__text{
+        font-family: "avenir-next", sans-serif;
+        font-weight: normal;
+        color: #323232;
+        padding-top: 0.5rem;
+        font-size: 1rem;
+        padding: 1rem;
+    }
+
+    &__button{
+        text-align: center;
+        border-radius: 0.5rem;
+        background-color: #002037;
+        border: none;
+        font-family: "avenir-next", sans-serif;
+        cursor: grab;
+        font-weight: normal;
+        width: 30%;
+        height: 2rem;
+        margin: 1rem;
+        color: #fffefe;
+    }
+}

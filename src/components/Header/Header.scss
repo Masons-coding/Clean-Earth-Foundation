@@ -1,0 +1,241 @@
+@use '../../styles/partials/mixins.scss' as *;
+@use '../../styles/partials/letters' as *;
+
+.header{
+    background-color: #0095FF;
+    
+    @include tablet{
+        display: flex;
+        flex-direction: column;
+    }
+
+    @include desktop{
+        flex-direction: row;
+    }
+
+    &__logo-button{
+        background-color: #0095FF;
+        border: none;
+        cursor: grab;
+    }
+
+    &__login-sign-up{
+        align-self: flex-start;
+    }
+
+    &__nav-links{
+        display: flex;
+        gap: 1rem;
+        padding-right: 1rem;
+        align-items: center;
+        flex-wrap: wrap;
+        padding-top: 1rem;
+        justify-content: center;
+        padding: 1rem;
+
+
+        @include tablet{
+            gap: 2rem;
+            flex-wrap: nowrap;
+        }
+
+        @include desktop{
+            margin-left: 0;
+        }
+    }
+
+    &__clean-earth-logo-container{
+        padding-left: 1rem;
+        align-self: center;
+        display: flex;
+        justify-content: center;
+
+        @include tablet{
+            display: normal;
+            border-top: none;
+            border-bottom: none;
+        }
+    }
+
+    &__clean-earth-logo{
+        max-width: 70%;
+
+        @include tablet{
+        }
+
+        @include desktop{
+        }
+    }
+
+    &__logo-nav-container{
+        display: flex;
+    }
+
+    &__instagram-logo{
+        max-width: 1.5rem;
+
+        @include tablet{
+            max-width: 2rem;
+        }
+    }
+
+    &__twitter-logo{
+        max-width: 1.5rem;
+
+        @include tablet{
+            max-width: 2rem;
+        }
+    }
+
+    &__facebook-logo{
+        max-width: 1.5rem;
+
+        @include tablet{
+            max-width: 2rem;
+        }
+    }
+
+    &__contact-links-container{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        flex-basis: 100%;
+    }
+
+    &__contact-container{
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        text-decoration: none;
+        color: #fffefe;
+        padding-top: 1rem;
+        flex-direction: column;
+        padding-right: 1.5rem;
+        border-top: 3px solid #36383C;
+        border-bottom: 3px solid #36383C;
+        padding: 0;
+        align-items: center;
+        padding: 1rem;
+
+        @include tablet{
+            gap: 1rem;
+            justify-content: flex-end;
+            align-items: flex-end;
+            border-top: 3px solid #36383C;
+            border-bottom: 3px solid #36383C;
+            padding: 1rem;
+        }
+
+        @include desktop{
+            border-top: none;
+            border-bottom: none;
+            padding: 0;
+            padding-top: 1rem;
+            padding-right: 1rem;
+            gap: 1rem;
+        }
+
+    }
+
+    &__contact-content-container{
+        flex-direction: column;
+        display: flex;
+        gap: 1rem;
+        align-self: flex-end;
+
+        @include tablet{
+            flex-direction: row;
+        }
+
+        @include desktop{
+            align-self: flex-end;
+        }
+    }
+
+    &__contact-content-container2{
+        display: flex;
+        gap: 1rem;
+        align-self: flex-end;
+
+        @include tablet{
+        }
+
+        @include desktop{
+            align-self: flex-end;
+        }
+    }
+
+    &__email-button{
+        border: none;
+        background-color: #0095FF;
+        cursor: grab;
+        color: #fffefe;
+        font-family: 'avenir-next', sans-serif;
+        font-weight: normal;
+        font-size: 0.8rem;
+
+        @include tablet{
+            font-size: 1rem;
+        }
+    }
+    
+    &__phone-button{
+        border: none;
+        background-color: #0095FF;
+        cursor: grab;
+        color: #fffefe;
+        font-family: 'avenir-next', sans-serif;
+        font-weight: normal;
+        font-size: 0.8rem;
+
+        @include tablet{
+            font-size: 1rem;
+        }
+    }
+
+    &__email-button:hover{
+        color: #323232;
+    }
+    
+    &__phone-button:hover{
+        color: #323232;
+    }
+
+    &__icon-div{
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+    }
+
+    &__phone-icon{
+        max-height: 1.3rem;
+    }
+
+    &__email-icon{
+        max-height: 1.3rem;
+    }
+}
+
+a{
+    text-decoration: none;
+    font-family: 'avenir-next', sans-serif;
+    font-weight: normal;
+
+    @include tablet{
+        font-size: 1.2rem;
+    }
+
+    @include desktop{
+        font-size: 1.3rem;
+    }
+
+}
+
+.active{
+    border-bottom: 0.1rem solid #E0E2DB;
+    font-weight: bold;
+}
+
+
+
+

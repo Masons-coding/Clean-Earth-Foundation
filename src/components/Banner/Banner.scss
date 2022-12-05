@@ -1,0 +1,57 @@
+@use '../../styles/partials/mixins.scss' as *;
+@use '../../styles/partials/letters' as *;
+
+.banner{
+    display: flex;
+    background-color: #0095FF;
+    padding: 1rem;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 3px solid #323232;
+
+    &__help-par{
+        display: none;
+
+        @include tablet{
+            display: block;
+            color: #323232;
+            font-size: 1rem;
+            font-family: 'avenir-next', sans-serif;
+            font-weight: normal;
+        }
+
+
+        @include tablet{
+            font-size: 1.2rem;
+        }
+
+        @include desktop{
+            font-size: 1.5rem;
+        }
+    }
+
+    &__button{
+        color: #fffefe;
+        border: none;
+        font-size: 1rem;
+        background-color: #0095FF;
+        font-family: 'avenir-next', sans-serif;
+        font-weight: bold;
+        cursor: grab;
+        margin-left: 2rem;
+
+        @include tablet{
+            font-size: 1.2rem;
+        }
+
+        @include desktop{
+            font-size: 1.5rem;
+        }
+    }
+
+    &__icon-div{
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+    }
+}

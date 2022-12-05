@@ -1,0 +1,83 @@
+@use '../../styles/partials/mixins.scss' as *;
+@use '../../styles/partials/letters' as *;
+
+.hero{
+  width: 100%;
+  background-position: center;
+  background-size: cover;
+  background-image: url("../../assets/images/forestPicture3.jpg");
+  height: 35rem;
+  padding: 4rem 1rem 0rem 1rem;
+  border-top: 3px solid #323232;
+  border-bottom: 3px solid #323232;
+
+  @include tablet{
+    padding-top: 4rem 0rem 0rem 0rem;
+  }
+
+  &__text-button-container{
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    color: #fffefe;
+    background-color: #002037;
+    border-radius: 0.5rem;
+    margin-left: 0.1rem;
+    border: 3px solid #0095FF;
+  
+    @include tablet{
+      width: 85%;
+      padding: 2rem;
+      margin-left: 2rem;
+    }
+  
+    @include desktop{
+      width: 50%;
+      margin-left: 10rem;
+    }
+  }
+  
+  &__title{
+    font-family: 'avenir-next', sans-serif;
+    font-weight: bold;
+    font-size: 1rem;
+  
+    @include tablet{
+      font-size: 2rem;
+    }
+  }
+  
+  &__text{
+    font-family: 'avenir-next', sans-serif;
+    font-weight: normal;
+    font-size: 0.8rem;
+    padding-top: 0.5rem;
+  
+    @include tablet{
+      font-size: 1rem;
+      padding-top: 0;
+    }
+  }
+  
+  &__button{
+    text-align: center;
+    border-radius: 0.5rem;
+    background-color: #0095FF;
+    border: none;
+    font-family: "avenir-next", sans-serif;
+    font-weight: normal;
+    cursor: grab;
+    width: 70%;
+    height: 2rem;
+    margin: 1rem;
+    color: #fffefe;
+    font-size: 1rem;
+  
+    @include tablet{
+      width: 30%;
+      font-size: 1.1rem;
+    }
+  }
+
+}
+

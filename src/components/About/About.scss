@@ -1,0 +1,81 @@
+@use '../../styles/partials/mixins.scss' as *;
+@use '../../styles/partials/letters' as *;
+
+.about-us{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1rem 1rem 1rem 1rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+
+    @include tablet{
+        padding: 4rem;
+    }
+
+    @include desktop{
+        padding: 2rem 10rem 10rem 10rem;
+    }
+    
+
+    &__container{
+        background-color: #002037;
+        border-radius: 0.5rem;
+        color: #fffefe;
+        padding: 1rem;
+        border: 3px solid #323232;
+
+        @include tablet{
+            padding: 2rem;
+        }
+
+    }
+
+    &__title{
+        border-bottom: 1px solid #0095FF;
+        font-family: 'avenir-next', sans-serif;
+        font-weight: bold;
+    }
+
+    &__text-title{
+        font-family: 'avenir-next', sans-serif;
+        font-weight: bold;
+        color: #323232;
+        border-bottom: 1px solid #0095FF;
+    }
+
+    &__all-content{
+        display: flex;
+        flex-direction: column;
+        background-color: #BDC1C7;
+        padding: 2rem;
+        border-radius: 0.5rem;
+        margin-top: 0.5rem;
+        border: 3px solid #323232;
+    }
+
+    &__text{
+        padding-bottom: 1rem;
+        font-family: 'avenir-next', sans-serif;
+        font-weight: normal;
+    }
+
+    &__picture{
+        max-width: 33%;
+        border-radius: 1rem;
+        border: 3px solid #fffefe;
+    }
+
+    &__picture-container{
+        display: none;
+
+        @include tablet{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+    }
+}
