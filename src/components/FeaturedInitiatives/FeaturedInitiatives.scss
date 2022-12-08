@@ -43,11 +43,11 @@
 
     &__picture{
         border-radius: 0.5rem;
-        max-height: 13rem;
+        max-height: 25rem;
         border: 3px solid #fffefe;
 
         @include tablet{
-
+            max-height: 18rem;
         }
 
         @include desktop{

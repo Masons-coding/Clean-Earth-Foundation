@@ -1,45 +1,79 @@
 import React from 'react';
-// import { useState } from 'react';
-import { Link } from "react-router-dom";
-// Navigate
-// import axios from 'axios';
-import Input from '../../components/Input/Input';
+import { useState} from 'react';
+import { Link, Navigate } from "react-router-dom";
+import axios from 'axios';
 import './Login.scss';
 
 const Login = () => {
-//   const [success, setSuccess] = useState(false);
-//   const [error, setError] = useState('');
+  const [success, setSuccess] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
-//   const handleSubmit = (event) => {
-//     event.preventDefault();
+  const [email, setEmail] = useState("");
 
-//     axios
-//       .post("http://localhost:8080/api/users/login", {
-//           email: event.target.email.value,
-//           password: event.target.password.value,
-//       })
-//       .then((res) => {
-//         console.log('Login Response:', res.data);
-//         sessionStorage.setItem("authToken", res.data.token);
-//         setSuccess(true);
-//       })
-//       .catch((error) => {
-//         setError(error.response.data);
-//       });
-//   }
+  const [emailError, setEmailError] = useState(false);
+
+  const handleEmailChange = (event) => {
+      setEmail(event.target.value);
+      if(email !== ""){
+          setEmailError(false)
+          setPasswordError(false)
+          setErrorMessage("")
+      }
+  };
+
+  const[password, setPassword] = useState("");
+
+  const [passwordError, setPasswordError] = useState(false);
+
+  const handlePasswordChange = (event) => {
+      setPassword(event.target.value);
+      if(password !== ""){
+          setPasswordError(false)
+          setEmailError(false)
+          setErrorMessage("")
+      }
+  };
+  
+  const handleLoginSubmitForm = (event) => {
+    event.preventDefault();
+
+    if(password === ""){
+      setPasswordError(true)
+    }
+    const emailValid = /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/.test(email);
+    if(email === "" || !emailValid){
+      setEmailError(true)
+    }
+
+    axios
+      .post("http://localhost:8080/users/login", {
+          email: event.target.email.value,
+          password: event.target.password.value,
+      })
+      .then((res) => {
+        sessionStorage.setItem("authToken", res.data.token);
+        setSuccess(true);
+      })
+      .catch(() => {
+        setErrorMessage("Password or email is incorrect")
+      });
+  }
 
   return (
     <main className="login-page">
-        <form className="login">
+        <form autoComplete="off" onSubmit={handleLoginSubmitForm} className="login">
             <h1 className="login__title">Log in</h1>
 
-            <Input type="text" name="email" label="Email:" />
-            <Input type="password" name="password" label="Password:" />
+            <label className="login__labels" htmlFor="first_name">Email:</label>
+            <input type="text" placeholder="Please enter your email" value={email} onChange={handleEmailChange} className={emailError === true || passwordError === true ? 'login__input-error' : 'login__input' }  id="email" name="email"></input>
+            <label className="login__labels" htmlFor="first_name">Password:</label>
+            <input type="password" placeholder="Please enter your password" value={password} onChange={handlePasswordChange} className={passwordError === true || emailError === true ? 'login__input-error' : 'login__input' }  id="password" name="password"></input>
+            
+            <div className={passwordError === true || emailError === true ? 'login__error-message' : 'login__error-message-hidden' }>{errorMessage}</div>
 
             <button className="login__button">Log in</button>
+            {success && <Navigate to="/"/>}
 
-            {/* {error && <div className="login__message"></div>}
-            {success && <Navigate to="/" />} */}
         </form>
         <p className="login-page__sign-up">
             Need an account? <Link to="/signup">Sign up</Link>

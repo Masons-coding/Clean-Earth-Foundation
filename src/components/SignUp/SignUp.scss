@@ -122,7 +122,7 @@
         }
 
         @include tablet{
-            width: 55%;
+            width: 75%;
         }
     }
 
@@ -130,7 +130,7 @@
         font-family: 'avenir-next', sans-serif;
         font-weight: normal;
         font-size: 0.9rem;
-        color: red;
+        color: #b10101;
         margin: 0;
         position: relative;
         top: -2rem;
@@ -192,8 +192,8 @@
     }
   
     &__message {
-        border-left: 5px solid #ddd;
-        padding: 0.75rem;
-        margin-top: 2rem;
+        color: rgb(30, 132, 30);
+        font-size: 1.5rem;
+        padding-top: 1rem;
     }
   }

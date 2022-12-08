@@ -1,5 +1,4 @@
 import React from 'react';
-import Input from "../../components/Input/Input";
 import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
@@ -7,7 +6,6 @@ import './SignUp.scss';
 
 const Signup = () => {
   const [success, setSuccess] = useState(false);
-  const [error, setError] = useState('');
 
   const navigateHomePage = useNavigate();
 
@@ -40,11 +38,11 @@ const Signup = () => {
 
 
   const [lastNameErrorMessage, setLastNameErrorMessage] = useState("")
-  const [lastName, setlastName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [lastNameError, setLastNameError] = useState(false);
 
   const handleLastNameChange = (event) => {
-      setlastName(event.target.value);
+      setLastName(event.target.value);
       if(lastName !== ""){
         setLastNameError(false)
         setLastNameErrorMessage("")
@@ -91,10 +89,11 @@ const Signup = () => {
         event.target.email.focus()
         setEmailErrorMessage("Field required - please enter a valid email address")
     }
-    if(phone === ""){
+    const phoneValid = /^\d{10}$/.test(phone);
+    if(phone === "" || !phoneValid){
         setPhoneError(true)
         event.target.phone.focus()
-        setPhoneErrorMessage("Field required - please enter a valid cell phone number")
+        setPhoneErrorMessage("Field required - please enter a valid cell phone number (Must be 10 digits)")
     }
     if(lastName === ""){
         setLastNameError(true)
@@ -106,6 +105,28 @@ const Signup = () => {
         event.target.firstName.focus()
         setFirstNameErrorMessage("Field required - please enter your first name")
     }
+
+    axios
+    .post("http://localhost:8080/users/register", {
+        first_name: firstName,
+        last_name: lastName,
+        cell_phone: phone,
+        email: email,
+        password: password
+    })
+    .then(() => {
+      setSuccess(true)
+      setFirstName("")
+      setLastName("")
+      setPhone("")
+      setEmail("")
+      setPassword("")
+    })
+    .catch(() => {
+        if(email !== ""){
+            setEmailErrorMessage("Account with that email already exist")
+        }
+    });
   }
 
   const handleCancelClick = () => {
@@ -115,7 +136,7 @@ const Signup = () => {
 
   return (
     <main className="signup-page">
-            <form onSubmit={handleSubmit} className='sign-up'>
+            <form autocomplete="off" onSubmit={handleSubmit} className='sign-up'>
                 <h1 className="signup__title">Sign up</h1>
                 <label className="sign-up__labels" htmlFor="first_name">First Name:</label>
                 <input type="text" placeholder="Please enter your first name" value={firstName} onChange={handleFirstNameChange} className={firstNameError === true ? 'sign-up__input-error' : 'sign-up__input' }  id="firstName" name="firstName"></input>
@@ -145,7 +166,6 @@ const Signup = () => {
                     <button onClick={handleCancelClick} className="sign-up__button">Cancel</button>
                 </div>
                 {success && <div className="signup__message">Signed up!</div>}
-                {error && <div className="signup__message">{error}</div>}
             </form>
 
     </main>
