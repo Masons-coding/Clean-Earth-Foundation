@@ -3,7 +3,7 @@ import './InitiativeList.scss';
 import spacePicture from "../../assets/images/space.jpg";
 import trailsPicture from "../../assets/images/trails1.jpg";
 import oceanPicture from "../../assets/images/ocean1.jpg";
-import lakePicture from "../../assets/images/lake2.jpg";
+import lakePicture from "../../assets/images/Lake3.jpg";
 
 import { useNavigate  } from 'react-router-dom';
 

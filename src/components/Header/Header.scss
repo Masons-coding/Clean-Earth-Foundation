@@ -13,6 +13,22 @@
         flex-direction: row;
     }
 
+    &__show-welcome{
+        padding-top: 1rem;
+        font-family: 'avenir-next', sans-serif;
+        font-weight: bold;
+        font-size: 1rem;
+        color: #FFE600;
+
+        @include tablet{
+            font-size: 1.2rem;
+        }
+    }
+
+    &__hide-welcome{
+        display: none;
+    }
+
     &__logo-button{
         background-color: #0095FF;
         border: none;
@@ -116,11 +132,10 @@
         padding: 0;
         align-items: center;
         padding: 1rem;
+        align-items: flex-start;
 
         @include tablet{
-            gap: 1rem;
             justify-content: flex-end;
-            align-items: flex-end;
             border-top: 3px solid #36383C;
             border-bottom: 3px solid #36383C;
             padding: 1rem;
@@ -132,7 +147,6 @@
             padding: 0;
             padding-top: 1rem;
             padding-right: 1rem;
-            gap: 1rem;
         }
 
     }
@@ -156,6 +170,7 @@
         display: flex;
         gap: 1rem;
         align-self: flex-end;
+        padding-top: 0.5rem;
 
         @include tablet{
         }
@@ -214,6 +229,42 @@
     &__email-icon{
         max-height: 1.3rem;
     }
+
+    &__logout-button{
+        text-align: center;
+        border-radius: 0.5rem;
+        background-color: #002037;
+        border: none;
+        font-family: "avenir-next", sans-serif;
+        font-weight: bold;
+        cursor: grab;
+        width: 45%;
+        height: 1.5rem;
+        color: #fffefe;
+    }
+
+    &__logout-button-hidden{
+        display: none;
+    }
+
+    &__login-button{
+        font-size: 0.9rem;
+        text-align: center;
+        border-radius: 0.5rem;
+        background-color: #002037;
+        border: none;
+        font-family: "avenir-next", sans-serif;
+        font-weight: bold;
+        cursor: grab;
+        width: 100%;
+        color: #fffefe;
+        padding: 0.5rem;
+    }
+
+    &__login-button-hidden{
+        display: none;
+    }
+
 }
 
 a{

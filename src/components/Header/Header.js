@@ -10,14 +10,59 @@ import phoneIcon from "../../assets/images/icons/PhoneIcon.png";
 
 import { NavLink, useNavigate } from 'react-router-dom';
 
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+
 const Header = () => {
+    const [user, setUser] = useState({});
+    const [failedAuth, setFailedAuth] = useState(false);
+  
+    const authToken = sessionStorage.getItem('authToken');
+  
+    // if there is no auth token in session storage auth is failed
+    useEffect(() => {
+      if (!authToken) {
+        setFailedAuth(true);
+      }
+    }, [authToken]);
+  
+    // if there is an error from the endpoint (ie: token invalid, expired, tampered with)
+    useEffect(() => {
+      axios
+        .get("http://localhost:8080/users/current", {
+          headers: {
+            Authorization: `Bearer ${authToken}`,
+          },
+        })
+        .then((res) => {
+          setUser(res.data);
+          setFailedAuth(false);
+        })
+        .catch((err) => {
+          setFailedAuth(true);
+        })
+    }, [authToken]);
+
+    const {first_name} = user;
 
     const navigateHomePage = useNavigate();
+    const navigateLoginPage = useNavigate();
 
     const handleLogoClick = () => {
         navigateHomePage("/")
         window.scrollTo(0, 0)
     };
+
+    const handleLogout = () => {
+        sessionStorage.removeItem('authToken');
+        window.location.reload()
+    }
+
+    const handleLogin = () => {
+        navigateLoginPage("/login")
+        window.scrollTo(0, 0)
+    }
+    
     return (
         <header className="header">
             <div className="header__clean-earth-logo-container">
@@ -41,7 +86,11 @@ const Header = () => {
                         <a href="https://www.twitter.com/BeCleanEarth/"><img className="header__twitter-logo" src={twitterLogo} alt="Twitter logo"/></a>
                     </div>
                     <div className="header__login-sign-up">
-                        <NavLink style={({ isActive }) => (isActive ? {color: '#E0E2DB'} : {color: '#fffefe'})} to="/login">Login/Sign-up</NavLink>
+                        <button onClick={handleLogin} className={first_name === undefined ? "header__login-button" : "header__login-button-hidden" }>Login/Sign-up</button>
+                    </div>
+                    <div>
+                        <p className={first_name === undefined ? 'header__hide-welcome'  : 'header__show-welcome' }>{`Welcome back ${first_name}!`}</p>
+                        <button onClick={handleLogout} className={first_name === undefined ? "header__logout-button-hidden" : "header__logout-button" }>Log out</button>
                     </div>
                 </div>
                 <div className="header__nav-links">

@@ -8,6 +8,7 @@ import Footer from "../../components/Footer/Footer.js";
 
 
 const LandingPage = () => {
+  window.scrollTo(0, 0)
     return (
         <>
         <div className="App">

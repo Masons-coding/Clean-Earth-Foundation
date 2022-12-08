@@ -3,15 +3,11 @@
 
 .products{
     width: 100%;
-    height: fit-content;
+    height: 100vh;
     background-position: center;
     background-size: cover;
     background-image: url("../../assets/images/productsPageBackground.jpg");
     box-shadow: inset 2000em 2000em rgba(50, 50, 50, 0.5);
     border-top: 3px solid #323232;
     border-bottom: 3px solid #323232;
-
-    @include tablet{
-        height: fit-content;
-    }
 }

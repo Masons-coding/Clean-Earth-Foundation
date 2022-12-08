@@ -22,8 +22,11 @@
     &__picture{
         max-width: 100%;
         border-radius: 0.5rem;
-        max-height: 20rem;
         border: 3px solid #fffefe;
+
+        @include tablet{
+            max-height: 20rem;
+        }
     }
 
     &__content{
