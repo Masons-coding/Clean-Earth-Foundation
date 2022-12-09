@@ -4,6 +4,8 @@ import tShirtPicture from "../../assets/images/tshirt.png";
 import greenBraceletPicture from "../../assets/images/bracelet-blue.jpg";
 import blueBraceletPicture from "../../assets/images/bracelet-green.jpg";
 
+// STRIPE ICON - import stripeIcon from "../../assets/images/icons/StripeIcon.svg";
+
 const Products = () => {
     return (
         <>
@@ -17,19 +19,54 @@ const Products = () => {
                     <img className="products-list__bracelet-blue" src={blueBraceletPicture} alt="Blue bracelet"/>
                     <p className="products-list__title">Clean Earth Ocean Bracelet</p>
                     <p className="products-list__text">A Clean Earth branded bracelet made entirely from recycled materials (Blue). Expandable up to 10 inches, for everyone.</p>
-                    <button className="products-list__button">$12</button>
+                    
+                    <div>
+                        <p className="products-list__sold-out">SOLD OUT</p>
+                        {/* <img className="products-list__sold-out" src={soldOutIcon} alt="Sold Out" /> */}
+                    </div>
+
+                    {/* PRODUCTS STRIPE PAYMENT BUTTON
+                    <div className="products-list__stripe-container">
+                        <img src={stripeIcon} alt="Stripe Icon"/>
+                        <p className="products-list__price">$12</p>
+                    </div> */}
+
+
                 </div>
                 <div className="products-list__container">
                     <img className="products-list__bracelet-green" src={greenBraceletPicture} alt="Green bracelet"/>
                     <p className="products-list__title">Clean Earth Forest Bracelet</p>
                     <p className="products-list__text">A Clean Earth branded bracelet made entirely from recycled materials (Green). Expandable up to 10 inches for everyone.</p>
-                    <button className="products-list__button">$12</button>
+                    
+                    <div>
+                        <p className="products-list__sold-out">SOLD OUT</p>
+                    </div>
+
+                    {/* PRODUCTS STRIPE PAYMENT BUTTON
+                    <div className="products-list__stripe-container">
+                        <img src={stripeIcon} alt="Stripe Icon"/>
+                        <p className="products-list__price">$12</p>
+                    </div> */}
+
+
+
                 </div>
                 <div className="products-list__container">
                     <img className="products-list__shirt" src={tShirtPicture} alt="Clean Earth t-shirt"/>
                     <p className="products-list__title">Clean Earth T-shirt</p>
                     <p className="products-list__text">A Clean Earth Branded t-shirt for both men and women (Black)</p>
-                    <button className="products-list__button">$25</button>
+                    
+                    <div>
+                        <p className="products-list__sold-out">SOLD OUT</p>
+                    </div>
+
+                    {/* PRODUCTS STRIPE PAYMENT BUTTON
+                    <div className="products-list__stripe-container">
+                        <img src={stripeIcon} alt="Stripe Icon"/>
+                        <p className="products-list__price">$25</p>
+                    </div> */}
+
+
                 </div>
             </div>
         </section>

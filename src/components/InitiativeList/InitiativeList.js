@@ -12,7 +12,7 @@ const InitiativeList = () => {
 
     const handleDonateClick = () => {
         navigatedonatePage("/donate")
-        window.scrollTo(0, 0)
+        window.scrollTo(0, 500);
     };
 
     const navigatevolunteerPage = useNavigate();
@@ -21,6 +21,7 @@ const InitiativeList = () => {
         navigatevolunteerPage("/volunteer")
         window.scrollTo(0, 0)
     };
+
     return (
         <section className="initiatives-list">
             <div className="initiatives-list__container">

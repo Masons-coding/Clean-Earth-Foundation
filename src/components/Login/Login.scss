@@ -16,6 +16,11 @@
         text-align: center;
         padding: 0.5rem;
         border: 3px solid #323232;
+        margin-bottom: 1rem;
+        font-size: 1.1rem;
+        font-family: 'avenir-next', sans-serif;
+        font-weight: normal;
+        color: #323232;
 
         @include tablet{
             width: 27rem;
@@ -117,6 +122,7 @@
         border-radius: 1rem;
         padding: 0.25rem;
         padding-top: 2rem;
+        text-align: center;
     }
 
     &__error-message-hidden{
@@ -129,5 +135,11 @@
         font-weight: normal;
         padding-bottom: 0.5rem;
     }
+  }
+
+  a{
+    color: #2E66E5;
+    font-family: 'avenir-next', sans-serif;
+    font-weight: bold;
   }
   

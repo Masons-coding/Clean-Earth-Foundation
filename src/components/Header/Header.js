@@ -5,13 +5,16 @@ import cleanEarthLogo from "../../assets/images/cleanEarthLogo.png";
 import instagramLogo from "../../assets/images/icons/InstagramIcon.svg";
 import facebookLogo from "../../assets/images/icons/FacebookIcon.svg";
 import twitterLogo from "../../assets/images/icons/TwitterIcon.svg";
-import emailIcon from "../../assets/images/icons/EmailIcon.png";
-import phoneIcon from "../../assets/images/icons/PhoneIcon.png";
+import emailIcon from "../../assets/images/icons/EmailIcon.svg";
+import phoneIcon from "../../assets/images/icons/PhoneIcon.svg";
 
 import { NavLink, useNavigate } from 'react-router-dom';
 
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+
+// const USER_CURRENT = process.env.USER_CURRENT_URL;
+// const urlForUserCurrent =`${USER_CURRENT}`;
 
 const Header = () => {
     const [user, setUser] = useState({});
@@ -89,7 +92,7 @@ const Header = () => {
                         <button onClick={handleLogin} className={first_name === undefined ? "header__login-button" : "header__login-button-hidden" }>Login/Sign-up</button>
                     </div>
                     <div>
-                        <p className={first_name === undefined ? 'header__hide-welcome'  : 'header__show-welcome' }>{`Welcome back ${first_name}!`}</p>
+                        <p className={first_name === undefined ? 'header__hide-welcome'  : 'header__show-welcome' }>{`Welcome to Clean Earth ${first_name}!`}</p>
                         <button onClick={handleLogout} className={first_name === undefined ? "header__logout-button-hidden" : "header__logout-button" }>Log out</button>
                     </div>
                 </div>

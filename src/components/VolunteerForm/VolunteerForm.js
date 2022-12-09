@@ -4,7 +4,11 @@ import { useState} from "react";
 
 import { useNavigate } from "react-router-dom";
 
+import axios from 'axios';
+
 const VolunteerForm = () => {
+
+    const [success, setSuccess] = useState(false);
 
     const navigateHomePage = useNavigate();
 
@@ -97,36 +101,66 @@ const VolunteerForm = () => {
 
       const handleSubmitForm = (event) => {
         event.preventDefault()
-        if(date === ""){
-            setDateError(true)
-            event.target.date.focus()
-            setDateErrorMessage("Field required - please enter the date for your clean up")
+        formValidation();
+        function formValidation(){
+            if(date === ""){
+                setDateError(true)
+                event.target.date.focus()
+                setDateErrorMessage("Field required - please enter the date for your clean up")
+            }
+            if(country === ""){
+                setCountryError(true)
+                event.target.country.focus()
+                setCountryErrorMessage("Field required - please enter your country")
+            }
+            if(state === ""){
+                setStateError(true)
+                event.target.state.focus()
+                setStateErrorMessage("Field required - please enter your state/province")
+            }
+            if(city === ""){
+                setCityError(true)
+                event.target.city.focus()
+                setCityErrorMessage("Field required - please enter your city")
+            }
+            const emailValid = /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/.test(email);
+            if(email === "" || !emailValid){
+                setEmailError(true)
+                event.target.email.focus()
+                setEmailErrorMessage("Field required - please enter a valid email address")
+            }
+            if(name === ""){
+                setNameError(true)
+                event.target.name.focus()
+                setNameErrorMessage("Field required - please enter your name")
+            }
         }
-        if(country === ""){
-            setCountryError(true)
-            event.target.country.focus()
-            setCountryErrorMessage("Field required - please enter your country")
-        }
-        if(state === ""){
-            setStateError(true)
-            event.target.state.focus()
-            setStateErrorMessage("Field required - please enter your state/province")
-        }
-        if(city === ""){
-            setCityError(true)
-            event.target.city.focus()
-            setCityErrorMessage("Field required - please enter your city")
-        }
-        const emailValid = /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/.test(email);
-        if(email === "" || !emailValid){
-            setEmailError(true)
-            event.target.email.focus()
-            setEmailErrorMessage("Field required - please enter a valid email address")
-        }
-        if(name === ""){
-            setNameError(true)
-            event.target.name.focus()
-            setNameErrorMessage("Field required - please enter your name")
+        if(formValidation){
+            axios
+            .post("http://localhost:8080/cleanups/register", {
+                name: name,
+                email: email,
+                city: city,
+                state: state,
+                country: country,
+                date_of_clean_up: date,
+                long_map_value: -80,
+                lat_map_value: 44
+            })
+            .then(() => {
+              setSuccess(true)
+              setName("")
+              setEmail("")
+              setCity("")
+              setState("")
+              setCountry("")
+              setDate("")
+              setTimeout(() => {
+                navigateHomePage("/");
+              }, 1500);
+            })
+            .catch((error) => {
+            });
         }
       };
 
@@ -157,7 +191,7 @@ const VolunteerForm = () => {
                 <div className="volunteer__error-message">{countryErrorMessage}</div>
 
                 <label className="volunteer__labels" htmlFor="name">Date for clean up:</label>
-                <input type="date" value={date} onChange={handleDateChange} className={dateError === true ? 'volunteer__input-error' : 'volunteer__input' } id="date" name="date"></input>
+                <input min={new Date().toISOString().slice(0, -8).split('T')[0]} type="date" onChange={handleDateChange} className={dateError === true ? 'volunteer__input-error' : 'volunteer__input' } id="date" name="date"></input>
                 <div className="volunteer__error-message">{dateErrorMessage}</div>
                 
                 <label className="volunteer__labels" htmlFor="name">Location:</label>
@@ -167,6 +201,7 @@ const VolunteerForm = () => {
                     <button type="submit" className="volunteer__button">Submit</button>
                     <button onClick={handleCancelClick} className="volunteer__button">Cancel</button>
                 </div>
+                {success && <div className="volunteer__message">Clean up registered!</div>}
             </form>
     );
 };

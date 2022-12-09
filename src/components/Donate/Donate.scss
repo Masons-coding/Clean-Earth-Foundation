@@ -12,7 +12,9 @@
     border-radius: 1rem;
     font-size: 0.8rem;
     border: 3px solid #323232;
-    max-height: 37rem;
+    max-height: 42rem;
+    align-items: center;
+    max-height: 48rem;
 
     @include tablet{
         padding: 1rem;
@@ -49,5 +51,87 @@
         align-self: flex-end;
         padding-top: 2rem;
         text-align: right;
+    }
+
+    &__container{
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    &__button{
+        color: #fffefe;
+        border-radius: 1rem;
+        padding: 0.5rem;
+        font-size: 1rem;
+        background-color: #323232;
+        font-family: 'avenir-next', sans-serif;
+        font-weight: bold;
+        font-size: 0.9rem;
+
+    }
+
+    &__phone-icon{
+        max-height: 1.3rem;
+    }
+
+    &__arrow-container{
+        display: none;
+
+        @include tablet{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            margin-right: 1rem;
+        }
+
+    }
+
+    &__links-container{
+        display: flex;
+        gap: 1rem;
+    }
+
+    &__link{
+        padding: 0.5rem;
+        border-radius: 1rem;
+        color: #fffefe;
+        background-color: #0095FF;
+        border: 1.5px solid white;
+        font-size: 0.9rem;
+    }
+
+    &__thank-you{
+        max-width: 25%;
+
+        @include tablet{
+            max-width: 8%;
+        }
+
+    }
+
+    &__picture{
+        max-width: 33%;
+        border-radius: 1rem;
+        border: 3px solid #fffefe;
+    }
+
+    &__picture-container{
+        display: none;
+
+        @include tablet{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+            padding-bottom: 3rem;
+        }
+
+        @include desktop{
+            gap: 1rem;
+        }
+
     }
 }

@@ -4,6 +4,9 @@ import { Link, Navigate } from "react-router-dom";
 import axios from 'axios';
 import './Login.scss';
 
+  // const USER_LOGIN = process.env.USER_LOGIN_URL;
+  // const urlForLogin =`${USER_LOGIN}`;
+
 const Login = () => {
   const [success, setSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
@@ -33,7 +36,7 @@ const Login = () => {
           setErrorMessage("")
       }
   };
-  
+
   const handleLoginSubmitForm = (event) => {
     event.preventDefault();
 
@@ -54,13 +57,21 @@ const Login = () => {
         sessionStorage.setItem("authToken", res.data.token);
         setSuccess(true);
       })
-      .catch(() => {
-        setErrorMessage("Password or email is incorrect")
+      .catch((error) => {
+        if(error.response.data.message === "Invalid Credentials"){
+          setPasswordError(true)
+          setEmailError(true)
+          setErrorMessage("Password or email is incorrect")
+        }
+
       });
   }
 
   return (
     <main className="login-page">
+          <p className="login-page__sign-up">
+            Need an account? <Link to="/signup">Sign up</Link>
+          </p>
         <form autoComplete="off" onSubmit={handleLoginSubmitForm} className="login">
             <h1 className="login__title">Log in</h1>
 
@@ -75,9 +86,6 @@ const Login = () => {
             {success && <Navigate to="/"/>}
 
         </form>
-        <p className="login-page__sign-up">
-            Need an account? <Link to="/signup">Sign up</Link>
-        </p>
     </main>
   );
 };
