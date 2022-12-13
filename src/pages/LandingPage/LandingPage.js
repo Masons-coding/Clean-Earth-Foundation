@@ -15,15 +15,29 @@ import { useParams} from 'react-router-dom';
 
 import MarkerModal from "../../components/MarkerModal/MarkerModal.js";
 
+import LoadingScreen from "../../components/LoadingPage/LoadingPage.js"
+
+import markerIcon from "../../assets/images/icons/MapIcon2.png"
+
+// import markerIcon2 from "../../assets/images/icons/MapIcon.png"
+
+const GOOGLE_API = process.env.REACT_APP_GOOGLE_MPAS_API_KEY;
+const googleApi = `${GOOGLE_API}`;
+
+const LANDING_PAGE = process.env.REACT_APP_LANDING_PAGE_URL;
+
+const API = process.env.REACT_APP_API_KEY;
+
+const landingPageUrl =`${LANDING_PAGE}${API}`;
 
 const LandingPage = () => {
   window.scrollTo(0, 0)
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: "AIzaSyDHzmp87aN7Sgnqm9r5uloMJMNrLC_RB3M",
+    googleMapsApiKey: googleApi,
   });
 
   if (!isLoaded){
-    return <div>Loading...</div>;
+    return <LoadingScreen/>;
   } 
 
     return (
@@ -31,7 +45,14 @@ const LandingPage = () => {
         <div className="App">
           <Hero/>
           <Banner/>
-          <Map/>
+          <div className="above-map-container">
+            <h2 className="map-header">OUR CLEAN UPS AROUND THE WORLD:</h2>
+            <div className="par-container-above-map">
+              <p className="map-par-mobile">Mobile/tablet: Please use two fingers to zoom in or out on the map below</p>
+              <p className="map-par">Desktop: Please press Ctrl + Scroll to zoom in or out on the map below</p>
+            </div>
+          </div>
+          <Map/> 
           <FeaturedInitiatives/>
           <Footer/>
         </div>
@@ -40,6 +61,13 @@ const LandingPage = () => {
 };
 
 function Map() {
+
+  const[mapIcon] = useState(markerIcon);
+
+  const [center, setCenter] = useState({ lat: 39, lng: 34 })
+
+  const[zoom] = useState(2.3)
+
   const {id} = useParams()
 
   const [cleanUpData, setCleanUpData] = useState([]);
@@ -50,7 +78,7 @@ function Map() {
 
   useEffect(()=>{
     axios
-    .get("http://localhost:8080/cleanups/cleanup")
+    .get(landingPageUrl)
     .then((response) => {
      setCleanUpData(response.data);
     })
@@ -60,18 +88,20 @@ function Map() {
   },[id]);
 
 
-  if(!cleanUpData) return<div>Map Loading...</div>;
+  if(!cleanUpData) return<loadingScreen/>;
 
   return (
-    <GoogleMap zoom={2} center={{ lat: 44, lng: -80 }} mapContainerClassName="map-container">
+    <GoogleMap zoom={zoom} center={center} mapContainerClassName="map-container">
       {cleanUpData.map((cleanUp)=>{
  return (
   <MarkerF
     position={{ lat: cleanUp.lat_map_value, lng: cleanUp.long_map_value }}
     key={cleanUp.id}
+    icon = {mapIcon}
     onClick={() => {
       setLocationId(cleanUp.id);
       setOpenModal(true);
+      setCenter({ lat: cleanUp.lat_map_value, lng: cleanUp.long_map_value })
     }}
   />
 );

@@ -13,38 +13,39 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-// const USER_CURRENT = process.env.USER_CURRENT_URL;
-// const urlForUserCurrent =`${USER_CURRENT}`;
+const USER_CURRENT = process.env.REACT_APP_USER_CURRENT_URL;
+
+const API = process.env.REACT_APP_API_KEY;
+
+const urlForUserCurrent =`${USER_CURRENT}${API}`;
 
 const Header = () => {
     const [user, setUser] = useState({});
-    const [failedAuth, setFailedAuth] = useState(false);
+    const [failedAuth, setFailedAuth] = useState(true);
   
     const authToken = sessionStorage.getItem('authToken');
   
-    // if there is no auth token in session storage auth is failed
-    useEffect(() => {
-      if (!authToken) {
-        setFailedAuth(true);
-      }
-    }, [authToken]);
-  
     // if there is an error from the endpoint (ie: token invalid, expired, tampered with)
     useEffect(() => {
-      axios
-        .get("http://localhost:8080/users/current", {
-          headers: {
-            Authorization: `Bearer ${authToken}`,
-          },
-        })
-        .then((res) => {
-          setUser(res.data);
-          setFailedAuth(false);
-        })
-        .catch((err) => {
-          setFailedAuth(true);
-        })
-    }, [authToken]);
+        if (!authToken){
+            setFailedAuth(true);
+        }else{
+            axios
+            .get((urlForUserCurrent), {
+              headers: {
+                Authorization: `Bearer ${authToken}`,
+              },
+            })
+            .then((res) => {
+              setUser(res.data);
+              setFailedAuth(false);
+            })
+            .catch((err) => {
+              setFailedAuth(true);
+            })
+        }
+
+    }, [authToken, failedAuth]);
 
     const {first_name} = user;
 
@@ -76,7 +77,7 @@ const Header = () => {
                     <div className="header__contact-content-container">
                         <div className="header__icon-div">
                             <img className="header__email-icon" src={emailIcon} alt="Email Icon" />
-                            <button className="header__email-button">contact@cleanearthfoundation.com</button>
+                            <a href="mailto:contact@cleanearthfoundation.com" className="header__email-button">contact@cleanearthfoundation.com</a>
                         </div>
                         <div className="header__icon-div">
                             <img className="header__phone-icon" src={phoneIcon} alt="Phone Icon" />

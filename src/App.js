@@ -15,10 +15,9 @@ import Header from "./components/Header/Header.js";
 
 import { BrowserRouter, Routes, Route} from "react-router-dom";
 
+import ErrorPage from "./pages/ErrorPage/ErrorPage";
+
 function App() {
-
-
-
   return (
     <BrowserRouter>
       <Header/>
@@ -32,6 +31,7 @@ function App() {
         <Route path="/volunteer" element={<VolunteerPage/>} />
         <Route path="/login" element={<LoginPage/>} />
         <Route path="/signup" element={<SignUpPage/>} />
+        <Route path="*" element={<ErrorPage/>} />
       </Routes>
     </BrowserRouter>
   );

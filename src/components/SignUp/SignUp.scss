@@ -5,7 +5,7 @@
     display: flex;
     flex-direction: column;
     padding: 1rem;
-    background-color: #BDC1C7;
+    background-color: #002037;
     align-items: center;
     border-radius: 1rem;
     width: 100%;
@@ -30,7 +30,7 @@
     }
 
     &__labels{
-        color: #323232;
+        color: #fefefe;
         font-family: 'avenir-next', sans-serif;
         font-weight: normal;
         padding-bottom: 0.5rem;
@@ -44,7 +44,6 @@
         font-size: 0.9rem;
         color: #323232;
         width: 100%;
-        border: 1px solid #BDC5D5;
         margin-bottom: 2rem;
         text-align: center;
     
@@ -130,7 +129,7 @@
         font-family: 'avenir-next', sans-serif;
         font-weight: normal;
         font-size: 0.9rem;
-        color: #b10101;
+        color: #ff7f7f;
         margin: 0;
         position: relative;
         top: -2rem;
@@ -152,6 +151,7 @@
         border-radius: 0.5rem;
         text-align: center;
         padding: 0.5rem;
+        color: #fefefe;
     }
   }
   
@@ -172,6 +172,7 @@
         border-bottom: 5px solid #ffcf00;
         padding-bottom: 0.5rem;
         align-self: center;
+        color: #fefefe;
     }
   
     &__button {
@@ -235,5 +236,18 @@
     display: flex;
     align-items: center;
     margin-bottom: 2rem;
-    width: 75%;
+    width: 100%;
+
+    @include tablet{
+        width: 75%;
+    }
+  }
+
+  .PhoneInputCountrySelectArrow{
+    color: #fefefe;
+  }
+
+  .drNucU > span{
+    color: #ff7f7f;
+    opacity: 1;
   }

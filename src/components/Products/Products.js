@@ -20,8 +20,9 @@ const Products = () => {
                     <p className="products-list__title">Clean Earth Ocean Bracelet</p>
                     <p className="products-list__text">A Clean Earth branded bracelet made entirely from recycled materials (Blue). Expandable up to 10 inches, for everyone.</p>
                     
-                    <div>
+                    <div className="products-list_sold-out-coming-soon">
                         <p className="products-list__sold-out">SOLD OUT</p>
+                        <p className="products-list__coming-soon">Coming soon!</p>
                         {/* <img className="products-list__sold-out" src={soldOutIcon} alt="Sold Out" /> */}
                     </div>
 
@@ -38,8 +39,9 @@ const Products = () => {
                     <p className="products-list__title">Clean Earth Forest Bracelet</p>
                     <p className="products-list__text">A Clean Earth branded bracelet made entirely from recycled materials (Green). Expandable up to 10 inches for everyone.</p>
                     
-                    <div>
+                    <div className="products-list_sold-out-coming-soon">
                         <p className="products-list__sold-out">SOLD OUT</p>
+                        <p className="products-list__coming-soon">Coming soon!</p>
                     </div>
 
                     {/* PRODUCTS STRIPE PAYMENT BUTTON
@@ -56,8 +58,9 @@ const Products = () => {
                     <p className="products-list__title">Clean Earth T-shirt</p>
                     <p className="products-list__text">A Clean Earth Branded t-shirt for both men and women (Black)</p>
                     
-                    <div>
+                    <div className="products-list_sold-out-coming-soon">
                         <p className="products-list__sold-out">SOLD OUT</p>
+                        <p className="products-list__coming-soon">Coming soon!</p>
                     </div>
 
                     {/* PRODUCTS STRIPE PAYMENT BUTTON

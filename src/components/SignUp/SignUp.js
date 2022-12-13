@@ -8,6 +8,14 @@ import 'react-phone-number-input/style.css'
 
 import PhoneInput, { isValidPhoneNumber } from 'react-phone-number-input'
 
+// import PasswordChecklist from "react-password-checklist"
+
+const SIGN_UP_PAGE = process.env.REACT_APP_SIGN_UP_URL;
+
+const API = process.env.REACT_APP_API_KEY;
+
+const signUpPageUrl =`${SIGN_UP_PAGE}${API}`;
+
 const Signup = () => {
 
   const [success, setSuccess] = useState(false);
@@ -22,7 +30,7 @@ const Signup = () => {
 
   const handleFirstNameChange = (event) => {
       setFirstName(event.target.value);
-      if(firstName !== ""){
+      if(firstName !== " "){
           setFirstNameError(false)
           setFirstNameErrorMessage("")
       }
@@ -35,7 +43,7 @@ const Signup = () => {
 
   const handleEmailChange = (event) => {
       setEmail(event.target.value);
-      if(email !== ""){
+      if(email !== " "){
           setEmailError(false)
           setEmailErrorMessage("")
       }
@@ -48,7 +56,7 @@ const Signup = () => {
 
   const handleLastNameChange = (event) => {
       setLastName(event.target.value);
-      if(lastName !== ""){
+      if(lastName !== " "){
         setLastNameError(false)
         setLastNameErrorMessage("")
       }
@@ -60,42 +68,63 @@ const Signup = () => {
 
   const handlePhoneChange = (event) => {
       setPhoneValue(event)
-      if(phoneValue !== ""){
+      if(phoneValue !== " "){
         setErrorPhone(false)
       }
   }; 
 
   const [passwordErrorMessage, setPasswordErrorMessage] = useState("")
+  const [passwordErrorMessage2, setPasswordErrorMessage2] = useState("")
+  const [passwordErrorMessage3, setPasswordErrorMessage3] = useState("")
   const [password, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState(false);
 
   const handlePasswordChange = (event) => {
       setPassword(event.target.value);
-      if(password !== ""){
+      if(password !== " "){
           setPasswordError(false)
           setPasswordErrorMessage("")
+          setPasswordErrorMessage2("")
+          setPasswordErrorMessage3("")
       }
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    const passwordContainsCap =  /[A-Z]/.test(password);
+    const emailValid = /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/.test(email);
+    const phoneValid = isValidPhoneNumber(phoneValue)
     formValidation();
     function formValidation(){
-        if(password === ""){
+        if(password === "" && password.length < 8 && passwordContainsCap === false){
             setPasswordError(true)
             event.target.password.focus()
             setPasswordErrorMessage("Field required - please enter a password")
+            setPasswordErrorMessage2("Your password must be 8 characters long")
+            setPasswordErrorMessage3("Your password must contain a capital")
+        }else if(password.length < 8 && passwordContainsCap === false){
+            setPasswordError(true)
+            event.target.password.focus()
+            setPasswordErrorMessage("Your password must be 8 characters long")
+            setPasswordErrorMessage2("Your password must contain a capital")
+        }else if(password.length < 8){
+            setPasswordErrorMessage("Your password must be 8 characters long")
         }
-        const emailValid = /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/.test(email);
-        if(email === "" || !emailValid){
+        else if(passwordContainsCap === false){
+            setPasswordError(true)
+            event.target.password.focus()
+            setPasswordErrorMessage("Your password must contain a capital")
+        }
+        if(email === "" || emailValid === false){
             setEmailError(true)
             event.target.email.focus()
             setEmailErrorMessage("Field required - please enter a valid email address")
         }
-        if(!isValidPhoneNumber(phoneValue)){
+        if( phoneValid === false){
             setErrorPhone(true)
         }
         if(lastName === ""){
+            setSuccess(false);
             setLastNameError(true)
             event.target.lastName.focus()
             setLastNameErrorMessage("Field required - please enter your first name")
@@ -107,9 +136,9 @@ const Signup = () => {
         }
     }
 
-    if(formValidation){
+    if(passwordError === false && emailError === false && errorPhone === false && lastNameError === false && firstNameError === false && emailValid === true && passwordContainsCap === true && phoneValid === true && password.length >= 8){
         axios
-        .post("http://localhost:8080/users/register", {
+        .post((signUpPageUrl), {
             first_name: firstName,
             last_name: lastName,
             cell_phone: phoneValue,
@@ -147,7 +176,7 @@ const Signup = () => {
             <form autoComplete="off" onSubmit={handleSubmit} className='sign-up'>
                 <h1 className="signup__title">Sign up</h1>
                 <label className="sign-up__labels" htmlFor="first_name">First Name:</label>
-                <input type="text" placeholder="Please enter your first name" value={firstName} onChange={handleFirstNameChange} className={firstNameError === true ? 'sign-up__input-error' : 'sign-up__input' }  id="firstName" name="firstName"></input>
+                <input type="text" placeholder="Please enter your first name" defaultValue={firstName} onChange={handleFirstNameChange} className={firstNameError === true ? 'sign-up__input-error' : 'sign-up__input' }  id="firstName" name="firstName"></input>
                 <div className="sign-up__error-message">{firstNameErrorMessage}</div>
 
                 <label className="sign-up__labels" htmlFor="last_name">Last Name:</label>
@@ -157,7 +186,7 @@ const Signup = () => {
                 <label className="sign-up__labels" htmlFor="phone">Cell Phone:</label>
                 <PhoneInput placeholder="Please enter your cell phone #" className={errorPhone === true ? 'sign-up__input-error' : 'sign-up__input' }
                 countryCallingCodeEditable={false} international defaultCountry="CA" value={phoneValue} onChange={handlePhoneChange} id="phone-input"></PhoneInput>
-                {errorPhone && <div className="sign-up__error-message">Please provide a valid phone number</div>}
+                {errorPhone && <div className="sign-up__error-message">Field required - please provide a valid phone number</div>}
 
                 <label className="sign-up__labels" htmlFor="email">Email:</label>
                 <input type="text" placeholder="Please enter your email" value={email} onChange={handleEmailChange} className={emailError === true ? 'sign-up__input-error' : 'sign-up__input' } id="email" name="email"></input>
@@ -166,6 +195,8 @@ const Signup = () => {
                 <label className="sign-up__labels" htmlFor="name">Password:</label>
                 <input type="text" placeholder="Please enter your password" value={password} onChange={handlePasswordChange} className={passwordError === true ? 'sign-up__input-error' : 'sign-up__input' } id="password" name="password"></input>
                 <div className="sign-up__error-message">{passwordErrorMessage}</div>
+                <div className="sign-up__error-message">{passwordErrorMessage2}</div>
+                <div className="sign-up__error-message">{passwordErrorMessage3}</div>
 
                 <div className="sign-up__button-container">
                     <p className="signup-page__log-in">

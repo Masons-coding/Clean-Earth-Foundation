@@ -1,0 +1,19 @@
+.error-page{
+    &__image{
+        width: 100%;
+    }
+
+    &__message{
+        text-align: center;
+        font-size: 2rem;
+        color: red;
+        font-family: "avenir-next-bold", sans-serif;
+        margin-top: 1rem;
+    }
+
+    &__container{
+        display: flex;
+        justify-content: center;
+    }
+}
+

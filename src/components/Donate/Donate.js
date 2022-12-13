@@ -1,14 +1,45 @@
 import './Donate.scss';
 
-import rightArrowIcon from "../../assets/images/icons/RightArrowIcon.png";
-import thankYouIcon from "../../assets/images/icons/ThankYouIocn.svg";
-
 import donatePicture1 from "../../assets/images/DonatePicture1.jpg";
 import donatePicture2 from "../../assets/images/DonatePicture2.jpg";
 import donatePicture3 from "../../assets/images/DonatePicture3.jpg";
+import { useState } from 'react';
 
 const Donate = () => {
-    window.scrollTo(0, 500);
+
+    const[moneyValue, setMoneyValue] = useState(0);
+
+    if(moneyValue === 0 ){
+        window.scrollTo(0, 500);
+    }
+
+    const[hiddenDivClass, setHiddenDivClass] = useState("donate__hidden-div")
+
+    const[hiddenDivText, setHiddenDivText] = useState("")
+
+    const[moneyDivClass, setMoneyDivClass] = useState("donate__money-container-hidden")
+
+    const tenClicked = () => {
+        setMoneyDivClass("donate__money-container")
+        setHiddenDivClass("donate__hiden-div")
+        setHiddenDivText("")
+        setMoneyValue(10);
+    }
+
+    const twentyClicked = () => {
+        setMoneyDivClass("donate__money-container")
+        setHiddenDivClass("donate__hiden-div")
+        setHiddenDivText("")
+        setMoneyValue(20);
+    }
+
+    const submitClick = () => {
+        if(moneyValue === 0){
+            setHiddenDivClass("donate__hidden-div-show")
+            setHiddenDivText("Please select a value to donate first")
+        }
+    }
+
     return (
         <>
         <div className="donate">
@@ -24,18 +55,24 @@ const Donate = () => {
                     <img className="donate__picture" src={donatePicture1} alt="Dolphins"/>
                     <img className="donate__picture" src={donatePicture3} alt="Nature trail"/>
                 </div>
-                <div className="donate__arrow-container">
-                    <button className="donate__button">Click here to Donate!</button>
-                    <img className="donate__phone-icon" src={rightArrowIcon} alt="Right arrow" />
-                    <img className="donate__phone-icon" src={rightArrowIcon} alt="Right arrow" />
-                    <img className="donate__phone-icon" src={rightArrowIcon} alt="Right arrow" />
-                </div>
-                <div className="donate__links-container">
-                    <a className="donate__link" href="https://buy.stripe.com/7sIbM7c2538d6KQaEE">$10/month</a>
-                    <a className="donate__link" href="https://buy.stripe.com/cN22bx0jnfUZ7OU001">$20/month</a>
+                <div className="donate__everything-container">
+                    <div className="donate__options-container">
+                        <div>
+                            <p className="donate__options-text">Please select an Option:</p>
+                            <div className={hiddenDivClass}>{hiddenDivText}</div>
+                        </div>
+                        <div className="donate__button-container"> 
+                            <button onClick={tenClicked} className="donate__button">$10/month</button>
+                            <button onClick={twentyClicked} className="donate__button">$20/month</button>
+                        </div>
+                    </div>
+                    <div className="donate__money-submit-container">
+                        <button onClick={submitClick} href={moneyValue === 10? "https://buy.stripe.com/7sIbM7c2538d6KQaEE" : moneyValue===20? "https://buy.stripe.com/cN22bx0jnfUZ7OU001" : null} className="donate__submit-button">DONATE</button>
+                        <div className={moneyDivClass}>{`$${moneyValue}/month`}</div>
+                    </div>
                 </div>
             </div>
-            <img className="donate__thank-you"src={thankYouIcon} alt="Thank you!"/>
+
         </div>
 
 

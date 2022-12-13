@@ -1,3 +1,6 @@
+@use '../../styles/partials/mixins.scss' as *;
+@use '../../styles/partials/letters' as *;
+
 .App{
     height: 1rem;
 }
@@ -14,3 +17,109 @@
 .gm-fullscreen-control{
     display: none;
 }
+
+.map-header{
+    font-size: 0.9rem;
+    font-family: "avenir-next", sans-serif;
+    font-weight: bold;
+    text-align: center;
+    color: #fefefe;
+
+
+    @include tablet{
+        font-size: 1rem;
+        align-self: flex-end;
+    }
+
+    @include desktop{
+        font-size: 1.5rem;
+    }
+}
+
+.map-par{
+    font-size: 0.8rem;
+    font-family: "avenir-next", sans-serif;
+    font-weight: normal;
+    text-align: center;
+    color: #fefefe;
+
+
+    @include tablet{
+        font-size: 0.75rem;
+    }
+
+    @include desktop{
+        font-size: 1.1rem;
+    }
+}
+
+.map-par-mobile{
+    font-size: 0.8rem;
+    font-family: "avenir-next", sans-serif;
+    font-weight: normal;
+    text-align: center;
+    color: #fefefe;
+
+    @include tablet{
+        font-size: 0.75rem;
+    }
+
+    @include desktop{
+        font-size: 1.1rem;
+    }
+
+}
+
+.above-map-container{
+    flex-direction: column-reverse;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background-color: #0095FF;
+    border-top: 3px solid #323232;
+    justify-content: space-between;
+    padding: 3.5rem 0.5rem 0rem 0.5rem;
+    background-color: #0e470e;
+    border-bottom: 3px solid #323232;
+
+    @include tablet{
+        gap: 0rem;
+        flex-direction: row;
+    }
+
+    @include desktop{
+        padding: 3.5rem 3rem 0rem 3rem;
+    }
+
+}
+
+.par-container-above-map{
+    gap: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    @include tablet{
+        gap: 0rem;
+    }
+
+}
+
+.gm-style-moc{
+    display: none;
+}
+
+.gmnoprint {
+    display: none;
+}
+
+.gm-style {
+    background-color: #0e470e;
+}
+
+
+img:hover[src="https://maps.gstatic.com/mapfiles/transparent.png"]{
+    box-shadow: rgb(0 149 255 / 50%) 5em 5em inset;
+    border-radius: 20rem; 
+}
+

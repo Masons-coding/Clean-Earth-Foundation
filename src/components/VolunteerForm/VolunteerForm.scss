@@ -11,13 +11,6 @@
     width: 100%;
     border: 3px solid #323232;
 
-    @include tablet{
-        width: 95%;
-    }
-
-    @include desktop{
-        width: 45%;
-    }
 
     &__heading-container{
         display: flex;
@@ -144,4 +137,38 @@
         padding-top: 1rem;
     }
 
+    &__lat-long-error-message-red{
+        font-family: 'avenir-next', sans-serif;
+        font-weight: bold;
+        font-size: 1.5rem;
+        color: #b40000;
+        margin: 0;
+        position: relative;
+        top: -2rem;
+        border-radius: 1rem;
+        padding: 0.25rem;
+    }
+
+    &__text-map{
+        color: #fffefe;
+        font-family: 'avenir-next', sans-serif;
+        font-weight: normal;
+        text-align: center;
+        padding-bottom: 1rem;
+    }
+
+    &__par-container-above-map{
+        gap: 1rem;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        align-self: flex-start;
+    
+        @include tablet{
+            gap: 0rem;
+        }
+    
+    }
+
 }
+
