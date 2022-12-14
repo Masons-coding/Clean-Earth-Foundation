@@ -29,27 +29,6 @@
         padding-bottom: 0.5rem;
     }
 
-    &__input{
-        padding: 0.5rem;
-        border-radius: 1rem;
-        font-family: 'avenir-next', sans-serif;
-        font-weight: normal;
-        font-size: 0.9rem;
-        color: #323232;
-        width: 100%;
-        border: 1px solid #BDC5D5;
-        margin-bottom: 2rem;
-        text-align: center;
-    
-        &:focus{
-            outline-color: #2E66E5;
-        }
-
-        @include tablet{
-            width: 75%;
-        }
-    }
-
     &__text{
         color: #fffefe;
         font-family: 'avenir-next', sans-serif;
@@ -107,6 +86,23 @@
         padding-top: 1rem;
     }
 
+    &__input{
+        padding: 0.5rem;
+        border-radius: 1rem;
+        font-family: 'avenir-next', sans-serif;
+        font-weight: normal;
+        font-size: 0.9rem;
+        color: #323232;
+        width: 15rem;
+        border: 1px solid #BDC5D5;
+        margin-bottom: 2rem;
+    
+        &:focus{
+            outline-color: #2E66E5;
+        }
+
+    }
+
     &__input-error{
         padding: 0.5rem;
         border-radius: 1rem;
@@ -114,18 +110,14 @@
         font-weight: normal;
         font-size: 0.9rem;
         color: #323232;
-        width: 100%;
+        width: 15rem;
         border: 3px solid red;
         margin-bottom: 2rem;
-        text-align: center;
 
         &:focus{
             outline-color: red;
         }
 
-        @include tablet{
-            width: 75%;
-        }
     }
 
     &__error-message{
@@ -138,6 +130,11 @@
         top: -2rem;
         border-radius: 1rem;
         padding: 0.25rem;
+
+        @include desktop{
+            text-align: center;
+        }
+
     }
 
     &__message{
@@ -151,13 +148,16 @@
     &__lat-long-error-message-red{
         font-family: 'avenir-next', sans-serif;
         font-weight: bold;
-        font-size: 1.5rem;
-        color: #b40000;
+        font-size: 0.9rem;
+        color: #ff7f7f;
         margin: 0;
-        position: relative;
-        top: -2rem;
         border-radius: 1rem;
         padding: 0.25rem;
+
+        @include tablet{
+            font-size: 1.5rem;
+        }
+
     }
 
     &__text-map{
@@ -179,6 +179,101 @@
             gap: 0rem;
         }
     
+    }
+
+    &__form-everything-container{
+        display: flex;
+        gap: 3rem;
+        align-self: center;
+        width: 100%;
+        flex-direction: column;
+
+        @include tablet{
+            flex-direction: row;
+            gap: 0.5rem;
+            width: 96%;
+        }
+
+        @include desktop{
+            gap: 3rem;
+            align-self: center;
+            width: 100%;
+            justify-content: center;
+        }
+    }
+
+    &__inputs-container{
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+
+        @include tablet{
+            min-width: 36%;
+        }
+
+        @include desktop{
+            min-width: 30%;
+            align-items: center;
+        }
+
+    }
+
+    &__inputs-container-time-date{
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+
+        @include tablet{
+            min-width: 30%;
+        }
+
+        @include desktop{
+            min-width: 30%;
+            align-items: center;
+        }
+
+    }
+
+    &__input-time-date{
+        padding: 0.5rem;
+        border-radius: 1rem;
+        font-family: 'avenir-next', sans-serif;
+        font-weight: normal;
+        font-size: 0.9rem;
+        color: #323232;
+        width: 8rem;
+        border: 1px solid #BDC5D5;
+        margin-bottom: 2rem;
+        height: 2.2rem;
+    
+        &:focus{
+            outline-color: #2E66E5;
+        }
+
+        @include desktop{
+            height: 2.1rem;
+        }
+    }
+
+    &__input-error-time-date{
+        padding: 0.5rem;
+        border-radius: 1rem;
+        font-family: 'avenir-next', sans-serif;
+        font-weight: normal;
+        font-size: 0.9rem;
+        color: #323232;
+        width: 8rem;
+        border: 3px solid red;
+        margin-bottom: 2rem;
+        height: 2.5rem;
+
+        &:focus{
+            outline-color: red;
+        }
+
+        @include desktop{
+            height: 2.3rem;
+        }
     }
 
 }

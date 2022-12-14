@@ -24,11 +24,13 @@
     font-weight: bold;
     text-align: center;
     color: #fefefe;
+    max-width: 31ch;
 
 
     @include tablet{
         font-size: 1rem;
         align-self: flex-end;
+        max-width: 60ch;
     }
 
     @include desktop{
@@ -42,9 +44,11 @@
     font-weight: normal;
     text-align: center;
     color: #fefefe;
+    max-width: 31ch;
 
 
     @include tablet{
+        max-width: 60ch;
         font-size: 0.75rem;
     }
 
@@ -59,8 +63,10 @@
     font-weight: normal;
     text-align: center;
     color: #fefefe;
+    max-width: 31ch;
 
     @include tablet{
+        max-width: 60ch;
         font-size: 0.75rem;
     }
 

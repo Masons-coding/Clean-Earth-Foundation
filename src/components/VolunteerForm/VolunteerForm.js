@@ -152,12 +152,12 @@ const VolunteerForm = () => {
             if(time === "00:00"){
                 setTimeError(true)
                 event.target.time.focus()
-                setTimeErrorMessage("Field required - please enter the time your clean up will take place")
+                setTimeErrorMessage("Field required - please enter clean up time")
             }
             if(date === ""){
                 setDateError(true)
                 event.target.date.focus()
-                setDateErrorMessage("Field required - please enter the date for your clean up")
+                setDateErrorMessage("Field required - please enter clean up date")
             }
             if(country === ""){
                 setCountryError(true)
@@ -239,33 +239,41 @@ const VolunteerForm = () => {
                     <h1 className="volunteer__heading">Register a clean up with Clean Earth!</h1>
                     <p className="volunteer__text">Thank you for your commitment to making a difference. We are always looking for volunteers to participate in our vision of having a cleaner environment worldwide!</p>
                 </div>
-                <label className="volunteer__labels" htmlFor="name">Name:</label>
-                <input type="text" placeholder="Please enter your full name" value={name} onChange={handleNameChange} className={nameError === true ? 'volunteer__input-error' : 'volunteer__input' }  id="name" name="name"></input>
-                <div className="volunteer__error-message">{nameErrorMessage}</div>
+                <div className="volunteer__form-everything-container">
+                    <div className="volunteer__inputs-container">
+                        <label className="volunteer__labels" htmlFor="name">Name:</label>
+                        <input type="text" placeholder="Please enter your full name" value={name} onChange={handleNameChange} className={nameError === true ? 'volunteer__input-error' : 'volunteer__input' }  id="name" name="name"></input>
+                        <div className="volunteer__error-message">{nameErrorMessage}</div>
 
-                <label className="volunteer__labels" htmlFor="name">Email:</label>
-                <input type="text" placeholder="Please enter your email" value={email} onChange={handleEmailChange} className={emailError === true ? 'volunteer__input-error' : 'volunteer__input' } id="email" name="email"></input>
-                <div className="volunteer__error-message">{emailErrorMessage}</div>
+                        <label className="volunteer__labels" htmlFor="name">Email:</label>
+                        <input type="text" placeholder="Please enter your email" value={email} onChange={handleEmailChange} className={emailError === true ? 'volunteer__input-error' : 'volunteer__input' } id="email" name="email"></input>
+                        <div className="volunteer__error-message">{emailErrorMessage}</div>
+                    </div>
 
-                <label className="volunteer__labels" htmlFor="name">City:</label>
-                <input type="text" placeholder="Please enter your city" value={city} onChange={handleCityChange} className={cityError === true ? 'volunteer__input-error' : 'volunteer__input' } id="city" name="city"></input>
-                <div className="volunteer__error-message">{cityErrorMessage}</div>
+                    <div className="volunteer__inputs-container">
+                        <label className="volunteer__labels" htmlFor="name">City:</label>
+                        <input type="text" placeholder="Please enter your city" value={city} onChange={handleCityChange} className={cityError === true ? 'volunteer__input-error' : 'volunteer__input' } id="city" name="city"></input>
+                        <div className="volunteer__error-message">{cityErrorMessage}</div>
 
-                <label className="volunteer__labels" htmlFor="name">State/Province:</label>
-                <input type="text" placeholder="Please enter your state/province" value={state} onChange={handleStateChange} className={stateError === true ? 'volunteer__input-error' : 'volunteer__input' } id="state" name="state"></input>
-                <div className="volunteer__error-message">{stateErrorMessage}</div>
+                        <label className="volunteer__labels" htmlFor="name">State/Province:</label>
+                        <input type="text" placeholder="Please enter your state/province" value={state} onChange={handleStateChange} className={stateError === true ? 'volunteer__input-error' : 'volunteer__input' } id="state" name="state"></input>
+                        <div className="volunteer__error-message">{stateErrorMessage}</div>
 
-                <label className="volunteer__labels" htmlFor="name">Country:</label>
-                <input type="text" placeholder="Please enter your country" value={country} onChange={handleCountryChange} className={countryError === true ? 'volunteer__input-error' : 'volunteer__input' } id="country" name="country"></input>
-                <div className="volunteer__error-message">{countryErrorMessage}</div>
+                        <label className="volunteer__labels" htmlFor="name">Country:</label>
+                        <input type="text" placeholder="Please enter your country" value={country} onChange={handleCountryChange} className={countryError === true ? 'volunteer__input-error' : 'volunteer__input' } id="country" name="country"></input>
+                        <div className="volunteer__error-message">{countryErrorMessage}</div>
+                    </div>
 
-                <label className="volunteer__labels" htmlFor="name">Date for clean up:</label>
-                <input min={new Date().toISOString().slice(0, -8).split('T')[0]} type="date" onChange={handleDateChange} className={dateError === true ? 'volunteer__input-error' : 'volunteer__input' } id="date" name="date"></input>
-                <div className="volunteer__error-message">{dateErrorMessage}</div>
+                    <div className="volunteer__inputs-container-time-date">
+                        <label className="volunteer__labels" htmlFor="name">Date for clean up:</label>
+                        <input min={new Date().toISOString().slice(0, -8).split('T')[0]} type="date" onChange={handleDateChange} className={dateError === true ? 'volunteer__input-error-time-date' : 'volunteer__input-time-date' } id="date" name="date"></input>
+                        <div className="volunteer__error-message">{dateErrorMessage}</div>
 
-                <label className="volunteer__labels" htmlFor="name">Time of clean up event:</label>
-                <input type="time" value={time} onChange={handleTimeChange} className={timeError === true ? 'volunteer__input-error' : 'volunteer__input' } id="time" name="time"/>
-                <div className="volunteer__error-message">{timeErrorMessage}</div>
+                        <label className="volunteer__labels" htmlFor="name">Time for clean up:</label>
+                        <input type="time" value={time} onChange={handleTimeChange} className={timeError === true ? 'volunteer__input-error-time-date' : 'volunteer__input-time-date' } id="time" name="time"/>
+                        <div className="volunteer__error-message">{timeErrorMessage}</div>
+                    </div>
+                </div>
 
                 <label className="volunteer__labels" htmlFor="name">Location:</label>
                 <p className="volunteer__text-map">Please select a location on the map (below) for your clean up</p>
