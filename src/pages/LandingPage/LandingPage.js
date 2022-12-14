@@ -19,8 +19,6 @@ import LoadingScreen from "../../components/LoadingPage/LoadingPage.js"
 
 import markerIcon from "../../assets/images/icons/MapIcon2.png"
 
-// import markerIcon2 from "../../assets/images/icons/MapIcon.png"
-
 const GOOGLE_API = process.env.REACT_APP_GOOGLE_MPAS_API_KEY;
 const googleApi = `${GOOGLE_API}`;
 

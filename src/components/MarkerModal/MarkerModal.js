@@ -56,7 +56,7 @@ export default function MarkerModal({ setOpenModal, cleanupId }) {
     <div className="marker-modal">
 
         <div className="marker-modal-images-container">
-            <img  className="clean-earth-logo" src={cleanEarthLogo} alt="CleanEarth Logo"/>
+            <img className="clean-earth-logo" src={cleanEarthLogo} alt="CleanEarth Logo"/>
             <img
                 src={CancelIcon}
                 className="marker-modal__close"
@@ -75,6 +75,7 @@ export default function MarkerModal({ setOpenModal, cleanupId }) {
                     <h2 className="header-text">Clean up state:</h2>
                     <h2 className="header-text">Clean up country:</h2>
                     <h2 className="header-text">Clean up date:</h2>
+                    <h2 className="header-text">Clean up time:</h2>
                     <h2 className="header-text">Clean up location:</h2>
                 </div>
 
@@ -85,6 +86,7 @@ export default function MarkerModal({ setOpenModal, cleanupId }) {
                     <p className="par">{cleanUp.state}</p>
                     <p className="par">{cleanUp.country}</p>
                     <p className="par">{date}</p>
+                    <p className="par">{cleanUp.time_of_clean_up}</p>
                     <p className="par">{address}</p>
                 </div>
 

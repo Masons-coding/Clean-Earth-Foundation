@@ -117,6 +117,18 @@ const VolunteerForm = () => {
         }
     };
 
+    const [timeErrorMessage, setTimeErrorMessage] = useState("")
+    const [time, setTime] = useState("00:00");
+    const [timeError, setTimeError] = useState(false);
+
+    const handleTimeChange = (event) => {
+        setTime(event.target.value);
+        if(time !== "00:00"){
+            setTimeError(false)
+            setTimeErrorMessage("")
+        }
+    };
+
 
     const handleCancelClick = () => {
         navigateHomePage("/")
@@ -136,6 +148,11 @@ const VolunteerForm = () => {
             if(latValue === 0 || longValue === 0){
                 setLatLongError(true)
                 setLatLongErrorMessage("Please select a spot on the map")
+            }
+            if(time === "00:00"){
+                setTimeError(true)
+                event.target.time.focus()
+                setTimeErrorMessage("Field required - please enter the time your clean up will take place")
             }
             if(date === ""){
                 setDateError(true)
@@ -169,7 +186,22 @@ const VolunteerForm = () => {
             }
         }
 
-        if(latLongError === false && dateError === false && countryError === false && stateError === false && cityError === false & emailError === false && nameError === false && emailValid === true){
+        if(latLongError === false && timeError === false && dateError === false && countryError === false && stateError === false && cityError === false & emailError === false && nameError === false && emailValid === true){
+            let timeSplit = time.split(':');
+            let hours = Number(timeSplit[0]);
+            let minutes = Number(timeSplit[1]);
+            // calculate
+            let timeValue = "";
+            if (hours > 0 && hours <= 12) {
+            timeValue= "" + hours;
+            } else if (hours > 12) {
+            timeValue= "" + (hours - 12);
+            } else if (hours === 0) {
+            timeValue= "12";
+            }
+            timeValue += (minutes < 10) ? ":0" + minutes : ":" + minutes;  // get minutes
+            timeValue += (hours >= 12) ? " P.M." : " A.M.";  // get AM/PM
+
             axios
             .post((urlForUserRegister), {
                 name: name,
@@ -178,6 +210,7 @@ const VolunteerForm = () => {
                 state: state,
                 country: country,
                 date_of_clean_up: date,
+                time_of_clean_up: timeValue,
                 long_map_value: longValue,
                 lat_map_value:  latValue
             })
@@ -189,6 +222,7 @@ const VolunteerForm = () => {
               setState("")
               setCountry("")
               setDate("")
+              setTime("00:00")
               setTimeout(() => {
                 navigateHomePage("/");
               }, 1500);
@@ -202,7 +236,7 @@ const VolunteerForm = () => {
     return (
             <form onSubmit={handleSubmitForm} className='volunteer'>
                 <div className="volunteer__heading-container">
-                    <h1 className="volunteer__heading">Get Involved with Clean Earth!</h1>
+                    <h1 className="volunteer__heading">Register a clean up with Clean Earth!</h1>
                     <p className="volunteer__text">Thank you for your commitment to making a difference. We are always looking for volunteers to participate in our vision of having a cleaner environment worldwide!</p>
                 </div>
                 <label className="volunteer__labels" htmlFor="name">Name:</label>
@@ -228,7 +262,11 @@ const VolunteerForm = () => {
                 <label className="volunteer__labels" htmlFor="name">Date for clean up:</label>
                 <input min={new Date().toISOString().slice(0, -8).split('T')[0]} type="date" onChange={handleDateChange} className={dateError === true ? 'volunteer__input-error' : 'volunteer__input' } id="date" name="date"></input>
                 <div className="volunteer__error-message">{dateErrorMessage}</div>
-                
+
+                <label className="volunteer__labels" htmlFor="name">Time of clean up event:</label>
+                <input type="time" value={time} onChange={handleTimeChange} className={timeError === true ? 'volunteer__input-error' : 'volunteer__input' } id="time" name="time"/>
+                <div className="volunteer__error-message">{timeErrorMessage}</div>
+
                 <label className="volunteer__labels" htmlFor="name">Location:</label>
                 <p className="volunteer__text-map">Please select a location on the map (below) for your clean up</p>
                 <div className="volunteer__par-container-above-map">
@@ -251,11 +289,11 @@ function Map({setLatLongErrorMessage, setLatLongError, setLat, setLong}) {
 
     const[mapIcon] = useState(markerIcon);
 
-    const[position, setPosition] = useState({})
+    const[position, setPosition] = useState({ lat: 43.651070, lng: -79.347015})
   
-    const [center] = useState({ lat: 39, lng: 34 })
+    const [center] = useState({ lat: 45.000000, lng: -63.000000 })
   
-    const[zoom] = useState(2.3)
+    const[zoom] = useState(3)
   
     const handleClickMap = event => { const lat = event.latLng.lat(); const lng = event.latLng.lng(); setLat(lat); setLong(lng); setPosition({ lat: lat, lng: lng}); setLatLongErrorMessage(""); setLatLongError(false)};
     return (

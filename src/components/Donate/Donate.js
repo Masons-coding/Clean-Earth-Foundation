@@ -67,7 +67,7 @@ const Donate = () => {
                         </div>
                     </div>
                     <div className="donate__money-submit-container">
-                        <button onClick={submitClick} href={moneyValue === 10? "https://buy.stripe.com/7sIbM7c2538d6KQaEE" : moneyValue===20? "https://buy.stripe.com/cN22bx0jnfUZ7OU001" : null} className="donate__submit-button">DONATE</button>
+                        <a onClick={submitClick} href={moneyValue === 10? "https://buy.stripe.com/7sIbM7c2538d6KQaEE" : moneyValue===20? "https://buy.stripe.com/cN22bx0jnfUZ7OU001" : null} className="donate__submit-button">DONATE</a>
                         <div className={moneyDivClass}>{`$${moneyValue}/month`}</div>
                     </div>
                 </div>
