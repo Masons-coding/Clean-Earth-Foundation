@@ -64,7 +64,7 @@ function Map() {
 
   const [center, setCenter] = useState({ lat: 39, lng: 34 })
 
-  const[zoom] = useState(2.3)
+  const[zoom] = useState(2.5)
 
   const {id} = useParams()
 
