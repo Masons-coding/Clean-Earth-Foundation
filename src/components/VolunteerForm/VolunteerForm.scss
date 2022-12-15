@@ -23,6 +23,7 @@
     }
 
     &__labels{
+        font-size: 1.3rem;
         color: #fffefe;
         font-family: 'avenir-next', sans-serif;
         font-weight: normal;
@@ -161,6 +162,8 @@
     }
 
     &__text-map{
+        border-bottom: 3px solid white;
+        margin-bottom: 1rem;
         color: #fffefe;
         font-family: 'avenir-next', sans-serif;
         font-weight: normal;
@@ -189,6 +192,8 @@
         flex-direction: column;
 
         @include tablet{
+            border-bottom: 3px solid #2E66E5;
+            margin-bottom: 2rem;
             flex-direction: row;
             gap: 0.5rem;
             width: 96%;
@@ -212,6 +217,7 @@
         }
 
         @include desktop{
+            border-right: 3px solid #2E66E5;
             min-width: 30%;
             align-items: center;
         }
@@ -219,11 +225,16 @@
     }
 
     &__inputs-container-time-date{
+        border-bottom: 3px solid #2E66E5;
+        margin-bottom: 2rem;
         display: flex;
         flex-direction: column;
         gap: 1rem;
 
         @include tablet{
+            border-bottom: none;
+            margin-bottom: 0;
+            margin-bottom: 2rem;
             min-width: 30%;
         }
 
