@@ -4,14 +4,37 @@ import { Link, Navigate } from "react-router-dom";
 import axios from 'axios';
 import './Login.scss';
 
-  const USER_LOGIN = process.env.REACT_APP_USER_LOGIN_URL;
+import showIcon from "../../assets/images/icons/EyeIcon.svg";
+import NotShowIcon from "../../assets/images/icons/CancelIcon.svg";
 
-  const API = process.env.REACT_APP_API_KEY;
+const USER_LOGIN = process.env.REACT_APP_USER_LOGIN_URL;
 
-  const urlForLogin =`${USER_LOGIN}${API}`;
+const API = process.env.REACT_APP_API_KEY;
+
+const urlForLogin =`${USER_LOGIN}${API}`;
+
+
   
 
 const Login = () => {
+
+  const [passwordShown, setPasswordShown] = useState(false);
+
+  const togglePassword = () => {
+      if(passwordShown === false){
+        setShowOrHidePassword(NotShowIcon)
+      }
+
+      if(passwordShown === true){
+        setShowOrHidePassword(showIcon)
+      }
+
+      setPasswordShown(!passwordShown);
+    };
+
+   const [showOrHidePassword, setShowOrHidePassword] = useState(showIcon)
+
+
   const [success, setSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -86,8 +109,11 @@ const Login = () => {
             <label className="login__labels" htmlFor="first_name">Email:</label>
             <input type="text" placeholder="Please enter your email" value={email} onChange={handleEmailChange} className={emailError === true || passwordError === true ? 'login__input-error' : 'login__input' }  id="email" name="email"></input>
             <label className="login__labels" htmlFor="first_name">Password:</label>
-            <input type="password" placeholder="Please enter your password" value={password} onChange={handlePasswordChange} className={passwordError === true || emailError === true ? 'login__input-error' : 'login__input' }  id="password" name="password"></input>
-            
+            <div className="login__show-hide-password-container">
+              <input type={passwordShown ? "text" : "password"} placeholder="Please enter your password" value={password} onChange={handlePasswordChange} className={passwordError === true || emailError === true ? 'login__input-error' : 'login__input' }  id="password" name="password"></input>
+              <img src={showOrHidePassword} alt="Show or hide password" className="login__show-password" onClick={togglePassword}/>
+            </div>
+
             <div className={passwordError === true || emailError === true ? 'login__error-message' : 'login__error-message-hidden' }>{errorMessage}</div>
 
             <button className="login__button">Log in</button>

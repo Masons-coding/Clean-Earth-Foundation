@@ -135,6 +135,17 @@
         font-weight: normal;
         padding-bottom: 0.5rem;
     }
+
+    &__show-password{
+        min-width: 2rem;
+        cursor: grab;
+    }
+
+    &__show-hide-password-container{
+        display: flex;
+        gap: 0.5rem;
+        align-items: flex-start;
+    }
   }
 
   a{

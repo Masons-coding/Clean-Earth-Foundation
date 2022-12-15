@@ -4,11 +4,12 @@ import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import './SignUp.scss';
 
+import showIcon from "../../assets/images/icons/EyeIcon.svg";
+import NotShowIcon from "../../assets/images/icons/CancelIcon.svg";
+
 import 'react-phone-number-input/style.css'
 
 import PhoneInput, { isValidPhoneNumber } from 'react-phone-number-input'
-
-// import PasswordChecklist from "react-password-checklist"
 
 const SIGN_UP_PAGE = process.env.REACT_APP_SIGN_UP_URL;
 
@@ -17,6 +18,22 @@ const API = process.env.REACT_APP_API_KEY;
 const signUpPageUrl =`${SIGN_UP_PAGE}${API}`;
 
 const Signup = () => {
+
+    const [passwordShown, setPasswordShown] = useState(false);
+
+    const togglePassword = () => {
+        if(passwordShown === false){
+          setShowOrHidePassword(NotShowIcon)
+        }
+  
+        if(passwordShown === true){
+          setShowOrHidePassword(showIcon)
+        }
+  
+        setPasswordShown(!passwordShown);
+      };
+  
+     const [showOrHidePassword, setShowOrHidePassword] = useState(showIcon)
 
   const [success, setSuccess] = useState(false);
 
@@ -193,7 +210,10 @@ const Signup = () => {
                 <div className="sign-up__error-message">{emailErrorMessage}</div>
 
                 <label className="sign-up__labels" htmlFor="name">Password:</label>
-                <input type="text" placeholder="Please enter your password" value={password} onChange={handlePasswordChange} className={passwordError === true ? 'sign-up__input-error' : 'sign-up__input' } id="password" name="password"></input>
+                <div className="sign-up__show-hide-password-container">
+                    <input type={passwordShown ? "text" : "password"} placeholder="Please enter your password" value={password} onChange={handlePasswordChange} className={passwordError === true ? 'sign-up__input-error' : 'sign-up__input' } id="password" name="password"></input>
+                    <img src={showOrHidePassword} alt="Show or hide password" className="sign-up__show-password" onClick={togglePassword}/>
+                </div>
                 <div className="sign-up__error-message">{passwordErrorMessage}</div>
                 <div className="sign-up__error-message">{passwordErrorMessage2}</div>
                 <div className="sign-up__error-message">{passwordErrorMessage3}</div>

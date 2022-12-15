@@ -30,10 +30,20 @@
     }
 
     &__labels{
+        align-self: flex-start;
+        padding-left: 1rem;
         color: #fefefe;
         font-family: 'avenir-next', sans-serif;
         font-weight: normal;
         padding-bottom: 0.5rem;
+
+        @include tablet{
+            padding-left: 6rem;
+        }
+
+        @include desktop{
+            padding-left: 4rem;
+        }
     }
 
     &__input{
@@ -45,7 +55,6 @@
         color: #323232;
         width: 100%;
         margin-bottom: 2rem;
-        text-align: center;
     
         &:focus{
             outline-color: #2E66E5;
@@ -114,7 +123,6 @@
         width: 100%;
         border: 3px solid red;
         margin-bottom: 2rem;
-        text-align: center;
 
         &:focus{
             outline-color: red;
@@ -135,6 +143,20 @@
         top: -2rem;
         border-radius: 1rem;
         padding: 0.25rem;
+    }
+
+    &__show-password{
+        min-width: 2rem;
+        cursor: grab;
+    }
+
+    &__show-hide-password-container{
+        display: flex;
+        gap: 0.5rem;
+        align-items: flex-start;
+        width: 100%;
+        justify-content: center;
+        padding-left: 1rem;
     }
 
 }
