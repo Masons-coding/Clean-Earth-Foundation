@@ -8,6 +8,14 @@
     align-items: flex-end;
     justify-content: center;
 
+    @include tablet{
+        align-items: center;
+    }
+
+    @include desktop{
+        align-items: flex-end;
+    }
+
     &__help-par{
         display: none;
 
@@ -51,11 +59,11 @@
     &__icon-container{
         display: flex;
         gap: 0.5rem;
-        align-items: flex-end;
+        align-items: center;
         cursor: grab;
 
-        @include tablet{
-
+        @include desktop{
+            align-items: flex-end;
         }
     }
 
