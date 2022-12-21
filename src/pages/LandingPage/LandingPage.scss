@@ -81,11 +81,10 @@
     display: flex;
     align-items: center;
     gap: 1rem;
-    background-color: #0095FF;
     border-top: 3px solid #323232;
     justify-content: space-between;
     padding: 3.5rem 0.5rem 0rem 0.5rem;
-    background-color: #0e470e;
+    background-color: #002037;
     border-bottom: 3px solid #323232;
 
     @include tablet{
@@ -120,13 +119,34 @@
 }
 
 .gm-style {
-    background-color: #0e470e;
+    background-color: #002037;
 }
 
 
 img:hover[src="https://maps.gstatic.com/mapfiles/transparent.png"]{
     box-shadow: rgb(0 149 255 / 50%) 5em 5em inset;
     border-radius: 20rem;
+}
+
+.map-join-par{
+    font-size: 0.9rem;
+    color: #fefefe;
+    position: absolute;
+    top: 0.5rem;
+    left: 40%;
+    background-color: #0095FF;
+    padding: 0.5rem;
+    border-radius: 1rem;
+    font-family: "avenir-next", sans-serif;
+    font-weight: bold;
+
+    @include tablet{
+        font-size: 1rem;
+    }
+}
+
+.map-join-par-hidden{
+    display: none;
 }
 
 

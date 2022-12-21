@@ -37,7 +37,7 @@
         align-items: center;
         border-radius: 0.5rem;
         margin-top: 0.5rem;
-        height: 36rem;
+        height: 14rem;
         text-overflow: scroll;
         overflow: scroll;
         overflow-x: hidden;
@@ -81,16 +81,28 @@
     }
 
     &__button{
-        text-align: center;
-        border-radius: 0.5rem;
-        background-color: #002037;
-        border: none;
-        font-family: "avenir-next", sans-serif;
-        cursor: grab;
-        font-weight: normal;
+    text-align: center;
+    border-radius: 0.5rem;
+    background-color: #002037;
+    border: 3px solid #fefefe;
+    font-family: "avenir-next", sans-serif;
+    cursor: grab;
+    font-weight: bold;
+    width: 48%;
+    height: 2rem;
+    padding: 1rem;
+    color: #fffefe;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0.5rem;
+
+    @include tablet{
+        width: 45%;
+    }
+
+    @include desktop{
         width: 30%;
-        height: 2rem;
-        margin: 1rem;
-        color: #fffefe;
+    }
     }
 }

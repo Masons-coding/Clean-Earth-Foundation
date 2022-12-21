@@ -5,7 +5,7 @@
     display: flex;
     background-color: #0095FF;
     padding: 1rem;
-    align-items: center;
+    align-items: flex-end;
     justify-content: center;
 
     &__help-par{
@@ -40,7 +40,7 @@
         margin-left: 2rem;
 
         @include tablet{
-            font-size: 1.2rem;
+            font-size: 1rem;
         }
 
         @include desktop{
@@ -48,14 +48,27 @@
         }
     }
 
-    &__icon-div{
+    &__icon-container{
         display: flex;
         gap: 0.5rem;
-        align-items: center;
+        align-items: flex-end;
+        cursor: grab;
+
+        @include tablet{
+
+        }
     }
 
-    &__phone-icon{
-        max-height: 1.3rem;
+    &__donate-icon{
+        max-height: 2.3rem;
+
+        @include tablet{
+            max-height: 2.4rem;
+        }
+
+        @include desktop{
+            max-height: 2.6rem;
+        }
 
     }
 }

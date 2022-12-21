@@ -15,11 +15,59 @@
     @include tablet{
         margin: 1rem 0rem 0rem 13rem;
     }
+
     &__close {
         cursor: pointer;
         position: absolute;
         right: 0.5rem;
         top: 0.5rem;
+    }
+
+    &__button{
+        display: none;
+
+        @include desktop{
+            display: block;
+            text-align: center;
+            border-radius: 0.5rem;
+            background-color: #0095FF;
+            border: none;
+            font-family: "avenir-next", sans-serif;
+            font-weight: normal;
+            cursor: grab;
+            width: 20%;
+            height: 2rem;
+            margin: 1rem;
+            color: #fffefe;
+            font-size: 1rem;
+        }
+
+    }
+
+    &__button-mobile-tablet{
+        text-align: center;
+        border-radius: 0.5rem;
+        background-color: #0095FF;
+        border: none;
+        font-family: "avenir-next", sans-serif;
+        font-weight: normal;
+        cursor: grab;
+        width: 70%;
+        height: 2rem;
+        margin: 1rem;
+        color: #fffefe;
+        font-size: 1rem;
+    }
+
+    &__join-button-container{
+        display: flex;
+        justify-content: center;
+        flex-basis: 100%;
+    }
+
+    &__join-button-container-mobile-tablet{
+        display: flex;
+        justify-content: center;
     }
   }
 
@@ -82,7 +130,8 @@
 
     @include desktop{
         display: flex;
-        gap: 6rem;
+        flex-wrap: wrap;
+        justify-content: space-between;
     }
 
 }

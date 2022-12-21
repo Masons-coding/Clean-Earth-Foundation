@@ -38,7 +38,7 @@ const FeaturedInitiatives = () => {
                     <p className="initiatives__text">Our Clean Ocean initiative is focused on removing plastic pollution from the ocean and keeping it from getting there in the first place. By 2050 there is estimated to be more plastic than fish in the ocean. This is a scary, and unbelievable thought. We are working on leading our own cleanups, partnering with other cleanup organizations, and finding volunteers to lead their own cleanups in their local area. Keeping plastic out of the ocean will be achieved by going to the largest sources of the pollution and helping to create awareness about the environmental effect. Over 90% of the plastic pollution can be traced to just 10 rivers. We will then work with private organizations, local authorities, and other not for profits to create a recycling program so that the plastic waste will have a purpose for collection instead of ending up in landfills and in the water.</p>
                 </div>
             </div>
-            <button onClick={handleReadMoreClick} className="initiatives__button">Read More!</button>
+            <button onClick={handleReadMoreClick} className="initiatives__button">See More!</button>
         </section>
     );
 };

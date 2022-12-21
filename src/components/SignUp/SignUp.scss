@@ -156,7 +156,11 @@
         align-items: flex-start;
         width: 100%;
         justify-content: center;
-        padding-left: 1rem;
+
+        @include tablet{
+            padding-left: 1rem;
+        }
+
     }
 
 }

@@ -60,9 +60,9 @@
         color: #fff;
         border-radius: 0.5rem;
         padding: 0.5rem;
-        font-size: inherit;
         cursor: pointer;
         transition: background-color 0.15s;
+        font-size: 1rem;
   
         &:hover {
             background-color: #003fc2;
@@ -80,12 +80,12 @@
         border-radius: 1rem;
         font-family: 'avenir-next', sans-serif;
         font-weight: normal;
-        font-size: 0.9rem;
         color: #323232;
         width: 100%;
         border: 1px solid #BDC5D5;
         margin-bottom: 2rem;
         text-align: center;
+        font-size: 1rem;
     
         &:focus{
             outline-color: #2E66E5;
@@ -98,7 +98,6 @@
         border-radius: 1rem;
         font-family: 'avenir-next', sans-serif;
         font-weight: normal;
-        font-size: 0.9rem;
         color: #323232;
         width: 100%;
         border: 3px solid red;

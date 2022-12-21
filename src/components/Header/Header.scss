@@ -15,13 +15,12 @@
 
     &__show-welcome{
         padding-top: 1rem;
-        font-family: 'avenir-next', sans-serif;
-        font-weight: bold;
+        font-family: monospace;
         font-size: 1rem;
-        color: #FFE600;
+        color: #fefefe;
 
         @include tablet{
-            font-size: 1.2rem;
+            font-size: 1.4rem;
         }
     }
 
@@ -40,22 +39,21 @@
     }
 
     &__nav-links{
-        display: flex;
-        gap: 1rem;
-        padding-right: 1rem;
-        align-items: center;
-        flex-wrap: wrap;
-        padding-top: 1rem;
-        justify-content: center;
-        padding: 1rem;
-
+        display: none;
 
         @include tablet{
-            gap: 2rem;
+            display: flex;
+            gap: 1.5rem;
+            padding-right: 1rem;
+            align-items: center;
             flex-wrap: nowrap;
+            padding-top: 1rem;
+            justify-content: center;
+            padding: 1rem;
         }
 
         @include desktop{
+            gap: 2rem;
             margin-left: 0;
         }
     }
@@ -247,7 +245,7 @@
     }
 
     &__login-button{
-        font-size: 0.9rem;
+        font-size: 0.8rem;
         text-align: center;
         border-radius: 0.5rem;
         background-color: #002037;
@@ -267,6 +265,7 @@
 }
 
 a{
+    color: #fffefe;
     text-decoration: none;
     font-family: 'avenir-next', sans-serif;
     font-weight: normal;
@@ -285,6 +284,91 @@ a{
     border-bottom: 0.1rem solid #E0E2DB;
     font-weight: bold;
 }
+
+/* Position and sizing of burger button */
+.bm-burger-button {
+    position: absolute;
+    width: 36px;
+    height: 30px;
+    left: 36px;
+    top: 36px;
+
+    @include tablet{
+        display: none;
+    }
+  }
+  
+  /* Color/shape of burger icon bars */
+  .bm-burger-bars {
+    background: #fefefe;
+  }
+  
+  /* Color/shape of burger icon bars on hover*/
+  .bm-burger-bars-hover {
+    background: #373a47;
+  }
+  
+  /* Position and sizing of clickable cross button */
+  .bm-cross-button {
+    height: 24px;
+    width: 24px;
+
+    @include tablet{
+        display: none;
+    }
+  }
+  
+  /* Color/shape of close button cross */
+  .bm-cross {
+    background: #bdc3c7;
+  }
+  
+  /*
+  Sidebar wrapper styles
+  Note: Beware of modifying this element as it can break the animations - you should not need to touch it in most cases
+  */
+  .bm-menu-wrap {
+    height: 89% !important;
+
+    @include tablet{
+        display: none;
+    }
+  }
+  
+  /* General sidebar styles */
+  .bm-menu {
+    font-size: 1.15em;
+    height: 45% !important;
+    background: #002037;
+    font-size: 1.15em;
+    height: 45% !important;
+    border: 3px solid #fefefe;
+    border-radius: 1rem;
+
+
+    @include tablet{
+        display: none;
+    }
+  }
+  
+  /* Morph shape necessary with bubble or elastic */
+  .bm-morph-shape {
+    fill: #373a47;
+  }
+  
+  /* Wrapper for item list */
+  .bm-item-list {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .bm-overlay{
+    display: none;
+    // position: absolute !important;
+    // height: 45% !important;
+  }
 
 
 

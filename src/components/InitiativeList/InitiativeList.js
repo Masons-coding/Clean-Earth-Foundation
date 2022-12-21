@@ -29,7 +29,7 @@ const InitiativeList = () => {
                 <div className="initiatives-list__content">
                     <h2 className="initiatives-list__heading">Clean Trails</h2>
                     <p className="initiatives-list__text">Our Clean Trail initiative has performed garbage cleanups in three continents and five countries; from Canada and the United States, to the United Kingdom, and all the way to Tanzania and Puerto Rico. Our team of volunteers has gone across the globe in an attempt to better the environment personally. We have removed over 500 pounds of trash from walking trails and nature preserves already. We are working on growing this initiative around the world and we would love for people to volunteer to lead hikes and cleanups.</p>
-                    <button onClick={handleVolunteerClick} className="initiatives-list__button">Volunteer</button>
+                    <button onClick={handleVolunteerClick} className="initiatives-list__button">Lead a clean up</button>
                 </div>
             </div>
             <div className="initiatives-list__container">

@@ -2,7 +2,7 @@
 @use '../../styles/partials/letters' as *;
 
 .initiatives{
-    background-color: #0e470e;
+    background-color: #002037;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -97,7 +97,7 @@
     &__button{
         text-align: center;
         border-radius: 0.5rem;
-        background-color: #002037;
+        background-color: #0095FF;
         border: none;
         font-family: "avenir-next", sans-serif;
         font-weight: bold;

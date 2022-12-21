@@ -90,6 +90,10 @@ export default function MarkerModal({ setOpenModal, cleanupId }) {
                     <p className="par">{address}</p>
                 </div>
 
+                <div className="marker-modal__join-button-container">
+                  <button className="marker-modal__button">Join!</button>
+                </div>
+
             </div>
 
             <div className="everything-container-mobile-tablet">
@@ -105,6 +109,9 @@ export default function MarkerModal({ setOpenModal, cleanupId }) {
               <p className="par-mobile">{date}</p>
               <h2 className="header-text-mobile">Clean up location:</h2>
               <p className="par-mobile">{address}</p>
+              <div className="marker-modal__join-button-container-mobile-tablet">
+                <button className="marker-modal__button-mobile-tablet">Join!</button>
+              </div>
             </div>
 
     </div>

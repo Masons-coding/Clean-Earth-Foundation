@@ -36,9 +36,11 @@
         font-weight: normal;
         text-align: center;
         min-width: 27ch;
+        font-size: 0.9rem;
 
         @include tablet{
             min-width: 62ch;
+            font-size: 1rem;
         }
 
         @include desktop{
@@ -50,11 +52,12 @@
         color: #fffefe;
         font-family: 'avenir-next', sans-serif;
         font-weight: normal;
-        font-size: 1.5rem;
+        font-size: 1.4rem;
         text-align: center;
         min-width: 19ch;
 
         @include tablet{
+            font-size: 1.5rem;
             font-size: 2rem;
             min-width: 30ch;
         }

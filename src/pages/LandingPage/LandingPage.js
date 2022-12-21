@@ -60,6 +60,8 @@ const LandingPage = () => {
 
 function Map() {
 
+  const [joinMapTextClass, setJoinMapTextClass] = useState("map-join-par")
+
   const[mapIcon] = useState(markerIcon);
 
   const [center, setCenter] = useState({ lat: 39, lng: 34 })
@@ -89,7 +91,8 @@ function Map() {
   if(!cleanUpData) return<loadingScreen/>;
 
   return (
-    <GoogleMap zoom={zoom} center={center} mapContainerClassName="map-container">
+    <GoogleMap zoom={zoom} center={center} mapContainerClassName="map-container" onClick={(event) => {setOpenModal(false)}}>
+      <p className={joinMapTextClass}>Select a marker to join!</p>
       {cleanUpData.map((cleanUp)=>{
  return (
   <MarkerF
@@ -97,6 +100,7 @@ function Map() {
     key={cleanUp.id}
     icon = {mapIcon}
     onClick={() => {
+      setJoinMapTextClass("map-join-par-hidden")
       setLocationId(cleanUp.id);
       setOpenModal(true);
       setCenter({ lat: cleanUp.lat_map_value, lng: cleanUp.long_map_value })

@@ -13,6 +13,8 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
+import { slide as Menu } from 'react-burger-menu'
+
 const USER_CURRENT = process.env.REACT_APP_USER_CURRENT_URL;
 
 const API = process.env.REACT_APP_API_KEY;
@@ -99,13 +101,22 @@ const Header = () => {
                 </div>
                 <div className="header__nav-links">
                     <NavLink style={({ isActive }) => (isActive ? {color: '#E0E2DB'} : {color: '#fffefe'})} to="/">Home</NavLink>
-                    <NavLink style={({ isActive }) => (isActive ? {color: '#E0E2DB'} : {color: '#fffefe'})} to="/volunteer">Volunteer</NavLink>
+                    <NavLink style={({ isActive }) => (isActive ? {color: '#E0E2DB'} : {color: '#fffefe'})} to="/volunteer">Lead a clean up</NavLink>
                     <NavLink style={({ isActive }) => (isActive ? {color: '#E0E2DB'} : {color: '#fffefe'})} to="/about">About</NavLink>
                     <NavLink style={({ isActive }) => (isActive ? {color: '#E0E2DB'} : {color: '#fffefe'})} to="/gallery">Gallery</NavLink>
                     <NavLink style={({ isActive }) => (isActive ? {color: '#E0E2DB'} : {color: '#fffefe'})} to="/initiative">Initiatives</NavLink>
                     <NavLink style={({ isActive }) => (isActive ? {color: '#E0E2DB'} : {color: '#fffefe'})} to="/products">Products</NavLink>
                     <NavLink style={({ isActive }) => (isActive ? {color: '#E0E2DB'} : {color: '#fffefe'})} to="/donate">Donate</NavLink>
                 </div>
+                <Menu>
+                    <NavLink style={({ isActive }) => (isActive ? {color: '#E0E2DB'} : {color: '#fffefe'})} to="/">Home</NavLink>
+                    <NavLink style={({ isActive }) => (isActive ? {color: '#E0E2DB'} : {color: '#fffefe'})} to="/volunteer">Lead a clean up</NavLink>
+                    <NavLink style={({ isActive }) => (isActive ? {color: '#E0E2DB'} : {color: '#fffefe'})} to="/about">About</NavLink>
+                    <NavLink style={({ isActive }) => (isActive ? {color: '#E0E2DB'} : {color: '#fffefe'})} to="/gallery">Gallery</NavLink>
+                    <NavLink style={({ isActive }) => (isActive ? {color: '#E0E2DB'} : {color: '#fffefe'})} to="/initiative">Initiatives</NavLink>
+                    <NavLink style={({ isActive }) => (isActive ? {color: '#E0E2DB'} : {color: '#fffefe'})} to="/products">Products</NavLink>
+                    <NavLink style={({ isActive }) => (isActive ? {color: '#E0E2DB'} : {color: '#fffefe'})} to="/donate">Donate</NavLink>
+                </Menu>
             </div>
         </header>
     );
