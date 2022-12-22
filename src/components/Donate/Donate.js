@@ -32,21 +32,21 @@ const Donate = () => {
         setIsOpen(!isOpen);
         setHiddenDivClass("donate__hiden-div")
         setHiddenDivText("")
-        setMoneyValue("$10/month donation");
+        setMoneyValue("$10/month donation (USD)");
     }
 
     const twentyClicked = () => {
         setIsOpen(!isOpen);
         setHiddenDivClass("donate__hiden-div")
         setHiddenDivText("")
-        setMoneyValue("$20/month donation");
+        setMoneyValue("$20/month donation (USD)");
     }
 
     const oneTimeClicked = () => {
         setIsOpen(!isOpen);
         setHiddenDivClass("donate__hiden-div")
         setHiddenDivText("")
-        setMoneyValue("$Custom one time donation");
+        setMoneyValue("$Custom one time donation (USD)");
     }
 
     const submitClick = () => {
@@ -75,6 +75,7 @@ const Donate = () => {
                     <div className="donate__options-container">
                         <div>
                             <p className="donate__options-text">Please select an Option:</p>
+                            <p className="donate__options-text-payment">(Payment in USD)</p>
                             <div className={hiddenDivClass}>{hiddenDivText}</div>
                         </div>
                         <div className="donate__button-container"> 
@@ -91,7 +92,7 @@ const Donate = () => {
                 <img className="clean-earth-logo-pop-up" src={cleanEarthLogo} alt="CleanEarth Logo"/>
                 <h1 className="donate__pop-up-header">Confirm your donation</h1>
                 <p className="donate__pop-up-donate-value">{moneyValue}</p>
-                <a onClick={submitClick} href={moneyValue === "$10/month donation"? "https://buy.stripe.com/7sIbM7c2538d6KQaEE" : moneyValue==="$20/month donation"? "https://buy.stripe.com/cN22bx0jnfUZ7OU001" : moneyValue==="$Custom one time donation"? "https://buy.stripe.com/6oE17t7LP5gl8SY4gi" : null} className="donate__submit-button">Continue to payment</a>
+                <a onClick={submitClick} href={moneyValue === "$10/month donation (USD)"? "https://buy.stripe.com/7sIbM7c2538d6KQaEE" : moneyValue==="$20/month donation (USD)"? "https://buy.stripe.com/cN22bx0jnfUZ7OU001" : moneyValue==="$Custom one time donation (USD)"? "https://buy.stripe.com/6oEeYj5DH9wB3yEfZ1" : null} className="donate__submit-button">Continue to payment</a>
             </>}
             handleClose={togglePopup}
             />}
