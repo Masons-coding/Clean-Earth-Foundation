@@ -1,13 +1,24 @@
 import './Donate.scss';
 
+import Popup from '../PopUp/PopUp.js';
+
 import donatePicture1 from "../../assets/images/DonatePicture1.jpg";
 import donatePicture2 from "../../assets/images/DonatePicture2.jpg";
 import donatePicture3 from "../../assets/images/DonatePicture3.jpg";
+
+import cleanEarthLogo from "../../assets/images/cleanEarthLogo.png";
+
 import { useState } from 'react';
 
 const Donate = () => {
 
-    const[moneyValue, setMoneyValue] = useState(0);
+    const [isOpen, setIsOpen] = useState(false);
+
+    const togglePopup = () => {
+        setIsOpen(!isOpen);
+      }
+
+    const[moneyValue, setMoneyValue] = useState("");
 
     if(moneyValue === 0 ){
         window.scrollTo(0, 500);
@@ -17,20 +28,25 @@ const Donate = () => {
 
     const[hiddenDivText, setHiddenDivText] = useState("")
 
-    const[moneyDivClass, setMoneyDivClass] = useState("donate__money-container-hidden")
-
     const tenClicked = () => {
-        setMoneyDivClass("donate__money-container")
+        setIsOpen(!isOpen);
         setHiddenDivClass("donate__hiden-div")
         setHiddenDivText("")
-        setMoneyValue(10);
+        setMoneyValue("$10/month donation");
     }
 
     const twentyClicked = () => {
-        setMoneyDivClass("donate__money-container")
+        setIsOpen(!isOpen);
         setHiddenDivClass("donate__hiden-div")
         setHiddenDivText("")
-        setMoneyValue(20);
+        setMoneyValue("$20/month donation");
+    }
+
+    const oneTimeClicked = () => {
+        setIsOpen(!isOpen);
+        setHiddenDivClass("donate__hiden-div")
+        setHiddenDivText("")
+        setMoneyValue("$Custom one time donation");
     }
 
     const submitClick = () => {
@@ -64,13 +80,21 @@ const Donate = () => {
                         <div className="donate__button-container"> 
                             <button onClick={tenClicked} className="donate__button">$10/month</button>
                             <button onClick={twentyClicked} className="donate__button">$20/month</button>
+                            <button onClick={oneTimeClicked} className="donate__button-one-time">Custom (one time)</button>
                         </div>
                     </div>
-                    <div className="donate__money-submit-container">
-                        <a onClick={submitClick} href={moneyValue === 10? "https://buy.stripe.com/7sIbM7c2538d6KQaEE" : moneyValue===20? "https://buy.stripe.com/cN22bx0jnfUZ7OU001" : null} className="donate__submit-button">DONATE</a>
-                        <div className={moneyDivClass}>{`$${moneyValue}/month`}</div>
-                    </div>
                 </div>
+            </div>
+            <div>
+            {isOpen && <Popup
+                content={<>
+                <img className="clean-earth-logo-pop-up" src={cleanEarthLogo} alt="CleanEarth Logo"/>
+                <h1 className="donate__pop-up-header">Confirm your donation</h1>
+                <p className="donate__pop-up-donate-value">{moneyValue}</p>
+                <a onClick={submitClick} href={moneyValue === "$10/month donation"? "https://buy.stripe.com/7sIbM7c2538d6KQaEE" : moneyValue==="$20/month donation"? "https://buy.stripe.com/cN22bx0jnfUZ7OU001" : moneyValue==="$Custom one time donation"? "https://buy.stripe.com/6oE17t7LP5gl8SY4gi" : null} className="donate__submit-button">Continue to payment</a>
+            </>}
+            handleClose={togglePopup}
+            />}
             </div>
 
         </div>
