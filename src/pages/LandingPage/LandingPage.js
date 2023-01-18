@@ -12,12 +12,19 @@ import axios from "axios";
 
 import { useState, useEffect} from "react";
 import { useParams} from 'react-router-dom';
+import { useNavigate  } from 'react-router-dom';
 
 import MarkerModal from "../../components/MarkerModal/MarkerModal.js";
 
 import LoadingScreen from "../../components/LoadingPage/LoadingPage.js"
 
-import markerIcon from "../../assets/images/icons/MapIcon2.png"
+import markerIcon from "../../assets/images/Clean-Earth-Logo.svg"
+
+import trashIcon from "../../assets/images/icons/TrashIcon.svg"
+import cleanUpsIcon from "../../assets/images/icons/CleanUpsIcon.png"
+import volunteerIcon from "../../assets/images/icons/VolunteerIcon.svg"
+
+import leadCleanUpIcon from "../../assets/images/icons/LeadCleanUpIcon.svg";
 
 const GOOGLE_API = process.env.REACT_APP_GOOGLE_MPAS_API_KEY;
 const googleApi = `${GOOGLE_API}`;
@@ -29,7 +36,15 @@ const API = process.env.REACT_APP_API_KEY;
 const landingPageUrl =`${LANDING_PAGE}${API}`;
 
 const LandingPage = () => {
-  window.scrollTo(0, 0)
+
+  const navigateVolunteerPage = useNavigate();
+
+  const handleLeadClick = () => {
+    navigateVolunteerPage("/volunteer")
+    window.scrollTo(0, 0)
+  };
+
+  // window.scrollTo(0, 0)
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: googleApi,
   });
@@ -50,7 +65,32 @@ const LandingPage = () => {
               <p className="map-par">Desktop: Please press Ctrl + Scroll to zoom in or out on the map below</p>
             </div>
           </div>
-          <Map/> 
+          <Map/>
+          <div className="totals">
+            <div className="totals__everything-container">
+              <div className="totals__text-container">
+                <div className="totals__container">
+                  {/* <p className="totals__title">Pounds of trash collected :</p> */}
+                  <p className="totals__text">1300 POUNDS OF TRASH COLLECTED</p>
+                  <img className="totals__picture" src={trashIcon} alt="Trash can"/>
+                </div>
+                <div className="totals__container">
+                  {/* <p className="totals__title">Clean ups ran :</p> */}
+                  <p className="totals__text">10 CLEAN UPS RAN</p>
+                  <img className="totals__picture-world"  src={cleanUpsIcon} alt="Hands holding over earth"/>
+                </div>
+                <div className="totals__container">
+                  {/* <p className="totals__title">Total volunteers :</p> */}
+                  <p className="totals__text">100 VOLUNTEERS</p>
+                  <img className="totals__picture" src={volunteerIcon} alt="Hands holding over earth"/>
+                </div>
+              </div>
+              <div onClick={handleLeadClick} className="totals__lead-container">
+                <img src={leadCleanUpIcon} alt="Map and pencil"/>
+                <button className="totals__button-lead">Lead a clean up!</button>
+              </div>
+            </div>
+          </div>
           <FeaturedInitiatives/>
           <Footer/>
         </div>
@@ -75,6 +115,21 @@ function Map() {
   const [locationId, setLocationId] = useState("")
 
   const [openModal, setOpenModal] = useState(false)
+
+  const [failedAuth, setFailedAuth] = useState(true);
+
+  const authToken = sessionStorage.getItem('authToken');
+
+  // if there is an error from the endpoint (ie: token invalid, expired, tampered with)
+  useEffect(() => {
+      if (!authToken){
+          setJoinMapTextClass("map-join-par-hidden")
+          setFailedAuth(true);
+      }else{
+        setJoinMapTextClass("map-join-par")
+      }
+
+  }, [authToken]);
 
   useEffect(()=>{
     axios
