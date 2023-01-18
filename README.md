@@ -38,5 +38,15 @@ To run this project, you will need to add the following environment variables to
 
 `REACT_APP_MARKER_MODAL_URL`
 
+`REACT_APP_CLEAN_UP_URL`
+
+`REACT_APP_CLEAN_UPS_RAN`
+
 `REACT_APP_API_KEY`
+
+`REACT_APP_DELETE_URL`
+
+`REACT_APP_EDIT_URL`
+
+`REACT_APP_JOIN_URL`
 
