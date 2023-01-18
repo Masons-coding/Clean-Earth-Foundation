@@ -5,6 +5,9 @@ import trailsPicture from "../../assets/images/trails1.jpg";
 import oceanPicture from "../../assets/images/ocean1.jpg";
 import lakePicture from "../../assets/images/Lake3.jpg";
 
+import leadCleanUpIcon from "../../assets/images/icons/LeadCleanUpIcon.svg";
+import donateIcon from "../../assets/images/icons/DonateIcon.png";
+
 import { useNavigate  } from 'react-router-dom';
 
 const InitiativeList = () => {
@@ -15,11 +18,11 @@ const InitiativeList = () => {
         window.scrollTo(0, 500);
     };
 
-    const navigatevolunteerPage = useNavigate();
+    const navigateVolunteerPage = useNavigate();
 
-    const handleVolunteerClick = () => {
-        navigatevolunteerPage("/volunteer")
-        window.scrollTo(0, 0)
+    const handleLeadClick = () => {
+      navigateVolunteerPage("/volunteer")
+      window.scrollTo(0, 0)
     };
 
     return (
@@ -29,7 +32,10 @@ const InitiativeList = () => {
                 <div className="initiatives-list__content">
                     <h2 className="initiatives-list__heading">Clean Trails</h2>
                     <p className="initiatives-list__text">Our Clean Trail initiative has performed garbage cleanups in three continents and five countries; from Canada and the United States, to the United Kingdom, and all the way to Tanzania and Puerto Rico. Our team of volunteers has gone across the globe in an attempt to better the environment personally. We have removed over 500 pounds of trash from walking trails and nature preserves already. We are working on growing this initiative around the world and we would love for people to volunteer to lead hikes and cleanups.</p>
-                    <button onClick={handleVolunteerClick} className="initiatives-list__button">Lead a clean up</button>
+                    <div onClick={handleLeadClick} className="initiatives-list__lead-container">
+                        <img src={leadCleanUpIcon} alt="Map and pencil"/>
+                        <button className="initiatives-list__button-lead">Lead a clean up!</button>
+                    </div>
                 </div>
             </div>
             <div className="initiatives-list__container">
@@ -51,7 +57,10 @@ const InitiativeList = () => {
                 <div className="initiatives-list__content">
                     <h2 className="initiatives-list__heading">Clean Earth Platform</h2>
                     <p className="initiatives-list__text">We are currently creating our platform to allow people to organize, share and run their own clean up events in their local areas. We are focused on inspiring park, trail, field, river, lake and ocean clean ups in local communities around the world.</p>
-                    <button onClick={handleDonateClick} className="initiatives-list__button">Donate</button>
+                    <div onClick={handleDonateClick} className="initiatives-list__donate-container">
+                        <img className="initiatives-list__donate-icon" src={donateIcon} alt="Hand holding the world" />
+                        <button className="initiatives-list__button-donate">Donate!</button>
+                    </div>
                 </div>
             </div>
         </section>
