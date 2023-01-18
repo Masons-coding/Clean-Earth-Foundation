@@ -8,6 +8,9 @@ import GalleryPage from "./pages/GalleryPage/GalleryPage.js";
 import ProductsPage from "./pages/ProductsPage/ProductsPage.js";
 import VolunteerPage from "./pages/VolunteerPage/VolunteerPage.js";
 import LoginPage from "./pages/LoginPage/LoginPage.js";
+import CleanUpsPage from "./pages/CleanUpsPage/CleanUpsPage.js"
+
+import EditCleanUpsPage from "./pages/EditCleanUpsPage/EditCleanUpsPage.js"
 
 import SignUpPage from "./pages/SignUpPage/SignUpPage.js";
 
@@ -23,6 +26,8 @@ function App() {
       <Header/>
       <Routes>
         <Route path="/" element={<LandingPage/>} />
+        <Route path="/cleanups" element={<CleanUpsPage/>} />
+        <Route path='/cleanups/edit/:id' element={<EditCleanUpsPage />} />
         <Route path="/about" element={<AboutPage/>} />
         <Route path="/initiative" element={<InitiativeListPage/>} />
         <Route path="/donate" element={<DonatePage/>} />
