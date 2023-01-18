@@ -5,8 +5,12 @@ import cleanEarthLogo from "../../assets/images/cleanEarthLogo.png";
 import instagramLogo from "../../assets/images/icons/InstagramIcon.svg";
 import facebookLogo from "../../assets/images/icons/FacebookIcon.svg";
 import twitterLogo from "../../assets/images/icons/TwitterIcon.svg";
-import emailIcon from "../../assets/images/icons/EmailIcon.svg";
-import phoneIcon from "../../assets/images/icons/PhoneIcon.svg";
+
+import LogoutIcon from "../../assets/images/icons/LogoutIcon.svg";
+import LoginIcon from "../../assets/images/icons/LoginIcon.svg";
+
+import MyCleanUpsIcon from "../../assets/images/icons/MyCleanUpsIcon.png";
+
 
 import { NavLink, useNavigate } from 'react-router-dom';
 
@@ -53,9 +57,15 @@ const Header = () => {
 
     const navigateHomePage = useNavigate();
     const navigateLoginPage = useNavigate();
+    const navigateCleanUpsPage = useNavigate();
 
     const handleLogoClick = () => {
         navigateHomePage("/")
+        window.scrollTo(0, 0)
+    };
+
+    const handleMyCleanUps = () => {
+        navigateCleanUpsPage("/cleanups")
         window.scrollTo(0, 0)
     };
 
@@ -76,27 +86,30 @@ const Header = () => {
             </div>
             <div className="header__contact-links-container">
                 <div className="header__contact-container">
-                    <div className="header__contact-content-container">
-                        <div className="header__icon-div">
-                            <img className="header__email-icon" src={emailIcon} alt="Email Icon" />
-                            <a href="mailto:contact@cleanearthfoundation.com" className="header__email-button">contact@cleanearthfoundation.com</a>
+                    <div className={first_name === undefined ? "header__buttons-container-hidden" : "header__buttons-container"}>
+                        <div onClick={handleMyCleanUps} className="header__icon-div-cleanups">
+                            <button onClick={handleMyCleanUps} className="header__clean-ups-button">My Clean Ups</button>
+                            <img onClick={handleMyCleanUps} className="header__button-icon" src={MyCleanUpsIcon} alt="Large tree"></img>
                         </div>
-                        <div className="header__icon-div">
-                            <img className="header__phone-icon" src={phoneIcon} alt="Phone Icon" />
-                            <button className="header__phone-button">1-905-980-1165</button>
+                        <div onClick={handleLogout} className="header__icon-div-logout">
+                            <button onClick={handleLogout} className="header__logout-button">Log out</button>
+                            <img onClick={handleLogout} className="header__button-icon" src={LogoutIcon} alt="Logout button"></img>
                         </div>
                     </div>
-                    <div className="header__contact-content-container2">
+                    <div className="header__contact-content-container">
                         <a href="https://www.instagram.com/becleanearth/"><img className="header__instagram-logo" src={instagramLogo} alt="Instagram logo"/></a>
                         <a href="https://www.facebook.com/BeCleanEarth/"><img className="header__facebook-logo" src={facebookLogo} alt="Facebook logo"/></a>
                         <a href="https://www.twitter.com/BeCleanEarth/"><img className="header__twitter-logo" src={twitterLogo} alt="Twitter logo"/></a>
                     </div>
-                    <div className="header__login-sign-up">
-                        <button onClick={handleLogin} className={first_name === undefined ? "header__login-button" : "header__login-button-hidden" }>Login/Sign-up</button>
+                    <div className={first_name === undefined ? "header__login-sign-up" : "header__login-sign-up-hidden"}>
+                        <div onClick={handleLogin} className="header__icon-div-login">
+                            <button onClick={handleLogin} className="header__login-button">Login/Sign-up</button>
+                            <img onClick={handleLogin} className="header__button-icon" src={LoginIcon} alt="Login button"></img>
+                        </div>
+                        <p className={first_name === undefined ? "header__create-an-account" : "header__create-an-account-hidden" }>Create an account/login to join/create a clean up!</p>
                     </div>
                     <div>
                         <p className={first_name === undefined ? 'header__hide-welcome'  : 'header__show-welcome' }>{`Welcome to Clean Earth ${first_name}!`}</p>
-                        <button onClick={handleLogout} className={first_name === undefined ? "header__logout-button-hidden" : "header__logout-button" }>Log out</button>
                     </div>
                 </div>
                 <div className="header__nav-links">
