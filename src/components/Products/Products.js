@@ -16,7 +16,7 @@ const Products = () => {
             </div>
             <div className="products-list__everything-container">
                 <div className="products-list__container">
-                    <img className="products-list__bracelet-blue" src={blueBraceletPicture} alt="Blue bracelet"/>
+                    <img className="products-list__bracelet-blue" src={greenBraceletPicture} alt="Blue bracelet"/>
                     <p className="products-list__title">Clean Earth Ocean Bracelet</p>
                     <p className="products-list__text">A Clean Earth branded bracelet made entirely from recycled materials (Blue). Expandable up to 10 inches, for everyone.</p>
                     
@@ -35,7 +35,7 @@ const Products = () => {
 
                 </div>
                 <div className="products-list__container">
-                    <img className="products-list__bracelet-green" src={greenBraceletPicture} alt="Green bracelet"/>
+                    <img className="products-list__bracelet-green" src={blueBraceletPicture} alt="Green bracelet"/>
                     <p className="products-list__title">Clean Earth Forest Bracelet</p>
                     <p className="products-list__text">A Clean Earth branded bracelet made entirely from recycled materials (Green). Expandable up to 10 inches for everyone.</p>
                     
