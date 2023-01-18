@@ -93,6 +93,8 @@ const Signup = () => {
   const [passwordErrorMessage, setPasswordErrorMessage] = useState("")
   const [passwordErrorMessage2, setPasswordErrorMessage2] = useState("")
   const [passwordErrorMessage3, setPasswordErrorMessage3] = useState("")
+  const [passwordErrorMessage4, setPasswordErrorMessage4] = useState("")
+  const [passwordErrorMessage5, setPasswordErrorMessage5] = useState("")
   const [password, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState(false);
 
@@ -103,34 +105,33 @@ const Signup = () => {
           setPasswordErrorMessage("")
           setPasswordErrorMessage2("")
           setPasswordErrorMessage3("")
+          setPasswordErrorMessage4("")
+          setPasswordErrorMessage5("")
       }
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const passwordContainsCap =  /[A-Z]/.test(password);
     const emailValid = /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/.test(email);
+    const passwordValid = /(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(password)
     const phoneValid = isValidPhoneNumber(phoneValue)
     formValidation();
     function formValidation(){
-        if(password === "" && password.length < 8 && passwordContainsCap === false){
+        if(password === "" && passwordValid === false){
             setPasswordError(true)
             event.target.password.focus()
             setPasswordErrorMessage("Field required - please enter a password")
             setPasswordErrorMessage2("Your password must be 8 characters long")
-            setPasswordErrorMessage3("Your password must contain a capital")
-        }else if(password.length < 8 && passwordContainsCap === false){
-            setPasswordError(true)
-            event.target.password.focus()
-            setPasswordErrorMessage("Your password must be 8 characters long")
-            setPasswordErrorMessage2("Your password must contain a capital")
-        }else if(password.length < 8){
-            setPasswordErrorMessage("Your password must be 8 characters long")
-        }
-        else if(passwordContainsCap === false){
-            setPasswordError(true)
-            event.target.password.focus()
-            setPasswordErrorMessage("Your password must contain a capital")
+            setPasswordErrorMessage3("Your password must contain a capital & lowercase")
+            setPasswordErrorMessage4("Your password must contain a number")
+            setPasswordErrorMessage5("Your password must contain a special character")
+        }else if(passwordValid === false){
+            setPasswordErrorMessage("Please ensure your password has the following:")
+            setPasswordErrorMessage2("- Must be 8 characters long")
+            setPasswordErrorMessage3("- Must contain a capital & lowercase")
+            setPasswordErrorMessage4("- Must contain a number")
+            setPasswordErrorMessage5("- Must contain a special character")
+
         }
         if(email === "" || emailValid === false){
             setEmailError(true)
@@ -153,7 +154,7 @@ const Signup = () => {
         }
     }
 
-    if(passwordError === false && emailError === false && errorPhone === false && lastNameError === false && firstNameError === false && emailValid === true && passwordContainsCap === true && phoneValid === true && password.length >= 8){
+    if(passwordError === false && emailError === false && errorPhone === false && lastNameError === false && firstNameError === false && emailValid === true && phoneValid === true && passwordValid === true){
         axios
         .post((signUpPageUrl), {
             first_name: firstName,
@@ -214,9 +215,11 @@ const Signup = () => {
                     <input type={passwordShown ? "text" : "password"} placeholder="Please enter your password" value={password} onChange={handlePasswordChange} className={passwordError === true ? 'sign-up__input-error' : 'sign-up__input' } id="password" name="password"></input>
                     <img src={showOrHidePassword} alt="Show or hide password" className="sign-up__show-password" onClick={togglePassword}/>
                 </div>
-                <div className="sign-up__error-message">{passwordErrorMessage}</div>
-                <div className="sign-up__error-message">{passwordErrorMessage2}</div>
-                <div className="sign-up__error-message">{passwordErrorMessage3}</div>
+                <div className="sign-up__password-error-message">{passwordErrorMessage}</div>
+                <div className="sign-up__password-error-message">{passwordErrorMessage2}</div>
+                <div className="sign-up__password-error-message">{passwordErrorMessage3}</div>
+                <div className="sign-up__password-error-message">{passwordErrorMessage4}</div>
+                <div className="sign-up__password-error-message">{passwordErrorMessage5}</div>
 
                 <div className="sign-up__button-container">
                     <p className="signup-page__log-in">
