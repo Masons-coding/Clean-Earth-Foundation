@@ -8,9 +8,13 @@ import LoadingScreen from "../../components/LoadingPage/LoadingPage.js"
 
 import { GoogleMap, useLoadScript, MarkerF } from "@react-google-maps/api";
 
-import { useState} from "react";
-
 import markerIcon from "../../assets/images/icons/MapIcon2.png"
+
+import { useState, useEffect } from 'react';
+
+import cleanEarthLogo from "../../assets/images/cleanEarthLogo.png";
+
+import Popup from '../PopUp/PopUp.js';
 
 const USER_REGISTER = process.env.REACT_APP_USER_REGISTER_URL;
 
@@ -21,7 +25,56 @@ const urlForUserRegister =`${USER_REGISTER}${API}`;
 const GOOGLE_API = process.env.REACT_APP_GOOGLE_MPAS_API_KEY;
 const googleApi = `${GOOGLE_API}`;
 
+const USER_CURRENT = process.env.REACT_APP_USER_CURRENT_URL;
+
+const urlForUserCurrent =`${USER_CURRENT}${API}`;
+
 const VolunteerForm = () => {
+
+    const [isOpen, setIsOpen] = useState(false);
+
+    const togglePopup = () => {
+        setIsOpen(!isOpen);
+      }
+
+    const noLoginFormClicked = () => {
+        setIsOpen(!isOpen);
+    }
+
+    const [user, setUser] = useState({});
+    const [failedAuth, setFailedAuth] = useState(true);
+  
+    const authToken = sessionStorage.getItem('authToken');
+  
+    // if there is an error from the endpoint (ie: token invalid, expired, tampered with)
+    useEffect(() => {
+        if (!authToken){
+            setFailedAuth(true);
+        }else{
+            axios
+            .get((urlForUserCurrent), {
+              headers: {
+                Authorization: `Bearer ${authToken}`,
+              },
+            })
+            .then((res) => {
+              setUser(res.data);
+              setFailedAuth(false);
+            })
+            .catch((err) => {
+              setFailedAuth(true);
+            })
+        }
+
+    }, [authToken, failedAuth]);
+
+
+    const navigateLoginPage = useNavigate();
+
+    const handleLogin = () => {
+        navigateLoginPage("/login")
+        window.scrollTo(0, 0)
+    }
 
     const { isLoaded } = useLoadScript({
         googleMapsApiKey: googleApi,
@@ -212,7 +265,8 @@ const VolunteerForm = () => {
                 date_of_clean_up: date,
                 time_of_clean_up: timeValue,
                 long_map_value: longValue,
-                lat_map_value:  latValue
+                lat_map_value:  latValue,
+                user_id: user.id
             })
             .then(() => {
               setSuccess(true)
@@ -233,7 +287,85 @@ const VolunteerForm = () => {
         }
       };
 
-    return (
+      if(user.id === undefined){
+        return(
+            <>
+            <div className="volunteer__no-user-logged-everything">
+        <div className="volunteer__no-user-logged-container">
+            <p className="volunteer__sign-in-please">Please login or create an account to run a clean up</p>
+            <img src={cleanEarthLogo} alt="Clean Earth Logo"/>
+            <button onClick={handleLogin} className="volunteer__login-button">Login/Sign-up</button>
+        </div>
+                    <form onClick={noLoginFormClicked} onSubmit={handleSubmitForm} className='volunteer'>
+                    <div className="volunteer__heading-container">
+                        <h1 className="volunteer__heading">Register a clean up with Clean Earth!</h1>
+                        <p className="volunteer__text">Thank you for your commitment to making a difference. We are always looking for volunteers to participate in our vision of having a cleaner environment worldwide!</p>
+                    </div>
+                    <div className="volunteer__form-everything-container">
+                        <div className="volunteer__inputs-container">
+                            <label className="volunteer__labels" htmlFor="name">Name:</label>
+                            <input type="text" placeholder="Please enter your full name" value={name} onChange={handleNameChange} className={nameError === true ? 'volunteer__input-error' : 'volunteer__input' }  id="name" name="name" disabled></input>
+                            <div className="volunteer__error-message">{nameErrorMessage}</div>
+    
+                            <label className="volunteer__labels" htmlFor="name">Email:</label>
+                            <input type="text" placeholder="Please enter your email" value={email} onChange={handleEmailChange} className={emailError === true ? 'volunteer__input-error' : 'volunteer__input' } id="email" name="email" disabled></input>
+                            <div className="volunteer__error-message">{emailErrorMessage}</div>
+                        </div>
+    
+                        <div className="volunteer__inputs-container">
+                            <label className="volunteer__labels" htmlFor="name">City:</label>
+                            <input type="text" placeholder="Please enter your city" value={city} onChange={handleCityChange} className={cityError === true ? 'volunteer__input-error' : 'volunteer__input' } id="city" name="city" disabled></input>
+                            <div className="volunteer__error-message">{cityErrorMessage}</div>
+    
+                            <label className="volunteer__labels" htmlFor="name">State/Province:</label>
+                            <input type="text" placeholder="Please enter your state/province" value={state} onChange={handleStateChange} className={stateError === true ? 'volunteer__input-error' : 'volunteer__input' } id="state" name="state" disabled></input>
+                            <div className="volunteer__error-message">{stateErrorMessage}</div>
+    
+                            <label className="volunteer__labels" htmlFor="name">Country:</label>
+                            <input type="text" placeholder="Please enter your country" value={country} onChange={handleCountryChange} className={countryError === true ? 'volunteer__input-error' : 'volunteer__input' } id="country" name="country" disabled></input>
+                            <div className="volunteer__error-message">{countryErrorMessage}</div>
+                        </div>
+    
+                        <div className="volunteer__inputs-container-time-date">
+                            <label className="volunteer__labels" htmlFor="name">Date for clean up:</label>
+                            <input min={new Date().toISOString().slice(0, -8).split('T')[0]} type="date" onChange={handleDateChange} className={dateError === true ? 'volunteer__input-error-time-date' : 'volunteer__input-time-date' } id="date" name="date" disabled></input>
+                            <div className="volunteer__error-message">{dateErrorMessage}</div>
+    
+                            <label className="volunteer__labels" htmlFor="name">Time for clean up:</label>
+                            <input type="time" value={time} onChange={handleTimeChange} className={timeError === true ? 'volunteer__input-error-time-date' : 'volunteer__input-time-date' } id="time" name="time" disabled/>
+                            <div className="volunteer__error-message">{timeErrorMessage}</div>
+                        </div>
+                    </div>
+    
+                    <label className="volunteer__labels" htmlFor="name">Location:</label>
+                    <p className="volunteer__text-map">Please select a location on the map (below) for your clean up</p>
+                    <div className="volunteer__par-container-above-map">
+                        <p className="map-par-mobile">Mobile/tablet: Please use two fingers to zoom in or out on the map below</p>
+                        <p className="map-par">Desktop: Please press Ctrl + Scroll to zoom in or out on the map below</p>
+                    </div>
+                    <Map setLatLongErrorMessage={setLatLongErrorMessage} setLatLongError={setLatLongError} setLat={setLatValue} setLong={setLongValue}/> 
+                    <div className="volunteer__lat-long-error-message-red">{latLongErrorMessage}</div>
+    
+                    <div className="volunteer__button-container">
+                        <button type="submit" className="volunteer__button-no-login" disabled>Submit</button>
+                        <button className="volunteer__button-no-login" disabled>Cancel</button>
+                    </div>
+                    {success && <div className="volunteer__message">Clean up registered!</div>}
+                </form>
+                </div>
+                <div>
+            {isOpen && <Popup
+                content={<>
+                <img className="clean-earth-logo-pop-up" src={cleanEarthLogo} alt="CleanEarth Logo"/>
+                <p className="volunteer__sign-in-please">Please login or create an account to run a clean up</p>
+            </>}
+            handleClose={togglePopup}
+            />}
+            </div>
+                </>
+        )
+    }else{
+        return (
             <form onSubmit={handleSubmitForm} className='volunteer'>
                 <div className="volunteer__heading-container">
                     <h1 className="volunteer__heading">Register a clean up with Clean Earth!</h1>
@@ -291,6 +423,7 @@ const VolunteerForm = () => {
                 {success && <div className="volunteer__message">Clean up registered!</div>}
             </form>
     );
+    }
 };
 
 function Map({setLatLongErrorMessage, setLatLongError, setLat, setLong}) {
