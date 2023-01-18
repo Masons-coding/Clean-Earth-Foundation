@@ -1,7 +1,5 @@
 import './PopUp.scss';
 
-
- 
 const Popup = props => {
   return (
     <div className="popup-box">
