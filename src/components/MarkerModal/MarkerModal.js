@@ -8,6 +8,10 @@ import CancelIcon from "../../assets/images/icons/CancelIcon.svg";
 
 import Geocode from "react-geocode";
 
+import Popup from '../../components/PopUp/PopUp.js';
+
+import LoadingScreen from "../../components/LoadingPage/LoadingPage.js"
+
 const MARKER_MODAL = process.env.REACT_APP_MARKER_MODAL_URL;
 
 const API = process.env.REACT_APP_API_KEY;
@@ -19,7 +23,60 @@ const api = `${API}`
 const GEO_CODE = process.env.REACT_APP_GOOGLE_GEO_CODE_KEY;
 const geoCode = `${GEO_CODE}`;
 
+const JOIN_CLEAN_UP = process.env.REACT_APP_JOIN_URL;
+
+const urlForJoinCleanUp =`${JOIN_CLEAN_UP}${API}`;
+
+const USER_CURRENT = process.env.REACT_APP_USER_CURRENT_URL;
+
+const urlForUserCurrent =`${USER_CURRENT}${API}`;
+
 export default function MarkerModal({ setOpenModal, cleanupId }) {
+
+  const [user, setUser] = useState({});
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const togglePopup = () => {
+      setIsOpen(!isOpen);
+    }
+
+  const [isOpenAfterJoin, setIsOpenAfterJoin] = useState(false);
+
+  const togglePopupIsOpenAfterJoin = () => {
+      setIsOpenAfterJoin(!isOpenAfterJoin);
+      setOpenModal(false);
+    }
+
+    const [isOpenAlreadyJoined, setIsOpenAlreadyJoined] = useState(false);
+
+    const togglePopupIsOpenAlreadyJoined = () => {
+        setIsOpenAlreadyJoined(!isOpenAlreadyJoined);
+      }
+
+  const joinClicked = () => {
+      setIsOpen(!isOpen);
+  }
+
+  const [joinDesktopClass, setJoinDesktopClass] = useState("marker-modal__join-button-container")
+  const[joinTabletMobileClass, setJoinTabletMobileClass] = useState("marker-modal__button-mobile-tablet")
+
+  const [failedAuth, setFailedAuth] = useState(true);
+
+  const authToken = sessionStorage.getItem('authToken');
+
+  useEffect(() => {
+    if (!authToken){
+      setJoinDesktopClass("marker-modal__join-button-container-hidden")
+      setJoinTabletMobileClass("marker-modal__join-button-container-mobile-tablet-hidden")
+      setFailedAuth(true);
+    }else{
+      setJoinDesktopClass("marker-modal__join-button-container")
+      setJoinTabletMobileClass("marker-modal__join-button-container-mobile-tablet")
+    }
+
+}, [authToken]);
+
   Geocode.setApiKey(geoCode);
 
   function geoCodeAddress(lat, long){
@@ -50,9 +107,50 @@ export default function MarkerModal({ setOpenModal, cleanupId }) {
     });
   },[cleanupId]);
 
-  if (!cleanUp) return <div>info loading ...</div>;
+  useEffect(() => {
+    axios
+    .get((urlForUserCurrent), {
+      headers: {
+        Authorization: `Bearer ${authToken}`,
+      },
+    })
+    .then((res) => {
+      setUser(res.data);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+}, [authToken]);
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${authToken}`,
+    }
+  };
+  
+  const data ={
+    clean_up_id: cleanupId
+  }
+
+  const joinConfirmClicked = () => {
+    if(user.clean_up_id === cleanupId){
+      setIsOpen(!isOpen);
+      setIsOpenAlreadyJoined(!isOpenAlreadyJoined);
+    }else{
+      axios
+      .post(urlForJoinCleanUp, data, config)
+      .catch((err) => {
+        console.log(err);
+      })
+      setIsOpen(!isOpen);
+      setIsOpenAfterJoin(!isOpenAfterJoin)
+    }
+  };
+
+  if (!cleanUp) return <LoadingScreen/>;
 
   return (
+    <>
     <div className="marker-modal">
 
         <div className="marker-modal-images-container">
@@ -90,8 +188,8 @@ export default function MarkerModal({ setOpenModal, cleanupId }) {
                     <p className="par">{address}</p>
                 </div>
 
-                <div className="marker-modal__join-button-container">
-                  <button className="marker-modal__button">Join!</button>
+                <div className={joinDesktopClass}>
+                  <button onClick={joinClicked} className="marker-modal__button">Join!</button>
                 </div>
 
             </div>
@@ -109,11 +207,48 @@ export default function MarkerModal({ setOpenModal, cleanupId }) {
               <p className="par-mobile">{date}</p>
               <h2 className="header-text-mobile">Clean up location:</h2>
               <p className="par-mobile">{address}</p>
-              <div className="marker-modal__join-button-container-mobile-tablet">
-                <button className="marker-modal__button-mobile-tablet">Join!</button>
+              <div className={joinTabletMobileClass}>
+                <button onClick={joinClicked} className="marker-modal__button-mobile-tablet">Join!</button>
               </div>
             </div>
 
     </div>
+
+    <div>
+    {isOpen && <Popup
+        content={<>
+        <img className="marker-modal__logo-pop-up" src={cleanEarthLogo} alt="CleanEarth Logo"/>
+        <h1 className="marker-modal__pop-up-header">Do you wish to join this clean up?</h1>
+        <div className="marker-modal__pop-up-button-container">
+            <button onClick={joinConfirmClicked} className="marker-modal__pop-up-button">Join!</button>
+        </div>
+    </>}
+    handleClose={togglePopup}
+    />}
+    </div>
+
+    <div>
+    {isOpenAfterJoin && <Popup
+        content={<>
+        <img className="marker-modal__logo-pop-up" src={cleanEarthLogo} alt="CleanEarth Logo"/>
+        <h1 className="marker-modal__pop-up-header">Added to the clean up!</h1>
+        {/* <div className="marker-modal__pop-up-button-container">
+            <button onClick={joinConfirmClicked} className="marker-modal__pop-up-button">Join!</button>
+        </div> */}
+    </>}
+    handleClose={togglePopupIsOpenAfterJoin}
+    />}
+    </div>
+
+    <div>
+    {isOpenAlreadyJoined && <Popup
+        content={<>
+        <img className="marker-modal__logo-pop-up" src={cleanEarthLogo} alt="CleanEarth Logo"/>
+        <h1 className="marker-modal__pop-up-header">You have already joined this clean up!</h1>
+    </>}
+    handleClose={togglePopupIsOpenAlreadyJoined}
+    />}
+    </div>
+</>
   );
 }
