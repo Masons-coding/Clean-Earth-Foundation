@@ -24,36 +24,32 @@ const Donate = () => {
         window.scrollTo(0, 500);
     }
 
-    const[hiddenDivClass, setHiddenDivClass] = useState("donate__hidden-div")
-
-    const[hiddenDivText, setHiddenDivText] = useState("")
-
     const tenClicked = () => {
         setIsOpen(!isOpen);
-        setHiddenDivClass("donate__hiden-div")
-        setHiddenDivText("")
-        setMoneyValue("$10/month donation (USD)");
+        setMoneyValue("$10 donation (USD)");
     }
 
     const twentyClicked = () => {
         setIsOpen(!isOpen);
-        setHiddenDivClass("donate__hiden-div")
-        setHiddenDivText("")
+        setMoneyValue("$20 donation (USD)");
+    }
+
+    const fiftyClicked = () => {
+        setIsOpen(!isOpen);
+        setMoneyValue("$50 donation (USD)");
+    }
+
+    const twentyMonthClicked = () => {
+        setIsOpen(!isOpen);
         setMoneyValue("$20/month donation (USD)");
     }
 
     const oneTimeClicked = () => {
         setIsOpen(!isOpen);
-        setHiddenDivClass("donate__hiden-div")
-        setHiddenDivText("")
-        setMoneyValue("$Custom one time donation (USD)");
+        setMoneyValue("Custom donation (USD)");
     }
 
     const submitClick = () => {
-        if(moneyValue === 0){
-            setHiddenDivClass("donate__hidden-div-show")
-            setHiddenDivText("Please select a value to donate first")
-        }
     }
 
     return (
@@ -72,18 +68,21 @@ const Donate = () => {
                     <img className="donate__picture" src={donatePicture3} alt="Nature trail"/>
                 </div>
                 <div className="donate__everything-container">
-                    <div className="donate__options-container">
                         <div>
                             <p className="donate__options-text">Please select an Option:</p>
                             <p className="donate__options-text-payment">(Payment in USD)</p>
-                            <div className={hiddenDivClass}>{hiddenDivText}</div>
                         </div>
-                        <div className="donate__button-container"> 
-                            <button onClick={tenClicked} className="donate__button">$10/month</button>
-                            <button onClick={twentyClicked} className="donate__button">$20/month</button>
-                            <button onClick={oneTimeClicked} className="donate__button-one-time">Custom (one time)</button>
+                        <div className="donate__donation-options-container">
+                            <div className="donate__button-container"> 
+                                <button onClick={tenClicked} className="donate__button">$10</button>
+                                <button onClick={twentyClicked} className="donate__button">$20</button>
+                                <button onClick={fiftyClicked} className="donate__button">$50</button>
+                                <button onClick={oneTimeClicked} className="donate__button-one-time">Custom</button>
+                            </div>
+                            <div className="donate__month-container">
+                                <button onClick={twentyMonthClicked} className="donate__button-monthly">$20/Month</button>
+                            </div>
                         </div>
-                    </div>
                 </div>
             </div>
             <div>
@@ -92,7 +91,7 @@ const Donate = () => {
                 <img className="clean-earth-logo-pop-up" src={cleanEarthLogo} alt="CleanEarth Logo"/>
                 <h1 className="donate__pop-up-header">Confirm your donation</h1>
                 <p className="donate__pop-up-donate-value">{moneyValue}</p>
-                <a onClick={submitClick} href={moneyValue === "$10/month donation (USD)"? "https://buy.stripe.com/7sIbM7c2538d6KQaEE" : moneyValue==="$20/month donation (USD)"? "https://buy.stripe.com/cN22bx0jnfUZ7OU001" : moneyValue==="$Custom one time donation (USD)"? "https://buy.stripe.com/6oEeYj5DH9wB3yEfZ1" : null} className="donate__submit-button">Continue to payment</a>
+                <a onClick={submitClick} href={moneyValue === "$10 donation (USD)"? "https://buy.stripe.com/6oE5nJeaddMR0mscMR" : moneyValue==="$20 donation (USD)"? "https://buy.stripe.com/4gw17t1nr4ch5GM7sy" : moneyValue==="Custom donation (USD)"? "https://buy.stripe.com/6oEeYj5DH9wB3yEfZ1" : moneyValue==="$50 donation (USD)"? "https://buy.stripe.com/00g2bx6HL7otc5a9AH" : moneyValue==="$20/month donation (USD)"? "https://buy.stripe.com/cN22bx0jnfUZ7OU001" : null} className="donate__submit-button">Continue to payment</a>
             </>}
             handleClose={togglePopup}
             />}
