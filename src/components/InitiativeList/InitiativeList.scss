@@ -105,4 +105,83 @@
         width: 30%;
     }
     }
+
+    &__button:hover{
+        background-color: #0095FF;
+    }
+
+    &__lead-container{
+        background-color: #002037;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        border-radius: 1rem;
+        width: 13rem;
+        height: 2rem;
+        padding: 1rem;
+        cursor: grab;
+        margin-bottom: 1rem;
+
+        @include tablet{
+            margin-bottom: 0rem;
+        }
+      }
+
+      &__button-lead{
+        background-color: #002037;
+        text-align: center;
+        border-radius: 0.5rem;
+        border: none;
+        font-family: "avenir-next", sans-serif;
+        font-weight: normal;
+        cursor: grab;
+        color: #fffefe;
+        font-size: 1rem;
+        flex-basis: 100%;
+      
+        @include tablet{
+          width: 13rem;
+          font-size: 1.1rem;
+        }
+      }
+
+      &__donate-container{
+        background-color: #002037;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        border-radius: 1rem;
+        width: 9rem;
+        height: 3rem;
+        padding: 1rem;
+        cursor: grab;
+        margin-bottom: 1rem;
+        
+        @include tablet{
+            margin-bottom: 0rem;
+        }
+      }
+
+      &__button-donate{
+        background-color: #002037;
+        text-align: center;
+        border-radius: 0.5rem;
+        border: none;
+        font-family: "avenir-next", sans-serif;
+        font-weight: normal;
+        cursor: grab;
+        color: #fffefe;
+        font-size: 1rem;
+        flex-basis: 100%;
+      
+        @include tablet{
+          width: 13rem;
+          font-size: 1.1rem;
+        }
+      }
+
+      &__donate-icon{
+        max-height: 2rem;
+
+    }
 }

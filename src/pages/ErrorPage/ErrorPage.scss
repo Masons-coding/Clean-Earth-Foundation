@@ -1,19 +1,23 @@
 .error-page{
     &__image{
-        width: 100%;
+        width: 5rem;
+        align-self: center;
     }
 
     &__message{
         text-align: center;
         font-size: 2rem;
-        color: red;
+        color: rgb(166, 0, 0);
         font-family: "avenir-next-bold", sans-serif;
         margin-top: 1rem;
     }
 
     &__container{
         display: flex;
+        flex-direction: column;
         justify-content: center;
+        height: 100vh;
+        background-color: #002037;
     }
 }
 

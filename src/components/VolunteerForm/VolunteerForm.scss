@@ -10,6 +10,7 @@
     border-radius: 1rem;
     width: 100%;
     border: 3px solid #323232;
+    
 
 
     &__heading-container{
@@ -75,6 +76,11 @@
         height: 2rem;
         width: 35%;
 
+        &:hover{
+            background-color: #fefefe;
+            color: #002037;
+        }
+
         @include tablet{
             width: 25%;
         }
@@ -86,7 +92,7 @@
         justify-content: flex-end;
         margin-top: 1rem;
         width: 100%;
-        border-top: 1px solid #fffefe;
+        border-top: 3px solid #2E66E5;
         padding-top: 1rem;
     }
 
@@ -115,11 +121,11 @@
         font-size: 0.9rem;
         color: #323232;
         width: 15rem;
-        border: 3px solid red;
+        border: 3px solid #ff0000;
         margin-bottom: 2rem;
 
         &:focus{
-            outline-color: red;
+            outline-color: #ff0000;
         }
 
     }
@@ -165,7 +171,7 @@
     }
 
     &__text-map{
-        border-bottom: 3px solid white;
+        border-bottom: 3px solid #2E66E5;
         margin-bottom: 1rem;
         color: #fffefe;
         font-family: 'avenir-next', sans-serif;
@@ -290,5 +296,79 @@
         }
     }
 
+    &__login-button{
+        font-size: 0.8rem;
+        text-align: center;
+        border-radius: 0.5rem;
+        background-color: #2E66E5;
+        border: none;
+        font-family: "avenir-next", sans-serif;
+        font-weight: bold;
+        cursor: grab;
+        width: 8rem;
+        color: #fffefe;
+        padding: 0.5rem;
+    }
+
+    &__login-button:hover{
+        background-color: #fefefe;
+        color: #002037;
+    }
+
+    &__no-user-logged-container{
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        align-items: center;
+        background-color: #002037;
+        padding: 1rem;
+        border-radius: 1rem;
+        border: 3px solid #323232;
+        width: 100%;
+
+        @include tablet{
+            width: 45rem;
+        }
+
+        @include desktop{
+            width: 75rem;
+        }
+
+    }
+
+    &__sign-in-please{
+        font-family: "avenir-next", sans-serif;
+        font-weight: normal;
+        color: #fefefe;
+        text-align: center;
+        font-size: 1rem;
+
+        @include tablet{
+            font-size: 1.5rem;
+        }
+    }
+
+    &__no-user-logged-everything{
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__button-no-login{
+        padding: 0 1rem;
+        font-family: 'avenir-next', sans-serif;
+        font-weight: normal;
+        background-color: #2E66E5;
+        border-radius: 1rem;
+        color: #fffefe;
+        border: none;
+        height: 2rem;
+        width: 35%;
+
+        @include tablet{
+            width: 25%;
+        }
+    }
+
 }
+
 

@@ -24,7 +24,8 @@
     border-radius: 0.5rem;
     margin-left: 0.1rem;
     border: 3px solid #0095FF;
-    width: 89%;
+    align-items: center;
+    width: 100%;
   
     @include tablet{
       width: 33rem;
@@ -53,6 +54,8 @@
     font-weight: normal;
     font-size: 0.8rem;
     padding-top: 0.5rem;
+    text-align: center;
+    max-width: 42ch;
   
     @include tablet{
       font-size: 1rem;
@@ -104,9 +107,15 @@
     width: 13rem;
     height: 2rem;
     padding: 1rem;
+    cursor: grab;
+  }
+
+  &__join-container-hidden{
+    display: none;
   }
 
   &__lead-container{
+    cursor: grab;
     background-color: #0095FF;
     display: flex;
     align-items: center;
@@ -123,6 +132,7 @@
     margin-top: 1rem;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 
     @include tablet{
       align-items: flex-start;

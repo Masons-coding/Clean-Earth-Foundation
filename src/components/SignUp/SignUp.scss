@@ -97,6 +97,11 @@
 
     }
 
+    &__button:hover{
+        background-color: #fefefe;
+        color: #002037;
+    }
+
     &__button-container{
         display: flex;
         gap: 1rem;
@@ -143,6 +148,19 @@
         top: -2rem;
         border-radius: 1rem;
         padding: 0.25rem;
+    }
+
+    &__password-error-message{
+        font-family: 'avenir-next', sans-serif;
+        font-weight: normal;
+        font-size: 0.9rem;
+        color: #ff7f7f;
+        margin: 0;
+        position: relative;
+        top: -2rem;
+        border-radius: 1rem;
+        padding: 0.25rem;
+        text-align: center;
     }
 
     &__show-password{

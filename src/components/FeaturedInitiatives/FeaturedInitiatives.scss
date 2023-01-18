@@ -107,6 +107,11 @@
         margin: 1rem;
         color: #fffefe;
 
+        &:hover {
+            background-color: #fefefe;
+            color: #002037;
+        }
+
         @include tablet{
             width: 50%;
         }

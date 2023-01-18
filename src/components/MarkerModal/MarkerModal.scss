@@ -65,14 +65,53 @@
         flex-basis: 100%;
     }
 
+    &__join-button-container-hidden{
+        display: none;
+    }
+
     &__join-button-container-mobile-tablet{
         display: flex;
         justify-content: center;
     }
+
+    &__join-button-container-mobile-tablet-hidden{
+        display: none;
+    }
+
+    &__pop-up-button-container{
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+    }
+
+    &__pop-up-button{
+        border-radius: 1rem;
+        background-color: #0095FF;
+        font-family: "avenir-next", sans-serif;
+        font-weight: normal;
+        color: #fefefe;
+        padding: 1rem;
+        cursor: grab;
+        border: none;
+        font-size: 1rem;
+    }
+
+    &__pop-up-header{
+        font-family: "avenir-next", sans-serif;
+        font-weight: normal;
+        color: #fefefe;
+        font-size: 1.1rem;
+        text-align: center;
+    }
+
+    &__logo-pop-up{
+        max-width: 7rem;
+        align-self: center;
+    }
   }
 
 .clean-earth-logo{
-    max-width: 5rem;
+    max-width: 7rem;
     padding-bottom: 1rem;
   }
 
@@ -119,6 +158,7 @@
     font-size: 0.6rem;
     color: #fefefe;
     text-align: right;
+    padding-left: 2rem;
 
     @include tablet{
         font-size: 1rem;

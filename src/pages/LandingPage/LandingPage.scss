@@ -124,7 +124,7 @@
 
 
 img:hover[src="https://maps.gstatic.com/mapfiles/transparent.png"]{
-    box-shadow: rgb(0 149 255 / 50%) 5em 5em inset;
+    box-shadow: rgb(0 149 255 / 50%) 10em 10em inset;
     border-radius: 20rem;
 }
 
@@ -147,6 +147,118 @@ img:hover[src="https://maps.gstatic.com/mapfiles/transparent.png"]{
 
 .map-join-par-hidden{
     display: none;
+}
+
+.totals{
+    height: 34rem;
+    background-color: #0095FF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 3px solid #323232;
+    border-bottom: 3px solid #323232;
+    flex-wrap: wrap;
+    gap: 1rem;
+
+    @include tablet{
+        height: 13rem;
+    }
+
+    &__title{
+        font-family: "avenir-next", sans-serif;
+        font-weight: bold;
+        color: #fefefe;
+        font-size: 0.9rem;
+
+        @include desktop{
+            font-size: 1.1rem;
+        }
+
+    }
+
+    &__text{
+        font-family: "avenir-next", sans-serif;
+        font-weight: normal;
+        color: #fefefe;
+        font-size: 0.8rem;
+        text-align: center;
+
+        @include desktop{
+            font-size: 1rem;
+        }
+    }
+
+    &__text-container{
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-direction: column;
+
+        @include tablet{
+            flex-direction: row;
+        }
+    }
+
+    &__container{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        background-color: #002037;
+        height: 9rem;
+        padding: 1rem;
+        border-radius: 1rem;
+        gap: 0.5rem;
+        width: 14rem;
+
+        @include desktop{
+            width: 20rem;
+        }
+    }
+
+    &__picture{
+        max-width: 4rem;
+    }
+
+    &__picture-world{
+        max-width: 6rem;
+    }
+
+    &__button-lead{
+        background-color: #002037;
+        text-align: center;
+        border-radius: 0.5rem;
+        border: none;
+        font-family: "avenir-next", sans-serif;
+        font-weight: normal;
+        cursor: grab;
+        color: #fffefe;
+        font-size: 1rem;
+        flex-basis: 100%;
+      
+        @include tablet{
+          width: 13rem;
+          font-size: 1.1rem;
+        }
+      }
+
+      &__everything-container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      &__lead-container{
+        background-color: #002037;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        border-radius: 1rem;
+        width: 13rem;
+        height: 2rem;
+        padding: 1rem;
+        cursor: grab;
+      }
 }
 
 

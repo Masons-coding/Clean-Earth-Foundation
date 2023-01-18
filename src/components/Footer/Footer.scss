@@ -52,5 +52,65 @@
     &__social{
         display: flex;
         gap: 1rem;
+        margin-bottom: 1rem;
+
+        @include tablet{
+            margin-bottom: 0rem;
+        }
     }
+
+    &__icon-div{
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+    }
+
+    &__phone-icon{
+        max-height: 1.2rem;
+    }
+
+    &__email-icon{
+        max-height: 1.3rem;
+    }
+
+    &__everything-container{
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        justify-content: center;
+
+        @include tablet{
+            flex-direction: row;
+        }
+    }
+
+    &__email-button{
+        border: none;
+        background-color: #0095FF;
+        cursor: grab;
+        color: #fffefe;
+        font-family: 'avenir-next', sans-serif;
+        font-weight: normal;
+        font-size: 1rem;
+    }
+    
+    &__phone-button{
+        border: none;
+        background-color: #0095FF;
+        color: #fffefe;
+        font-family: 'avenir-next', sans-serif;
+        font-weight: normal;
+        font-size: 1rem;
+    }
+
+    &__email-button:hover{
+        color: #323232;
+    }
+    
 }

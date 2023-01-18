@@ -1,0 +1,386 @@
+@use '../../styles/partials/mixins.scss' as *;
+@use '../../styles/partials/letters' as *;
+
+.clean-ups{
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-size: cover;
+    background-image: url("../../assets/images/cleanUpsPageBackground.jpg");
+    box-shadow: inset 2000em 2000em rgba(50, 50, 50, 0.5);
+    border-top: 3px solid #323232;
+    border-bottom: 3px solid #323232;
+    padding: 0.5rem;
+
+    @include tablet{
+        padding: 1rem;
+    }
+
+
+    &__everything-container{
+        display: flex;
+        gap: 1rem;
+        flex-direction: column;
+    }
+
+    &__my-clean-ups-ran{
+        background-color: #002037;
+        width: 100%;
+        border: 3px solid #323232;
+        border-radius: 1rem;
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    &__my-clean-ups-joined{
+        background-color: #002037;
+        width: 100%;
+        height: 20rem;
+        border: 3px solid #323232;
+        border-radius: 1rem;
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    &__title{
+        font-family: "avenir-next", sans-serif;
+        font-weight: bold;
+        color: #fefefe;
+        text-align: center;
+        border-bottom: 3px solid #0095FF;
+    }
+
+    &__all-info-container{
+        display: none;
+
+        @include tablet{
+            display: flex;
+            gap: 1rem;
+            align-self: flex-start;
+            width: 100%;
+            padding: 0.5rem;
+    
+            &:hover{
+                background-color: #0095FF;
+                border-radius: 1rem;
+            }
+
+        }
+    }
+
+    &__all-info-container-mobile{
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        width: 100%;
+        padding: 0.5rem;
+        text-align: center;
+
+        &:hover{
+            background-color: #0095FF;
+            border-radius: 1rem;
+        }
+
+        @include tablet{
+            display: none;
+        }
+    }
+
+    &__info-container{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 1rem;
+
+        @include tablet{
+            gap: 0rem;
+            flex-direction: row;
+            align-items: center;
+        }
+    }
+
+    &__info-text-date{
+        color: #fefefe;
+        font-family: "avenir-next", sans-serif;
+        font-weight: normal;
+        font-size: 0.8rem;
+        flex-basis: 18%;
+    }
+    &__info-text-time{
+        color: #fefefe;
+        font-family: "avenir-next", sans-serif;
+        font-weight: normal;
+        font-size: 0.8rem;
+        flex-basis: 18%;
+    }
+    &__info-text-city{
+        color: #fefefe;
+        font-family: "avenir-next", sans-serif;
+        font-weight: normal;
+        font-size: 0.8rem;
+        flex-basis: 17.5%;
+    }
+    &__info-text-state{
+        color: #fefefe;
+        font-family: "avenir-next", sans-serif;
+        font-weight: normal;
+        font-size: 0.8rem;
+        flex-basis: 19.5%;
+    }
+    &__info-text-country{
+        color: #fefefe;
+        font-family: "avenir-next", sans-serif;
+        font-weight: normal;
+        font-size: 0.8rem;
+        flex-basis: 18%; 
+    }
+    &__info-text-location{
+        color: #fefefe;
+        font-family: "avenir-next", sans-serif;
+        font-weight: normal;
+        max-width: 9ch;
+        font-size: 0.8rem;
+        flex-basis: 10%;
+    }
+
+    &__info-text-location-mobile{
+        color: #fefefe;
+        font-family: "avenir-next", sans-serif;
+        font-weight: normal;
+        font-size: 0.8rem;
+        flex-basis: 10%;
+    }
+
+    &__button-lead{
+        background-color: #0095FF;
+        text-align: center;
+        border-radius: 0.5rem;
+        border: none;
+        font-family: "avenir-next", sans-serif;
+        font-weight: normal;
+        cursor: grab;
+        color: #fffefe;
+        font-size: 1rem;
+      
+        @include tablet{
+          width: 13rem;
+          font-size: 1.1rem;
+        }
+      }
+    
+      &__lead-container{
+        cursor: grab;
+        background-color: #0095FF;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        border-radius: 1rem;
+        width: 13rem;
+        height: 2rem;
+        padding: 1rem;
+        margin-bottom: 1rem;
+      }
+
+      &__button-join{
+        background-color: #0095FF;
+        text-align: center;
+        border-radius: 0.5rem;
+        border: none;
+        font-family: "avenir-next", sans-serif;
+        font-weight: normal;
+        cursor: grab;
+        color: #fffefe;
+        font-size: 1rem;
+      
+        @include tablet{
+          width: 13rem;
+          font-size: 1.1rem;
+        }
+      }
+    
+      &__join-container{
+        cursor: grab;
+        background-color: #0095FF;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        border-radius: 1rem;
+        width: 13rem;
+        height: 2rem;
+        padding: 1rem;
+        margin-bottom: 1rem;
+      }
+
+      &__title-container{
+        display: none;
+
+        @include tablet{
+            display: flex;
+            width: 100%;
+            border-bottom: 3px solid #0095FF;
+        }
+
+      }
+
+      &__title-container-mobile{
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+
+        @include tablet{
+            display: none;
+        }
+      }
+
+      &__title-text-date{
+        font-size: 1rem;
+        color: #fefefe;
+        font-family: "avenir-next", sans-serif;
+        font-weight: normal;
+        flex-basis: 18%;
+
+        @include tablet{
+            font-size: 1.3rem;
+        }
+      }
+
+      &__title-text-time{
+        color: #fefefe;
+        font-family: "avenir-next", sans-serif;
+        font-weight: normal;
+        font-size: 1rem;
+        flex-basis: 18%;
+
+        @include tablet{
+            font-size: 1.3rem;
+        }
+      }         
+      &__title-text-city{
+        color: #fefefe;
+        font-family: "avenir-next", sans-serif;
+        font-weight: normal;
+        font-size: 1rem;
+        flex-basis: 17%;
+
+        @include tablet{
+            font-size: 1.3rem;
+        }
+      }  
+          
+      &__title-text-state{
+        color: #fefefe;
+        font-family: "avenir-next", sans-serif;
+        font-weight: normal;
+        font-size: 1rem;
+        flex-basis: 19%;
+
+        @include tablet{
+            font-size: 1.3rem;
+        }
+      }      
+      &__title-text-country{
+        color: #fefefe;
+        font-family: "avenir-next", sans-serif;
+        font-weight: normal;
+        font-size: 1rem;
+        flex-basis: 18%;
+
+        @include tablet{
+            font-size: 1.3rem;
+        }
+      }      
+      &__title-text-location{
+        color: #fefefe;
+        font-family: "avenir-next", sans-serif;
+        font-weight: normal;
+        font-size: 1rem;
+
+        @include tablet{
+            font-size: 1.3rem;
+        }
+      }
+
+      &__button-title-container{
+        display: flex;
+        justify-content: space-between;
+      }
+
+    &__del-edit-img{
+        cursor: grab;
+        max-width: 1.3rem;
+        min-height: 3rem;
+    }
+
+    &__pop-up-button-container{
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+    }
+
+    &__pop-up-button{
+        border-radius: 1rem;
+        background-color: #0095FF;
+        font-family: "avenir-next", sans-serif;
+        font-weight: normal;
+        color: #fefefe;
+        padding: 0.5rem;
+        cursor: grab;
+        border: none;
+    }
+
+    &__pop-up-header{
+        font-family: "avenir-next", sans-serif;
+        font-weight: normal;
+        color: #fefefe;
+        font-size: 1.1rem;
+        text-align: center;
+    }
+
+    &__del-edit-container{
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        padding-left: 1rem
+    }
+
+    &__del-edit-container-mobile{
+        display: flex;
+        gap: 0.5rem;
+        padding-left: 1rem;
+        justify-content: center;
+    }
+
+
+
+    &__all-data-container-mobile{
+        display: flex;
+        flex-direction: column;
+
+        @include tablet{
+            display: none;
+        }
+    }
+
+    &__clean-up-count{
+        font-family: "avenir-next", sans-serif;
+        font-weight: normal;
+        color: #fefefe;
+        font-size: 1.1rem;
+        text-align: center;
+        border-bottom: 1px solid #fefefe;
+    }
+
+    &__mobile-main-container{
+        display: flex;
+
+        @include tablet{
+            display: none;
+        }
+    }
+}

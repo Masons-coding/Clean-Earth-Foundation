@@ -16,11 +16,16 @@
     &__show-welcome{
         padding-top: 1rem;
         font-family: monospace;
-        font-size: 1rem;
+        font-size: 1.1rem;
         color: #fefefe;
 
         @include tablet{
+            padding-top: 0rem;
             font-size: 1.4rem;
+        }
+
+        @include desktop{
+            padding-bottom: 1rem;
         }
     }
 
@@ -36,6 +41,14 @@
 
     &__login-sign-up{
         align-self: flex-start;
+
+        @include desktop{
+            margin-bottom: 1rem;
+        }
+    }
+
+    &__login-sign-up-hidden{
+        display: none;
     }
 
     &__nav-links{
@@ -54,7 +67,7 @@
 
         @include desktop{
             gap: 2rem;
-            margin-left: 0;
+            align-self: center;
         }
     }
 
@@ -72,12 +85,10 @@
     }
 
     &__clean-earth-logo{
-        max-width: 70%;
+        max-width: 75%;
 
         @include tablet{
-        }
-
-        @include desktop{
+            max-width: 85%;
         }
     }
 
@@ -86,26 +97,26 @@
     }
 
     &__instagram-logo{
-        max-width: 1.5rem;
+        max-width: 2rem;
 
         @include tablet{
-            max-width: 2rem;
+            max-width: 2.5rem;
         }
     }
 
     &__twitter-logo{
-        max-width: 1.5rem;
+        max-width: 2rem;
 
         @include tablet{
-            max-width: 2rem;
+            max-width: 2.5rem;
         }
     }
 
     &__facebook-logo{
-        max-width: 1.5rem;
+        max-width: 2rem;
 
         @include tablet{
-            max-width: 2rem;
+            max-width: 2.5rem;
         }
     }
 
@@ -129,7 +140,7 @@
         border-bottom: 3px solid #36383C;
         padding: 0;
         align-items: center;
-        padding: 1rem;
+        padding: 0.5rem;
         align-items: flex-start;
 
         @include tablet{
@@ -149,14 +160,18 @@
 
     }
 
-    &__contact-content-container{
-        flex-direction: column;
+    &__buttons-container{
         display: flex;
-        gap: 1rem;
-        align-self: flex-end;
+        gap: 0.5rem;
+        align-self: center;
+        margin-bottom: 1rem;
+        border: 1px solid #002037;
+        padding: 0.2rem;
+        border-radius: 0.5rem;
 
         @include tablet{
-            flex-direction: row;
+            align-self: flex-end;
+            gap: 3rem;
         }
 
         @include desktop{
@@ -164,13 +179,18 @@
         }
     }
 
-    &__contact-content-container2{
+    &__buttons-container-hidden{
+        display: none;
+    }
+
+    &__contact-content-container{
         display: flex;
         gap: 1rem;
-        align-self: flex-end;
+        align-self: center;
         padding-top: 0.5rem;
 
         @include tablet{
+            align-self: flex-end;
         }
 
         @include desktop{
@@ -178,53 +198,38 @@
         }
     }
 
-    &__email-button{
-        border: none;
-        background-color: #0095FF;
-        cursor: grab;
-        color: #fffefe;
-        font-family: 'avenir-next', sans-serif;
-        font-weight: normal;
-        font-size: 0.8rem;
-
-        @include tablet{
-            font-size: 1rem;
-        }
-    }
-    
-    &__phone-button{
-        border: none;
-        background-color: #0095FF;
-        color: #fffefe;
-        font-family: 'avenir-next', sans-serif;
-        font-weight: normal;
-        font-size: 0.8rem;
-
-        @include tablet{
-            font-size: 1rem;
-        }
-    }
-
-    &__email-button:hover{
-        color: #323232;
-    }
-    
-    &__phone-button:hover{
-        color: #323232;
-    }
-
-    &__icon-div{
+    &__icon-div-cleanups{
         display: flex;
         gap: 0.5rem;
         align-items: center;
+        background: #002037;
+        border-radius: 0.5rem;
+        padding: 0.2rem;
+        cursor: grab;
+        align-items: center;
     }
 
-    &__phone-icon{
-        max-height: 1.2rem;
+    &__icon-div-logout{
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+        background: #002037;
+        border-radius: 0.5rem;
+        padding: 0.2rem;
+        cursor: grab;
+        align-items: center;
     }
 
-    &__email-icon{
-        max-height: 1.3rem;
+    &__icon-div-login{
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+        background: #002037;
+        border-radius: 0.5rem;
+        padding: 0.2rem;
+        cursor: grab;
+        width: 9rem;
+        align-items: center;
     }
 
     &__logout-button{
@@ -235,17 +240,21 @@
         font-family: "avenir-next", sans-serif;
         font-weight: bold;
         cursor: grab;
-        width: 45%;
-        height: 1.5rem;
         color: #fffefe;
+        font-size: 0.8rem;
+        padding: 0.5rem;
     }
+
+    // &__logout-button:hover{
+    //     background-color: #fefefe;
+    //     color: #002037;
+    // }
 
     &__logout-button-hidden{
         display: none;
     }
 
-    &__login-button{
-        font-size: 0.8rem;
+    &__clean-ups-button{
         text-align: center;
         border-radius: 0.5rem;
         background-color: #002037;
@@ -253,12 +262,64 @@
         font-family: "avenir-next", sans-serif;
         font-weight: bold;
         cursor: grab;
-        width: 100%;
         color: #fffefe;
+        font-size: 0.8rem;
         padding: 0.5rem;
+
     }
 
+    // &__clean-ups-button:hover{
+    //     background-color: #fefefe;
+    //     color: #002037;
+    // }
+
+    &__clean-ups-button-hidden{
+        display: none;
+    }
+
+    &__login-button{
+        text-align: center;
+        border-radius: 0.5rem;
+        background-color: #002037;
+        border: none;
+        font-family: "avenir-next", sans-serif;
+        font-weight: bold;
+        cursor: grab;
+        color: #fffefe;
+        padding: 0.5rem;
+        font-size: 0.8rem;
+    }
+
+    // &__login-button:hover{
+    //     background-color: #fefefe;
+    //     color: #002037;
+    // }
+
     &__login-button-hidden{
+        display: none;
+    }
+
+    &__create-an-account{
+        color: #002037;
+        font-family: monospace;
+        font-size: 0.9rem;
+        max-width: 65ch;
+
+        @include tablet{
+            font-size: 1rem;
+        }
+    }
+
+    &__create-an-account-hidden{
+        display: none;
+    }
+
+    &__button-icon{
+        max-width: 1.5rem;
+        cursor: grab;
+    }
+
+    &__button-icon-hidden{
         display: none;
     }
 
