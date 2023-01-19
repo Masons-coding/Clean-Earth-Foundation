@@ -12,6 +12,10 @@ import Popup from '../../components/PopUp/PopUp.js';
 
 import LoadingScreen from "../../components/LoadingPage/LoadingPage.js"
 
+import MyCleanUpsIcon from "../../assets/images/icons/MyCleanUpsIcon.png";
+
+import { useNavigate } from 'react-router-dom';
+
 const MARKER_MODAL = process.env.REACT_APP_MARKER_MODAL_URL;
 
 const API = process.env.REACT_APP_API_KEY;
@@ -147,6 +151,13 @@ export default function MarkerModal({ setOpenModal, cleanupId }) {
     }
   };
 
+  const navigateCleanUpsPage = useNavigate();
+
+  const handleMyCleanUps = () => {
+    navigateCleanUpsPage("/cleanups")
+    window.scrollTo(0, 500);
+  };
+
   if (!cleanUp) return <LoadingScreen/>;
 
   return (
@@ -232,9 +243,10 @@ export default function MarkerModal({ setOpenModal, cleanupId }) {
         content={<>
         <img className="marker-modal__logo-pop-up" src={cleanEarthLogo} alt="CleanEarth Logo"/>
         <h1 className="marker-modal__pop-up-header">Added to the clean up!</h1>
-        {/* <div className="marker-modal__pop-up-button-container">
-            <button onClick={joinConfirmClicked} className="marker-modal__pop-up-button">Join!</button>
-        </div> */}
+        <div onClick={handleMyCleanUps} className="marker-modal__icon-div-cleanups">
+          <button onClick={handleMyCleanUps} className="marker-modal__clean-ups-button">My Clean Ups</button>
+          <img onClick={handleMyCleanUps} className="marker-modal__button-icon" src={MyCleanUpsIcon} alt="Large tree"></img>
+        </div>
     </>}
     handleClose={togglePopupIsOpenAfterJoin}
     />}
@@ -245,6 +257,10 @@ export default function MarkerModal({ setOpenModal, cleanupId }) {
         content={<>
         <img className="marker-modal__logo-pop-up" src={cleanEarthLogo} alt="CleanEarth Logo"/>
         <h1 className="marker-modal__pop-up-header">You have already joined this clean up!</h1>
+        <div onClick={handleMyCleanUps} className="marker-modal__icon-div-cleanups">
+          <button onClick={handleMyCleanUps} className="marker-modal__clean-ups-button">My Clean Ups</button>
+          <img onClick={handleMyCleanUps} className="marker-modal__button-icon" src={MyCleanUpsIcon} alt="Large tree"></img>
+        </div>
     </>}
     handleClose={togglePopupIsOpenAlreadyJoined}
     />}
