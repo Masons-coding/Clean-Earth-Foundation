@@ -181,6 +181,18 @@
 
     }
 
+    &__registered{
+        font-family: "avenir-next", sans-serif;
+        font-weight: normal;
+        color: #fefefe;
+        text-align: center;
+        font-size: 1rem;
+
+        @include tablet{
+            font-size: 1.5rem;
+        }
+    }
+
 }
 
 .signup-page {

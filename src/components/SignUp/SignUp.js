@@ -11,6 +11,10 @@ import 'react-phone-number-input/style.css'
 
 import PhoneInput, { isValidPhoneNumber } from 'react-phone-number-input'
 
+import cleanEarthLogo from "../../assets/images/cleanEarthLogo.png";
+
+import PopupNoClose from '../PopUp/PopUpNoClose.js';
+
 const SIGN_UP_PAGE = process.env.REACT_APP_SIGN_UP_URL;
 
 const API = process.env.REACT_APP_API_KEY;
@@ -18,6 +22,8 @@ const API = process.env.REACT_APP_API_KEY;
 const signUpPageUrl =`${SIGN_UP_PAGE}${API}`;
 
 const Signup = () => {
+
+    const [isOpenAfterSuccess, setIsOpenAfterSuccess] = useState(false);
 
     const [passwordShown, setPasswordShown] = useState(false);
 
@@ -164,7 +170,7 @@ const Signup = () => {
             password: password
         })
         .then(() => {
-          setSuccess(true)
+          setIsOpenAfterSuccess(!isOpenAfterSuccess);
           setFirstName("")
           setLastName("")
           setPhoneValue("")
@@ -172,7 +178,7 @@ const Signup = () => {
           setPassword("")
           setTimeout(() => {
             navigateHomePage("/");
-          }, 1500);
+          }, 2000);
         })
         .catch((error) => {
             setSuccess(false)
@@ -228,7 +234,14 @@ const Signup = () => {
                     <button type="submit" className="sign-up__button">Sign up</button>
                     <button onClick={handleCancelClick} className="sign-up__button">Cancel</button>
                 </div>
-                {success && <div className="signup__message">Signed up!</div>}
+                <div>
+                    {isOpenAfterSuccess && <PopupNoClose
+                        content={<>
+                        <img className="clean-earth-logo-pop-up" src={cleanEarthLogo} alt="CleanEarth Logo"/>
+                        <p className="sign-up__registered">Sign up successful!</p>
+                    </>}
+                    />}
+                </div>
             </form>
 
     </main>

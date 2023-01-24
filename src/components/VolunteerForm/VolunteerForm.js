@@ -16,6 +16,8 @@ import cleanEarthLogo from "../../assets/images/cleanEarthLogo.png";
 
 import Popup from '../PopUp/PopUp.js';
 
+import PopupNoClose from '../PopUp/PopUpNoClose.js';
+
 const USER_REGISTER = process.env.REACT_APP_USER_REGISTER_URL;
 
 const API = process.env.REACT_APP_API_KEY;
@@ -36,6 +38,8 @@ const VolunteerForm = () => {
     const togglePopup = () => {
         setIsOpen(!isOpen);
       }
+
+    const [isOpenAfterSuccess, setIsOpenAfterSuccess] = useState(false);
 
     const noLoginFormClicked = () => {
         setIsOpen(!isOpen);
@@ -269,7 +273,7 @@ const VolunteerForm = () => {
                 user_id: user.id
             })
             .then(() => {
-              setSuccess(true)
+              setIsOpenAfterSuccess(!isOpenAfterSuccess);
               setName("")
               setEmail("")
               setCity("")
@@ -279,7 +283,7 @@ const VolunteerForm = () => {
               setTime("00:00")
               setTimeout(() => {
                 navigateHomePage("/");
-              }, 1500);
+              }, 2000);
             })
             .catch((error) => {
                 setSuccess(false)
@@ -353,7 +357,7 @@ const VolunteerForm = () => {
                     {success && <div className="volunteer__message">Clean up registered!</div>}
                 </form>
                 </div>
-                <div>
+            <div>
             {isOpen && <Popup
                 content={<>
                 <img className="clean-earth-logo-pop-up" src={cleanEarthLogo} alt="CleanEarth Logo"/>
@@ -420,7 +424,14 @@ const VolunteerForm = () => {
                     <button type="submit" className="volunteer__button">Submit</button>
                     <button onClick={handleCancelClick} className="volunteer__button">Cancel</button>
                 </div>
-                {success && <div className="volunteer__message">Clean up registered!</div>}
+                <div>
+                    {isOpenAfterSuccess && <PopupNoClose
+                        content={<>
+                        <img className="clean-earth-logo-pop-up" src={cleanEarthLogo} alt="CleanEarth Logo"/>
+                        <p className="volunteer__registered">Clean up registered!</p>
+                    </>}
+                    />}
+                </div>
             </form>
     );
     }
