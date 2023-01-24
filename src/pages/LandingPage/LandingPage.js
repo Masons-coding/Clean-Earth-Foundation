@@ -114,6 +114,8 @@ function Map() {
 
   const [locationId, setLocationId] = useState("")
 
+  const [userId, setUserId] = useState("")
+
   const [openModal, setOpenModal] = useState(false)
 
   const [failedAuth, setFailedAuth] = useState(true);
@@ -157,6 +159,7 @@ function Map() {
     onClick={() => {
       setJoinMapTextClass("map-join-par-hidden")
       setLocationId(cleanUp.id);
+      setUserId(cleanUp.user_id)
       setOpenModal(true);
       setCenter({ lat: cleanUp.lat_map_value, lng: cleanUp.long_map_value })
     }}
@@ -167,6 +170,7 @@ function Map() {
         <MarkerModal
           setOpenModal={setOpenModal}
           cleanupId={locationId}
+          userId={userId}
           key={id}
         />
       )}

@@ -35,7 +35,7 @@ const USER_CURRENT = process.env.REACT_APP_USER_CURRENT_URL;
 
 const urlForUserCurrent =`${USER_CURRENT}${API}`;
 
-export default function MarkerModal({ setOpenModal, cleanupId }) {
+export default function MarkerModal({ setOpenModal, cleanupId, userId }) {
 
   const [user, setUser] = useState({});
 
@@ -58,8 +58,19 @@ export default function MarkerModal({ setOpenModal, cleanupId }) {
         setIsOpenAlreadyJoined(!isOpenAlreadyJoined);
       }
 
+    const [isOpenOwnCleanUp, setIsOpenOwnCleanUp] = useState(false);
+
+    const togglePopupIsOpenOwnCleanUp = () => {
+        setIsOpenOwnCleanUp(!isOpenOwnCleanUp);
+      }
+
   const joinClicked = () => {
-      setIsOpen(!isOpen);
+      if(user.id === userId){
+        setIsOpenOwnCleanUp(!isOpenOwnCleanUp);
+      }else{
+        setIsOpen(!isOpen);
+      }
+
   }
 
   const [joinDesktopClass, setJoinDesktopClass] = useState("marker-modal__join-button-container")
@@ -156,6 +167,11 @@ export default function MarkerModal({ setOpenModal, cleanupId }) {
   const handleMyCleanUps = () => {
     navigateCleanUpsPage("/cleanups")
     window.scrollTo(0, 500);
+  };
+
+  const handleMyCleanUpsOwn = () => {
+    navigateCleanUpsPage("/cleanups")
+    window.scrollTo(0, 0);
   };
 
   if (!cleanUp) return <LoadingScreen/>;
@@ -263,6 +279,20 @@ export default function MarkerModal({ setOpenModal, cleanupId }) {
         </div>
     </>}
     handleClose={togglePopupIsOpenAlreadyJoined}
+    />}
+    </div>
+
+    <div>
+    {isOpenOwnCleanUp && <Popup
+        content={<>
+        <img className="marker-modal__logo-pop-up" src={cleanEarthLogo} alt="CleanEarth Logo"/>
+        <h1 className="marker-modal__pop-up-header">You can't join your own clean up!</h1>
+        <div onClick={handleMyCleanUpsOwn} className="marker-modal__icon-div-cleanups">
+          <button onClick={handleMyCleanUpsOwn} className="marker-modal__clean-ups-button">My Clean Ups</button>
+          <img onClick={handleMyCleanUpsOwn} className="marker-modal__button-icon" src={MyCleanUpsIcon} alt="Large tree"></img>
+        </div>
+    </>}
+    handleClose={togglePopupIsOpenOwnCleanUp}
     />}
     </div>
 </>
