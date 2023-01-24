@@ -50,3 +50,5 @@ To run this project, you will need to add the following environment variables to
 
 `REACT_APP_JOIN_URL`
 
+`REACT_APP_CLEAN_UPS_JOINED_URL`
+
