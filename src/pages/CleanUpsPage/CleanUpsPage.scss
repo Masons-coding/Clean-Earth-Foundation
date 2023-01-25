@@ -53,6 +53,11 @@
         color: #fefefe;
         text-align: center;
         border-bottom: 3px solid #0095FF;
+        font-size: 1.3rem;
+
+        @include tablet{
+            font-size: 1.5rem;
+        }
     }
 
     &__all-info-container{

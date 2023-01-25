@@ -47,11 +47,15 @@ const CleanUpsPage = () => {
 
     let [x] = useState(0)
 
+    let [xJoined] = useState(0)
+
     let [i] = useState(-1)
 
     let [iJoined] = useState(-1)
 
     let [iMobile] = useState(-1)
+
+    let [iJoinedMobile] = useState(-1)
     
     const [deletedCleanUp, setDeletedCleanUp] = useState(0)
 
@@ -232,6 +236,7 @@ const CleanUpsPage = () => {
         .catch((err) => {
           console.log(err);
         })
+        window.location.reload(false);
         setIsOpenDeleteJoined(!isOpenDeleteJoined);
     };
 
@@ -342,9 +347,33 @@ const CleanUpsPage = () => {
                         </div>
                         )
                     })}
-                </div>
 
-    
+                    <div className="clean-ups__mobile-main-container">
+                            <div className="clean-ups__all-data-container-mobile">
+                            {cleanUpDataJoined.map((data)=>{
+                                iJoinedMobile++
+                                    xJoined++
+                                return(
+                                <div key={data.id} className="clean-ups__all-info-container-mobile">
+                                    <div className="clean-ups__info-container">
+                                        <p className="clean-ups__clean-up-count" > {`Clean up ${xJoined}`}</p>
+                                        <p className="clean-ups__info-text-date">{`Date: ${data.date_of_clean_up.slice(0,10)}`}</p>
+                                        <p className="clean-ups__info-text-time">{`Time: ${data.time_of_clean_up}`}</p>
+                                        <p className="clean-ups__info-text-city">{`City: ${data.city}`}</p>
+                                        <p className="clean-ups__info-text-state">{`State: ${data.state}`}</p>
+                                        <p className="clean-ups__info-text-country">{`Country: ${data.country}`}</p>
+                                        <p className="clean-ups__info-text-location-mobile">{`Location: ${locationJoined[iJoinedMobile]}`}</p>
+                                    <div className="clean-ups__del-edit-container-mobile">
+                                    <img src={trashIcon} alt="Trash Can" onClick={() => deleteJoinedClicked(data.id)} className="clean-ups__del-edit-img"></img>
+                                    </div>
+                                    </div>
+                                </div>
+                                )
+                            })}
+                            </div>
+        
+                    </div>  
+                </div>
                 <div>
                 {isOpenDelete && <Popup
                     content={<>
