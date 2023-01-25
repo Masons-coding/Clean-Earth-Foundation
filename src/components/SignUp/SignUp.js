@@ -178,6 +178,7 @@ const Signup = () => {
           setPassword("")
           setTimeout(() => {
             navigateHomePage("/");
+            window.scrollTo(0, 0)
           }, 2000);
         })
         .catch((error) => {

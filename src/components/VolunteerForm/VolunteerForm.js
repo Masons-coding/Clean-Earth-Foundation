@@ -283,6 +283,7 @@ const VolunteerForm = () => {
               setTime("00:00")
               setTimeout(() => {
                 navigateHomePage("/");
+                window.scrollTo(0, 0)
               }, 2000);
             })
             .catch((error) => {

@@ -10,6 +10,10 @@ import markerIcon from "../../assets/images/icons/MapIcon2.png"
 
 import { useState, useEffect } from 'react';
 
+import PopupNoClose from '../PopUp/PopUpNoClose.js';
+
+import cleanEarthLogo from "../../assets/images/cleanEarthLogo.png";
+
 const GOOGLE_API = process.env.REACT_APP_GOOGLE_MPAS_API_KEY;
 const googleApi = `${GOOGLE_API}`;
 
@@ -18,6 +22,8 @@ const EDIT_CLEAN_UP = process.env.REACT_APP_EDIT_URL;
 const API = process.env.REACT_APP_API_KEY;
 
 const EditCleanUpsForm = ({cleanUpsToDisplay}) => {
+
+    const [isOpenAfterSuccess, setIsOpenAfterSuccess] = useState(false);
 
     const { isLoaded } = useLoadScript({
         googleMapsApiKey: googleApi,
@@ -248,7 +254,7 @@ const EditCleanUpsForm = ({cleanUpsToDisplay}) => {
                 lat_map_value:  latValue,
             })
             .then(() => {
-              setSuccess(true)
+              setIsOpenAfterSuccess(!isOpenAfterSuccess);
               setName("")
               setEmail("")
               setCity("")
@@ -258,7 +264,8 @@ const EditCleanUpsForm = ({cleanUpsToDisplay}) => {
               setTime("00:00")
               setTimeout(() => {
                 navigateCleanUpsPage("/cleanups");
-              }, 1500);
+                window.scrollTo(0, 0)
+              }, 2000);
             })
             .catch((error) => {
                 setSuccess(false)
@@ -321,7 +328,14 @@ const EditCleanUpsForm = ({cleanUpsToDisplay}) => {
                     <button type="submit" className="volunteer__button">Submit</button>
                     <button onClick={handleCancelClick} className="volunteer__button">Cancel</button>
                 </div>
-                {success && <div className="volunteer__message">Clean up Edited!</div>}
+                <div>
+                    {isOpenAfterSuccess && <PopupNoClose
+                        content={<>
+                        <img className="clean-earth-logo-pop-up" src={cleanEarthLogo} alt="CleanEarth Logo"/>
+                        <p className="volunteer__registered">Clean up edited!</p>
+                    </>}
+                    />}
+                </div>
             </form>
     )
 };

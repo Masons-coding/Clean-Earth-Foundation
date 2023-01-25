@@ -39,6 +39,10 @@ const CLEAN_UP_DELETE = process.env.REACT_APP_DELETE_URL;
 
 const urlForDelete =`${CLEAN_UP_DELETE}`;
 
+const JOIN_CLEAN_UP = process.env.REACT_APP_JOIN_URL;
+
+const urlForJoinCleanUp =`${JOIN_CLEAN_UP}${API}`;
+
 const CleanUpsPage = () => {
 
     let [x] = useState(0)
@@ -56,6 +60,12 @@ const CleanUpsPage = () => {
     const togglePopupDelete = () => {
         setIsOpenDelete(!isOpenDelete);
       }
+
+    const [isOpenDeleteJoined, setIsOpenDeleteJoined] = useState(false);
+
+    const togglePopupDeleteJoined = () => {
+        setIsOpenDeleteJoined(!isOpenDeleteJoined);
+    }
 
     const [user, setUser] = useState({});
     const [failedAuth, setFailedAuth] = useState(true);
@@ -93,6 +103,16 @@ const CleanUpsPage = () => {
         }
 
     }, [authToken, failedAuth]);
+
+    const config = {
+        headers: {
+          Authorization: `Bearer ${authToken}`,
+        }
+      };
+      
+      const data ={
+        clean_up_id: null
+      }
 
     //Location for clean ups created
     const [location, setLocation] = useState([]);
@@ -188,6 +208,10 @@ const CleanUpsPage = () => {
         setDeletedCleanUp(id);
     }
 
+    function deleteJoinedClicked(id){
+        setIsOpenDeleteJoined(!isOpenDeleteJoined);
+    }
+
     const handleEditClicked = (id) => {
         navigateEditPage(`/cleanUps/edit/${id}`)
     };
@@ -201,6 +225,15 @@ const CleanUpsPage = () => {
           window.location.reload(false);
           setIsOpenDelete(!isOpenDelete);
       };
+
+    const confirmClickedJoined = () => {
+        axios
+        .post(urlForJoinCleanUp, data, config)
+        .catch((err) => {
+          console.log(err);
+        })
+        setIsOpenDeleteJoined(!isOpenDeleteJoined);
+    };
 
     if (!cleanUpData){
         return <LoadingScreen/>;
@@ -303,7 +336,7 @@ const CleanUpsPage = () => {
                                 <p className="clean-ups__info-text-country">{data.country}</p>
                                 <p className="clean-ups__info-text-location">{locationJoined[iJoined]}</p>
                                 <div className="clean-ups__del-edit-container">
-                                    <img src={trashIcon} alt="Trash Can" onClick={() => deleteClicked(data.id)} className="clean-ups__del-edit-img"></img>
+                                    <img src={trashIcon} alt="Trash Can" onClick={() => deleteJoinedClicked(data.id)} className="clean-ups__del-edit-img"></img>
                                 </div>
                             </div>
                         </div>
@@ -322,6 +355,19 @@ const CleanUpsPage = () => {
                     </div>
                 </>}
                 handleClose={togglePopupDelete}
+                />}
+                </div>
+
+                <div>
+                {isOpenDeleteJoined && <Popup
+                    content={<>
+                    <img className="clean-earth-logo-pop-up" src={cleanEarthLogo} alt="CleanEarth Logo"/>
+                    <h1 className="clean-ups__pop-up-header">Do you wish to unjoin this clean up?</h1>
+                    <div className="clean-ups__pop-up-button-container">
+                        <button onClick={confirmClickedJoined} className="clean-ups__pop-up-button">CONFIRM</button>
+                    </div>
+                </>}
+                handleClose={togglePopupDeleteJoined}
                 />}
                 </div>
             </div>
