@@ -295,13 +295,13 @@ const CleanUpsPage = () => {
                             return(
                             <div key={data.id} className="clean-ups__all-info-container-mobile">
                                 <div className="clean-ups__info-container">
-                                    <p className="clean-ups__clean-up-count" > {`Clean up ${x}`}</p>
-                                    <p className="clean-ups__info-text-date">{`Date: ${data.date_of_clean_up.slice(0,10)}`}</p>
-                                    <p className="clean-ups__info-text-time">{`Time: ${data.time_of_clean_up}`}</p>
-                                    <p className="clean-ups__info-text-city">{`City: ${data.city}`}</p>
-                                    <p className="clean-ups__info-text-state">{`State: ${data.state}`}</p>
-                                    <p className="clean-ups__info-text-country">{`Country: ${data.country}`}</p>
-                                    <p className="clean-ups__info-text-location-mobile">{`Location: ${location[iMobile]}`}</p>
+                                    <p className="clean-ups__clean-up-count"> {`Clean up ${x}`}</p>
+                                    <p className="clean-ups__info-text-date"><b>Date:</b> {`${data.date_of_clean_up.slice(0,10)}`}</p>
+                                    <p className="clean-ups__info-text-time"><b>Time:</b> {`${data.time_of_clean_up}`}</p>
+                                    <p className="clean-ups__info-text-city"><b>City:</b> {`${data.city}`}</p>
+                                    <p className="clean-ups__info-text-state"><b>State:</b> {`${data.state}`}</p>
+                                    <p className="clean-ups__info-text-country"><b>Country:</b> {`${data.country}`}</p>
+                                    <p className="clean-ups__info-text-location-mobile"><b>Location:</b> {`${location[iMobile]}`}</p>
                                 <div className="clean-ups__del-edit-container-mobile">
                                     <img src={trashIcon} alt="Trash Can" onClick={() => deleteClicked(data.id)} className="clean-ups__del-edit-img"></img>
                                     <img src={editIcon} alt="Pencil" onClick={() => handleEditClicked(data.id)} className="clean-ups__del-edit-img"></img>
@@ -357,12 +357,12 @@ const CleanUpsPage = () => {
                                 <div key={data.id} className="clean-ups__all-info-container-mobile">
                                     <div className="clean-ups__info-container">
                                         <p className="clean-ups__clean-up-count" > {`Clean up ${xJoined}`}</p>
-                                        <p className="clean-ups__info-text-date">{`Date: ${data.date_of_clean_up.slice(0,10)}`}</p>
-                                        <p className="clean-ups__info-text-time">{`Time: ${data.time_of_clean_up}`}</p>
-                                        <p className="clean-ups__info-text-city">{`City: ${data.city}`}</p>
-                                        <p className="clean-ups__info-text-state">{`State: ${data.state}`}</p>
-                                        <p className="clean-ups__info-text-country">{`Country: ${data.country}`}</p>
-                                        <p className="clean-ups__info-text-location-mobile">{`Location: ${locationJoined[iJoinedMobile]}`}</p>
+                                        <p className="clean-ups__info-text-date"><b>Date:</b> {`${data.date_of_clean_up.slice(0,10)}`}</p>
+                                        <p className="clean-ups__info-text-time"><b>Time:</b> {`${data.time_of_clean_up}`}</p>
+                                        <p className="clean-ups__info-text-city"><b>City:</b> {`${data.city}`}</p>
+                                        <p className="clean-ups__info-text-state"><b>State:</b> {`${data.state}`}</p>
+                                        <p className="clean-ups__info-text-country"><b>Country:</b> {`${data.country}`}</p>
+                                        <p className="clean-ups__info-text-location-mobile"><b>Location:</b> {`${locationJoined[iJoinedMobile]}`}</p>
                                     <div className="clean-ups__del-edit-container-mobile">
                                     <img src={trashIcon} alt="Trash Can" onClick={() => deleteJoinedClicked(data.id)} className="clean-ups__del-edit-img"></img>
                                     </div>
