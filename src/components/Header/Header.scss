@@ -14,13 +14,11 @@
     }
 
     &__show-welcome{
-        padding-top: 1rem;
         font-family: monospace;
         font-size: 1.1rem;
         color: #fefefe;
 
         @include tablet{
-            padding-top: 0rem;
             font-size: 1.4rem;
         }
 
@@ -192,9 +190,11 @@
         gap: 1rem;
         align-self: center;
         padding-top: 0.5rem;
+        padding-bottom: 1.5rem;
 
         @include tablet{
             align-self: flex-end;
+            padding-bottom: 0rem;
         }
 
         @include desktop{

@@ -298,7 +298,7 @@ const VolunteerForm = () => {
             <div className="volunteer__no-user-logged-everything">
         <div className="volunteer__no-user-logged-container">
             <p className="volunteer__sign-in-please">Please login or create an account to run a clean up</p>
-            <img src={cleanEarthLogo} alt="Clean Earth Logo"/>
+            <img className="volunteer__sign-in-please-logo" src={cleanEarthLogo} alt="Clean Earth Logo"/>
             <button onClick={handleLogin} className="volunteer__login-button">Login/Sign-up</button>
         </div>
                     <form onClick={noLoginFormClicked} onSubmit={handleSubmitForm} className='volunteer'>
