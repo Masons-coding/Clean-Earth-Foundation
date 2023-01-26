@@ -107,10 +107,10 @@ const Login = () => {
             <h1 className="login__title">Log in</h1>
 
             <label className="login__labels" htmlFor="first_name">Email:</label>
-            <input type="text" placeholder="Please enter your email" value={email} onChange={handleEmailChange} className={emailError === true || passwordError === true ? 'login__input-error' : 'login__input' }  id="email" name="email"></input>
+            <input type="text" placeholder="Enter email" value={email} onChange={handleEmailChange} className={emailError === true || passwordError === true ? 'login__input-error' : 'login__input' }  id="email" name="email"></input>
             <label className="login__labels" htmlFor="first_name">Password:</label>
             <div className="login__show-hide-password-container">
-              <input type={passwordShown ? "text" : "password"} placeholder="Please enter your password" value={password} onChange={handlePasswordChange} className={passwordError === true || emailError === true ? 'login__input-error' : 'login__input' }  id="password" name="password"></input>
+              <input type={passwordShown ? "text" : "password"} placeholder="Enter password" value={password} onChange={handlePasswordChange} className={passwordError === true || emailError === true ? 'login__input-error' : 'login__input' }  id="password" name="password"></input>
               <img src={showOrHidePassword} alt="Show or hide password" className="login__show-password" onClick={togglePassword}/>
             </div>
 

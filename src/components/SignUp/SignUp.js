@@ -214,12 +214,12 @@ const Signup = () => {
                 {errorPhone && <div className="sign-up__error-message">Field required - please provide a valid phone number</div>}
 
                 <label className="sign-up__labels" htmlFor="email">Email:</label>
-                <input type="text" placeholder="Please enter your email" value={email} onChange={handleEmailChange} className={emailError === true ? 'sign-up__input-error' : 'sign-up__input' } id="email" name="email"></input>
+                <input type="text" placeholder="Enter email" value={email} onChange={handleEmailChange} className={emailError === true ? 'sign-up__input-error' : 'sign-up__input' } id="email" name="email"></input>
                 <div className="sign-up__error-message">{emailErrorMessage}</div>
 
                 <label className="sign-up__labels" htmlFor="name">Password:</label>
                 <div className="sign-up__show-hide-password-container">
-                    <input type={passwordShown ? "text" : "password"} placeholder="Please enter your password" value={password} onChange={handlePasswordChange} className={passwordError === true ? 'sign-up__input-error' : 'sign-up__input' } id="password" name="password"></input>
+                    <input type={passwordShown ? "text" : "password"} placeholder="Enter password" value={password} onChange={handlePasswordChange} className={passwordError === true ? 'sign-up__input-error' : 'sign-up__input' } id="password" name="password"></input>
                     <img src={showOrHidePassword} alt="Show or hide password" className="sign-up__show-password" onClick={togglePassword}/>
                 </div>
                 <div className="sign-up__password-error-message">{passwordErrorMessage}</div>
