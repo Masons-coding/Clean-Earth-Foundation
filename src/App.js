@@ -25,7 +25,7 @@ function App() {
     <BrowserRouter>
       <Header/>
       <Routes>
-        <Route path="https://www.cleanearthfoundation.com/" element={<LandingPage/>} />
+        <Route path="/" element={<LandingPage/>} />
         <Route path="/cleanups" element={<CleanUpsPage/>} />
         <Route path='/cleanups/edit/:id' element={<EditCleanUpsPage />} />
         <Route path="/about" element={<AboutPage/>} />
