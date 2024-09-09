@@ -8,6 +8,10 @@
     flex-wrap: wrap;
     position: relative;
 
+    @include tablet{
+        flex-direction: column;
+    }
+
     &_sold-out-coming-soon{
         display: flex;
         flex-direction: column;
@@ -30,7 +34,7 @@
         align-items: center;
         border-radius: 0.5rem;
         flex-basis: 20%;
-        margin: 0 4rem;
+        margin: 0 1.5rem;
         justify-content: flex-end;
         backdrop-filter: blur(100px);
         text-align: center;
@@ -152,14 +156,22 @@
         justify-content: center;
         color: #fffefe;
         align-content: center;
-        flex-basis: 84%;
+        flex-basis: 86%;
         margin-bottom: 2rem;
         padding: 2rem;
         margin-top: 2rem;
         border: 3px solid #323232;
 
+        @include tablet{
+            max-width: 30.5rem;
+        }
+
         @include desktop{
-            flex-basis: 83%;
+            max-width: 56rem;
+        }
+
+        @include medium-desktop2{
+            max-width: 66rem;
         }
     }
 

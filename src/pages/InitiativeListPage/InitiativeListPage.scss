@@ -15,6 +15,10 @@
     border-top: 3px solid #323232;
     border-bottom: 3px solid #323232;
 
+    @include desktop{
+        min-height: 100vh;
+    }
+
     &__container{
     background-color: #002037;
     border-radius: 0.5rem;

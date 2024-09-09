@@ -16,13 +16,25 @@ import SignUpPage from "./pages/SignUpPage/SignUpPage.js";
 
 import Header from "./components/Header/Header.js";
 
-import { BrowserRouter, Routes, Route} from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation} from "react-router-dom";
 
 import ErrorPage from "./pages/ErrorPage/ErrorPage";
 
+import LoadingScreen from "./components/LoadingPage/LoadingPage.js"
+
+import useLoading from "./components/useLoading/useLoading.js";
+
+import {Suspense} from 'react';
+
 function App() {
+  const location = useLocation();
+  const isLoading = useLoading(location);
+
   return (
-    <BrowserRouter>
+    isLoading ?(
+      <LoadingScreen/>
+    ):(
+      <Suspense fallback={<LoadingScreen />}>
       <Header/>
       <Routes>
         <Route path="/" element={<LandingPage/>} />
@@ -38,8 +50,17 @@ function App() {
         <Route path="/signup" element={<SignUpPage/>} />
         <Route path="*" element={<ErrorPage/>} />
       </Routes>
+    </Suspense>
+    )
+  );
+}
+
+function AppWrapper() {
+  return (
+    <BrowserRouter>
+      <App />
     </BrowserRouter>
   );
 }
 
-export default App;
+export default AppWrapper;

@@ -17,4 +17,9 @@
     @include tablet{
         padding: 2rem;
     }
+
+    @include desktop{
+        min-height: 100vh;
+        align-items: center;
+    }
 }

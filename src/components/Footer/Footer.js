@@ -12,7 +12,7 @@ const Footer = () => {
         <footer className="footer">
             <div className="footer__everything-container">
                 <div className="footer__container">
-                    <p className="footer__text">© Copyright 2017-2023 by <b>Clean Earth Foundation</b>. All rights reserved.</p>
+                    <p className="footer__text">© Copyright 2017-2024 by <b>Clean Earth Foundation</b>. All rights reserved.</p>
                     <div className="footer__social">
                         <a href="https://www.instagram.com/becleanearth/"><img className="footer__instagram-logo" src={instagramLogo} alt="Instagram logo"/></a>
                         <a href="https://www.facebook.com/BeCleanEarth/"><img className="footer__facebook-logo" src={facebookLogo} alt="Facebook logo"/></a>

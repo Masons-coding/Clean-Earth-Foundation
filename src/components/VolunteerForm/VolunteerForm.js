@@ -348,7 +348,7 @@ const VolunteerForm = () => {
                         <p className="map-par-mobile">Mobile/tablet: Please use two fingers to zoom in or out on the map below</p>
                         <p className="map-par">Desktop: Please press Ctrl + Scroll to zoom in or out on the map below</p>
                     </div>
-                    <Map setLatLongErrorMessage={setLatLongErrorMessage} setLatLongError={setLatLongError} setLat={setLatValue} setLong={setLongValue}/> 
+                    <p className="volunteer__sign-in-please-map">*Please login or create an account to view the map*</p> 
                     <div className="volunteer__lat-long-error-message-red">{latLongErrorMessage}</div>
     
                     <div className="volunteer__button-container">
@@ -438,19 +438,20 @@ const VolunteerForm = () => {
     }
 };
 
+
 function Map({setLatLongErrorMessage, setLatLongError, setLat, setLong}) {
 
     const[mapIcon] = useState(markerIcon);
 
-    const[position, setPosition] = useState({ lat: 43.651070, lng: -79.347015})
+    const[position, setPosition] = useState({ lat: "", lng: ""})
   
-    const [center] = useState({ lat: 45.000000, lng: -63.000000 })
+    const [center] = useState({ lat: 48.1667, lng: -100.1667 })
   
-    const[zoom] = useState(3)
-  
+    const[zoom] = useState(3.7)
+
     const handleClickMap = event => { const lat = event.latLng.lat(); const lng = event.latLng.lng(); setLat(lat); setLong(lng); setPosition({ lat: lat, lng: lng}); setLatLongErrorMessage(""); setLatLongError(false)};
     return (
-      <GoogleMap zoom={zoom} center={center} mapContainerClassName="map-container" onClick={(event) => {handleClickMap(event)}} >
+      <GoogleMap  zoom={zoom} center={center} mapContainerClassName="map-container" onClick={(event) => {handleClickMap(event)}} >
         <MarkerF
           position={position}
           icon = {mapIcon}

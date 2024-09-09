@@ -1,3 +1,5 @@
+//CHECK IF LOCATIONS ARE WAITING TO BE LOADED BEFORE THE PAGE LOADS
+
 import './CleanUpsPage.scss';
 
 import Footer from "../../components/Footer/Footer.js";
@@ -126,24 +128,31 @@ const CleanUpsPage = () => {
     const [locationJoined, setLocationJoined] = useState([]);
     const [locationArrayJoined] = useState([]);
 
+    //Waits until all data has been loaded from the different locations before showing the data to the user
+    let [isReadyCreatedCleanUps, setIsReadyCreatedCleanUps] = useState(false);
+    let [isReadyJoinedCleanUps, setIsReadyJoinedCleanUps] = useState(false);
+
     Geocode.setApiKey(geoCode);
 
     async function getAddress(lat, long, data){
+        isReadyCreatedCleanUps = false;
         const GeocodeGetAddress = await Geocode.fromLatLng(lat, long);
               let address = GeocodeGetAddress.results[0].formatted_address;
               locationArray.push(address);
               if(locationArray.length === data.length){
                 setLocation(locationArray)
+                setIsReadyCreatedCleanUps(true)
               }
-
             }
 
     async function getAddressJoined(lat, long, data){
+        isReadyJoinedCleanUps = false;
         const GeocodeGetAddress = await Geocode.fromLatLng(lat, long);
                 let address = GeocodeGetAddress.results[0].formatted_address;
                 locationArrayJoined.push(address);
                 if(locationArrayJoined.length === data.length){
                 setLocationJoined(locationArrayJoined)
+                setIsReadyJoinedCleanUps(true)
                 }
         
             }
@@ -158,44 +167,50 @@ const CleanUpsPage = () => {
                 const response = await axios.get(`${urlForUserCleanUps}/${user.id}${API}`)
                 const data = await response.data
                 setCleanUpData(data)
-                addressFunction(data)
-                async function addressFunction(response) {
-                    for(let p = 0; p < response.length; p++){
-                        let lat = response[p].lat_map_value;
-                        let long = response[p].long_map_value;
-                        await getAddress(lat, long, data);
+                if(data.length !== 0){
+                    addressFunction(data)
+                    async function addressFunction(response) {
+                        for(let p = 0; p < response.length; p++){
+                            let lat = response[p].lat_map_value;
+                            let long = response[p].long_map_value;
+                            await getAddress(lat, long, data);
+                        }
                     }
+                }else{
+                    setIsReadyCreatedCleanUps(true)
                 }
+
             } catch (error){
                 console.log(error)
             }
         }
-            
-      },[user.id]);
 
-
-//Get cleans ups user has joined
-      useEffect(()=>{
-        getData()
-        async function getData(){
+        getDataJoined()
+        async function getDataJoined(){
             try{
                 const response = await axios.get(`${urlForUserCleanUpsJoined}/${user.clean_up_id}${API}`)
                 const data = await response.data
                 setCleanUpDataJoined(data)
-                addressFunction(data)
-                async function addressFunction(response) {
-                    for(let p = 0; p < response.length; p++){
-                        let lat = response[p].lat_map_value;
-                        let long = response[p].long_map_value;
-                        await getAddressJoined(lat, long, data);
+                if(data.length !== 0){
+                    addressFunction(data)
+                    async function addressFunction(response) {
+                        for(let p = 0; p < response.length; p++){
+                            let lat = response[p].lat_map_value;
+                            let long = response[p].long_map_value;
+                            await getAddressJoined(lat, long, data);
+                        }
                     }
+                }else{
+                    setIsReadyJoinedCleanUps(true)
                 }
+
             } catch (error){
                 console.log(error)
             }
         }
             
-      },[user.clean_up_id]);
+      },[user.id, user.clean_up_id]);
+
 
       const handleLeadClick = () => {
           navigateVolunteerPage("/volunteer")
@@ -245,6 +260,10 @@ const CleanUpsPage = () => {
     } 
 
     if (!cleanUpDataJoined){
+        return <LoadingScreen/>;
+    }
+
+    if (isReadyCreatedCleanUps === false || isReadyJoinedCleanUps === false){
         return <LoadingScreen/>;
     } 
 

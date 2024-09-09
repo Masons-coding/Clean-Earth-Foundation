@@ -35,7 +35,7 @@ const USER_CURRENT = process.env.REACT_APP_USER_CURRENT_URL;
 
 const urlForUserCurrent =`${USER_CURRENT}${API}`;
 
-export default function MarkerModal({ setOpenModal, cleanupId, userId }) {
+export default function MarkerModal({ setOpenModal, cleanupId, userId, setZoom }) {
 
   const [user, setUser] = useState({});
 
@@ -49,7 +49,6 @@ export default function MarkerModal({ setOpenModal, cleanupId, userId }) {
 
   const togglePopupIsOpenAfterJoin = () => {
       setIsOpenAfterJoin(!isOpenAfterJoin);
-      setOpenModal(false);
     }
 
     const [isOpenAlreadyJoined, setIsOpenAlreadyJoined] = useState(false);
@@ -99,6 +98,7 @@ export default function MarkerModal({ setOpenModal, cleanupId, userId }) {
       (response) => {
         const address = response.results[0].formatted_address;
         setAddress(address)
+        setAddressDataFound(true)
       },
       (error) => {
         console.error(error);
@@ -113,6 +113,8 @@ export default function MarkerModal({ setOpenModal, cleanupId, userId }) {
   const [cleanUp, setCleanUp] = useState(null);
   const [date, setDate] = useState(null);
   const [address, setAddress] = useState(null);
+
+  let [addressDataFound, setAddressDataFound] = useState(false);
 
   useEffect(() => {
     axios.get(`${markerModalUrl}${cleanupId}${api}`).then((response) => {
@@ -174,8 +176,8 @@ export default function MarkerModal({ setOpenModal, cleanupId, userId }) {
     window.scrollTo(0, 0);
   };
 
-  if (!cleanUp) return <LoadingScreen/>;
-
+  if (!cleanUp || addressDataFound === false) return <LoadingScreen/>;
+  
   return (
     <>
     <div className="marker-modal">
@@ -187,7 +189,9 @@ export default function MarkerModal({ setOpenModal, cleanupId, userId }) {
                 className="marker-modal__close"
                 alt="close icon"
                 onClick={() => {
+                setAddressDataFound(false);
                 setOpenModal(false);
+                setZoom(3.7)
                 }}
             
             />

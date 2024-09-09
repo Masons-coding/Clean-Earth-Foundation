@@ -4,8 +4,32 @@
     }
 }
 
+@mixin bigger-tablet {
+    @media (min-width: 866px){
+        @content;
+    }
+}
+
 @mixin desktop {
     @media (min-width: 1280px){
+        @content;
+    }
+}
+
+@mixin medium-desktop {
+    @media (min-width: 1988px){
+        @content;
+    }
+}
+
+@mixin medium-desktop2 {
+    @media (min-width: 1600px){
+        @content;
+    }
+}
+
+@mixin large-desktop {
+    @media (min-width: 3000px){
         @content;
     }
 }

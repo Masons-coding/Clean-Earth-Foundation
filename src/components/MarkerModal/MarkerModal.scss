@@ -190,6 +190,7 @@
     color: #fefefe;
     text-align: right;
     padding-left: 2rem;
+    max-width: 41ch;
 
     @include tablet{
         font-size: 1rem;

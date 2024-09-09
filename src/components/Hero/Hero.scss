@@ -11,8 +11,9 @@
   border-top: 3px solid #323232;
   border-bottom: 3px solid #323232;
 
-  @include tablet{
-    padding-top: 4rem 0rem 0rem 0rem;
+  @include large-desktop{
+    height: 60rem;
+    padding: 14rem;
   }
 
   &__text-button-container{

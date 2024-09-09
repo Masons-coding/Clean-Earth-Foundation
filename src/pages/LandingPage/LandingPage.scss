@@ -8,6 +8,10 @@
 .map-container{
     width: 100%;
     height: 100vh;
+
+    @include desktop{
+        height: 50rem;
+    }
 }
 
 .gm-svpc{
@@ -110,9 +114,9 @@
 
 }
 
-.gm-style-moc{
-    display: none;
-}
+// .gm-style-moc{
+//     display: none;
+// }
 
 .gmnoprint {
     display: none;

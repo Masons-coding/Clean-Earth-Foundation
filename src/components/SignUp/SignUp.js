@@ -151,7 +151,7 @@ const Signup = () => {
             setSuccess(false);
             setLastNameError(true)
             event.target.lastName.focus()
-            setLastNameErrorMessage("Field required - please enter your first name")
+            setLastNameErrorMessage("Field required - please enter your last name")
         }
         if(firstName === ""){
             setFirstNameError(true)

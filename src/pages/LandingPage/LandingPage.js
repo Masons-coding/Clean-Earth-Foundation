@@ -8,6 +8,8 @@ import Footer from "../../components/Footer/Footer.js";
 
 import { GoogleMap, useLoadScript, MarkerF } from "@react-google-maps/api";
 
+import Geocode from "react-geocode";
+
 import axios from "axios";
 
 import { useState, useEffect} from "react";
@@ -35,6 +37,9 @@ const API = process.env.REACT_APP_API_KEY;
 
 const landingPageUrl =`${LANDING_PAGE}${API}`;
 
+const GEO_CODE = process.env.REACT_APP_GOOGLE_GEO_CODE_KEY;
+const geoCode = `${GEO_CODE}`;
+
 const LandingPage = () => {
 
   const navigateVolunteerPage = useNavigate();
@@ -44,14 +49,15 @@ const LandingPage = () => {
     window.scrollTo(0, 0)
   };
 
-  // window.scrollTo(0, 0)
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: googleApi,
   });
 
   if (!isLoaded){
     return <LoadingScreen/>;
-  } 
+  }
+
+  if(!GoogleMap) return<LoadingScreen/>;
 
     return (
         <>
@@ -104,9 +110,9 @@ function Map() {
 
   const[mapIcon] = useState(markerIcon);
 
-  const [center, setCenter] = useState({ lat: 39, lng: 34 })
+  const [center, setCenter] = useState({ lat: 48.1667, lng: -100.1667 })
 
-  const[zoom] = useState(2.5)
+  const[zoom, setZoom] = useState(3.7)
 
   const {id} = useParams()
 
@@ -119,6 +125,10 @@ function Map() {
   const [openModal, setOpenModal] = useState(false)
 
   const [failedAuth, setFailedAuth] = useState(true);
+
+  const [locationArray] = useState([]);
+
+  const [locationArrayAfterMap, setLocationArrayAfterMap] = useState([]);
 
   const authToken = sessionStorage.getItem('authToken');
 
@@ -142,15 +152,25 @@ function Map() {
     .catch((err) => {
       console.log(err);
     });
-  },[id]);
+  },[]);
 
+  if(!cleanUpData) return<LoadingScreen/>;
 
-  if(!cleanUpData) return<loadingScreen/>;
+  Geocode.setApiKey(geoCode);
 
   return (
-    <GoogleMap zoom={zoom} center={center} mapContainerClassName="map-container" onClick={(event) => {setOpenModal(false)}}>
+      <GoogleMap zoom={zoom} center={center} mapContainerClassName="map-container" onClick={(event) => {setOpenModal(false)}}>
       <p className={joinMapTextClass}>Select a marker to join!</p>
       {cleanUpData.map((cleanUp)=>{
+        //GOOGLE MAPS CLUSTERS
+        const data = Array.from({ length: 1 }, () => ({ lat: cleanUp.lat_map_value, lng: cleanUp.long_map_value }));
+          locationArray.push(data);
+          console.log(locationArray)
+          // if(locationArray.length === cleanUpData.length){
+          //   console.log(locationArray)
+          //   setLocationArrayAfterMap(locationArray)
+          //   console.log(locationArrayAfterMap)
+          // }
  return (
   <MarkerF
     position={{ lat: cleanUp.lat_map_value, lng: cleanUp.long_map_value }}
@@ -158,6 +178,7 @@ function Map() {
     icon = {mapIcon}
     onClick={() => {
       setJoinMapTextClass("map-join-par-hidden")
+      setZoom(20)
       setLocationId(cleanUp.id);
       setUserId(cleanUp.user_id)
       setOpenModal(true);
@@ -168,13 +189,14 @@ function Map() {
 })}
       {openModal && (
         <MarkerModal
+          setZoom={setZoom}
           setOpenModal={setOpenModal}
           cleanupId={locationId}
           userId={userId}
           key={id}
         />
       )}
-    </GoogleMap>
+      </GoogleMap>
   );
 }
 
