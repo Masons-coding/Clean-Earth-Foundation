@@ -101,6 +101,7 @@ const Header = () => {
                         <a href="https://www.facebook.com/BeCleanEarth/"><img className="header__facebook-logo" src={facebookLogo} alt="Facebook logo"/></a>
                         <a href="https://www.twitter.com/BeCleanEarth/"><img className="header__twitter-logo" src={twitterLogo} alt="Twitter logo"/></a>
                     </div>
+                    <p className="coming-soon-text">*COMING SOON*</p>
                     <div className={first_name === undefined ? "header__login-sign-up" : "header__login-sign-up-hidden"}>
                         <div onClick={handleLogin} className="header__icon-div-login">
                             <button onClick={handleLogin} className="header__login-button">Login/Sign-up</button>

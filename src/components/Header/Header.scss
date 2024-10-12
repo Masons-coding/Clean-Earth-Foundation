@@ -1,440 +1,438 @@
-@use '../../styles/partials/mixins.scss' as *;
-@use '../../styles/partials/letters' as *;
+@use "../../styles/partials/mixins.scss" as *;
+@use "../../styles/partials/letters" as *;
 
-.header{
-    background-color: #0095FF;
-    
-    @include tablet{
-        display: flex;
-        flex-direction: column;
+.header {
+  background-color: #0095ff;
+
+  @include tablet {
+    display: flex;
+    flex-direction: column;
+  }
+
+  @include desktop {
+    flex-direction: row;
+  }
+
+  &__show-welcome {
+    font-family: monospace;
+    font-size: 1.1rem;
+    color: #fefefe;
+
+    @include tablet {
+      font-size: 1.4rem;
     }
 
-    @include desktop{
-        flex-direction: row;
+    @include desktop {
+      padding-bottom: 1rem;
+    }
+  }
+
+  &__hide-welcome {
+    display: none;
+  }
+
+  &__logo-button {
+    background-color: #0095ff;
+    border: none;
+    cursor: grab;
+  }
+
+  &__login-sign-up {
+    align-self: flex-start;
+
+    @include desktop {
+      margin-bottom: 1rem;
+    }
+  }
+
+  &__login-sign-up-hidden {
+    display: none;
+  }
+
+  &__nav-links {
+    display: none;
+
+    @include tablet {
+      display: flex;
+      gap: 1.5rem;
+      padding-right: 1rem;
+      align-items: center;
+      flex-wrap: nowrap;
+      padding-top: 1rem;
+      justify-content: center;
+      padding: 1rem;
     }
 
-    &__show-welcome{
-        font-family: monospace;
-        font-size: 1.1rem;
-        color: #fefefe;
+    @include desktop {
+      gap: 2rem;
+      align-self: center;
+    }
+  }
 
-        @include tablet{
-            font-size: 1.4rem;
-        }
+  &__clean-earth-logo-container {
+    padding-left: 1rem;
+    align-self: center;
+    display: flex;
+    justify-content: center;
 
-        @include desktop{
-            padding-bottom: 1rem;
-        }
+    @include tablet {
+      display: normal;
+      border-top: none;
+      border-bottom: none;
+    }
+  }
+
+  &__clean-earth-logo {
+    max-width: 45%;
+
+    @include tablet {
+      max-width: 50%;
     }
 
-    &__hide-welcome{
-        display: none;
+    @include desktop {
+      max-width: 70%;
     }
+  }
 
-    &__logo-button{
-        background-color: #0095FF;
-        border: none;
-        cursor: grab;
+  &__logo-nav-container {
+    display: flex;
+  }
+
+  &__instagram-logo {
+    max-width: 2rem;
+
+    @include tablet {
+      max-width: 2.5rem;
     }
+  }
 
-    &__login-sign-up{
-        align-self: flex-start;
+  &__twitter-logo {
+    max-width: 2rem;
 
-        @include desktop{
-            margin-bottom: 1rem;
-        }
+    @include tablet {
+      max-width: 2.5rem;
     }
+  }
 
-    &__login-sign-up-hidden{
-        display: none;
+  &__facebook-logo {
+    max-width: 2rem;
+
+    @include tablet {
+      max-width: 2.5rem;
     }
+  }
 
-    &__nav-links{
-        display: none;
+  &__contact-links-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-basis: 100%;
+  }
 
-        @include tablet{
-            display: flex;
-            gap: 1.5rem;
-            padding-right: 1rem;
-            align-items: center;
-            flex-wrap: nowrap;
-            padding-top: 1rem;
-            justify-content: center;
-            padding: 1rem;
-        }
-
-        @include desktop{
-            gap: 2rem;
-            align-self: center;
-        }
-    }
-
-    &__clean-earth-logo-container{
-        padding-left: 1rem;
-        align-self: center;
-        display: flex;
-        justify-content: center;
-
-        @include tablet{
-            display: normal;
-            border-top: none;
-            border-bottom: none;
-        }
-    }
-
-    &__clean-earth-logo{
-        max-width: 45%;
-
-        @include tablet{
-            max-width: 50%;
-        }
-
-        @include desktop{
-            max-width: 70%;
-        }
-    }
-
-    &__logo-nav-container{
-        display: flex;
-    }
-
-    &__instagram-logo{
-        max-width: 2rem;
-
-        @include tablet{
-            max-width: 2.5rem;
-        }
-    }
-
-    &__twitter-logo{
-        max-width: 2rem;
-
-        @include tablet{
-            max-width: 2.5rem;
-        }
-    }
-
-    &__facebook-logo{
-        max-width: 2rem;
-
-        @include tablet{
-            max-width: 2.5rem;
-        }
-    }
-
-    &__contact-links-container{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        flex-basis: 100%;
-    }
-
-    &__contact-container{
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        text-decoration: none;
-        color: #fffefe;
-        padding-top: 1rem;
-        flex-direction: column;
-        padding-right: 1.5rem;
-        border-top: 3px solid #36383C;
-        border-bottom: 3px solid #36383C;
-        padding: 0;
-        align-items: center;
-        padding: 0.5rem;
-        align-items: flex-start;
-
-        @include tablet{
-            justify-content: flex-end;
-            border-top: 3px solid #36383C;
-            border-bottom: 3px solid #36383C;
-            padding: 1rem;
-        }
-
-        @include desktop{
-            border-top: none;
-            border-bottom: none;
-            padding: 0;
-            padding-top: 1rem;
-            padding-right: 1rem;
-        }
-
-    }
-
-    &__buttons-container{
-        display: flex;
-        gap: 0.5rem;
-        align-self: center;
-        margin-bottom: 1rem;
-        border: 1px solid #002037;
-        padding: 0.2rem;
-        border-radius: 0.5rem;
-
-        @include tablet{
-            align-self: flex-end;
-            gap: 3rem;
-        }
-
-        @include desktop{
-            align-self: flex-end;
-        }
-    }
-
-    &__buttons-container-hidden{
-        display: none;
-    }
-
-    &__contact-content-container{
-        display: flex;
-        gap: 1rem;
-        align-self: center;
-        padding-top: 0.5rem;
-        padding-bottom: 1.5rem;
-
-        @include tablet{
-            align-self: flex-end;
-            padding-bottom: 0rem;
-        }
-
-        @include desktop{
-            align-self: flex-end;
-        }
-    }
-
-    &__icon-div-cleanups{
-        display: flex;
-        gap: 0.5rem;
-        align-items: center;
-        background: #002037;
-        border-radius: 0.5rem;
-        padding: 0.2rem;
-        cursor: grab;
-        align-items: center;
-    }
-
-    &__icon-div-logout{
-        display: flex;
-        gap: 0.5rem;
-        align-items: center;
-        background: #002037;
-        border-radius: 0.5rem;
-        padding: 0.2rem;
-        cursor: grab;
-        align-items: center;
-    }
-
-    &__icon-div-login{
-        display: flex;
-        gap: 0.5rem;
-        align-items: center;
-        background: #002037;
-        border-radius: 0.5rem;
-        padding: 0.2rem;
-        cursor: grab;
-        width: 9rem;
-        align-items: center;
-    }
-
-    &__logout-button{
-        text-align: center;
-        border-radius: 0.5rem;
-        background-color: #002037;
-        border: none;
-        font-family: "avenir-next", sans-serif;
-        font-weight: bold;
-        cursor: grab;
-        color: #fffefe;
-        font-size: 0.8rem;
-        padding: 0.5rem;
-    }
-
-    // &__logout-button:hover{
-    //     background-color: #fefefe;
-    //     color: #002037;
-    // }
-
-    &__logout-button-hidden{
-        display: none;
-    }
-
-    &__clean-ups-button{
-        text-align: center;
-        border-radius: 0.5rem;
-        background-color: #002037;
-        border: none;
-        font-family: "avenir-next", sans-serif;
-        font-weight: bold;
-        cursor: grab;
-        color: #fffefe;
-        font-size: 0.8rem;
-        padding: 0.5rem;
-
-    }
-
-    // &__clean-ups-button:hover{
-    //     background-color: #fefefe;
-    //     color: #002037;
-    // }
-
-    &__clean-ups-button-hidden{
-        display: none;
-    }
-
-    &__login-button{
-        text-align: center;
-        border-radius: 0.5rem;
-        background-color: #002037;
-        border: none;
-        font-family: "avenir-next", sans-serif;
-        font-weight: bold;
-        cursor: grab;
-        color: #fffefe;
-        padding: 0.5rem;
-        font-size: 0.8rem;
-    }
-
-    // &__login-button:hover{
-    //     background-color: #fefefe;
-    //     color: #002037;
-    // }
-
-    &__login-button-hidden{
-        display: none;
-    }
-
-    &__create-an-account{
-        color: #002037;
-        font-family: monospace;
-        font-size: 0.9rem;
-        max-width: 65ch;
-
-        @include tablet{
-            font-size: 1rem;
-        }
-    }
-
-    &__create-an-account-hidden{
-        display: none;
-    }
-
-    &__button-icon{
-        max-width: 1.5rem;
-        cursor: grab;
-    }
-
-    &__button-icon-hidden{
-        display: none;
-    }
-
-}
-
-a{
-    color: #fffefe;
+  &__contact-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
     text-decoration: none;
-    font-family: 'avenir-next', sans-serif;
-    font-weight: normal;
+    color: #fffefe;
+    padding-top: 1rem;
+    flex-direction: column;
+    padding-right: 1.5rem;
+    border-top: 3px solid #36383c;
+    border-bottom: 3px solid #36383c;
+    padding: 0;
+    align-items: center;
+    padding: 0.5rem;
+    align-items: flex-start;
 
-    @include tablet{
-        font-size: 1.2rem;
+    @include tablet {
+      justify-content: flex-end;
+      border-top: 3px solid #36383c;
+      border-bottom: 3px solid #36383c;
+      padding: 1rem;
     }
 
-    @include desktop{
-        font-size: 1.3rem;
+    @include desktop {
+      border-top: none;
+      border-bottom: none;
+      padding: 0;
+      padding-top: 1rem;
+      padding-right: 1rem;
+    }
+  }
+
+  &__buttons-container {
+    display: flex;
+    gap: 0.5rem;
+    align-self: center;
+    margin-bottom: 1rem;
+    border: 1px solid #002037;
+    padding: 0.2rem;
+    border-radius: 0.5rem;
+
+    @include tablet {
+      align-self: flex-end;
+      gap: 3rem;
     }
 
+    @include desktop {
+      align-self: flex-end;
+    }
+  }
+
+  &__buttons-container-hidden {
+    display: none;
+  }
+
+  &__contact-content-container {
+    display: flex;
+    gap: 1rem;
+    align-self: center;
+    padding-top: 0.5rem;
+    padding-bottom: 1.5rem;
+
+    @include tablet {
+      align-self: flex-end;
+      padding-bottom: 0rem;
+    }
+
+    @include desktop {
+      align-self: flex-end;
+    }
+  }
+
+  &__icon-div-cleanups {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    background: #002037;
+    border-radius: 0.5rem;
+    padding: 0.2rem;
+    cursor: grab;
+    align-items: center;
+  }
+
+  &__icon-div-logout {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    background: #002037;
+    border-radius: 0.5rem;
+    padding: 0.2rem;
+    cursor: grab;
+    align-items: center;
+  }
+
+  &__icon-div-login {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    background: #002037;
+    border-radius: 0.5rem;
+    padding: 0.2rem;
+    cursor: grab;
+    width: 9rem;
+    align-items: center;
+  }
+
+  &__logout-button {
+    text-align: center;
+    border-radius: 0.5rem;
+    background-color: #002037;
+    border: none;
+    font-family: "avenir-next", sans-serif;
+    font-weight: bold;
+    cursor: grab;
+    color: #fffefe;
+    font-size: 0.8rem;
+    padding: 0.5rem;
+  }
+
+  // &__logout-button:hover{
+  //     background-color: #fefefe;
+  //     color: #002037;
+  // }
+
+  &__logout-button-hidden {
+    display: none;
+  }
+
+  &__clean-ups-button {
+    text-align: center;
+    border-radius: 0.5rem;
+    background-color: #002037;
+    border: none;
+    font-family: "avenir-next", sans-serif;
+    font-weight: bold;
+    cursor: grab;
+    color: #fffefe;
+    font-size: 0.8rem;
+    padding: 0.5rem;
+  }
+
+  // &__clean-ups-button:hover{
+  //     background-color: #fefefe;
+  //     color: #002037;
+  // }
+
+  &__clean-ups-button-hidden {
+    display: none;
+  }
+
+  &__login-button {
+    text-align: center;
+    border-radius: 0.5rem;
+    background-color: #002037;
+    border: none;
+    font-family: "avenir-next", sans-serif;
+    font-weight: bold;
+    cursor: grab;
+    color: #fffefe;
+    padding: 0.5rem;
+    font-size: 0.8rem;
+  }
+
+  // &__login-button:hover{
+  //     background-color: #fefefe;
+  //     color: #002037;
+  // }
+
+  &__login-button-hidden {
+    display: none;
+  }
+
+  &__create-an-account {
+    color: #002037;
+    font-family: monospace;
+    font-size: 0.9rem;
+    max-width: 65ch;
+
+    @include tablet {
+      font-size: 1rem;
+    }
+  }
+
+  &__create-an-account-hidden {
+    display: none;
+  }
+
+  &__button-icon {
+    max-width: 1.5rem;
+    cursor: grab;
+  }
+
+  &__button-icon-hidden {
+    display: none;
+  }
 }
 
-.active{
-    border-bottom: 0.1rem solid #E0E2DB;
-    font-weight: bold;
+a {
+  color: #fffefe;
+  text-decoration: none;
+  font-family: "avenir-next", sans-serif;
+  font-weight: normal;
+
+  @include tablet {
+    font-size: 1.2rem;
+  }
+
+  @include desktop {
+    font-size: 1.3rem;
+  }
+}
+
+.active {
+  border-bottom: 0.1rem solid #e0e2db;
+  font-weight: bold;
 }
 
 /* Position and sizing of burger button */
 .bm-burger-button {
-    position: absolute;
-    width: 36px;
-    height: 30px;
-    left: 36px;
-    top: 36px;
+  position: absolute;
+  width: 36px;
+  height: 30px;
+  left: 36px;
+  top: 36px;
 
-    @include tablet{
-        display: none;
-    }
+  @include tablet {
+    display: none;
   }
-  
-  /* Color/shape of burger icon bars */
-  .bm-burger-bars {
-    background: #fefefe;
-  }
-  
-  /* Color/shape of burger icon bars on hover*/
-  .bm-burger-bars-hover {
-    background: #373a47;
-  }
-  
-  /* Position and sizing of clickable cross button */
-  .bm-cross-button {
-    height: 24px;
-    width: 24px;
+}
 
-    @include tablet{
-        display: none;
-    }
+/* Color/shape of burger icon bars */
+.bm-burger-bars {
+  background: #fefefe;
+}
+
+/* Color/shape of burger icon bars on hover*/
+.bm-burger-bars-hover {
+  background: #373a47;
+}
+
+/* Position and sizing of clickable cross button */
+.bm-cross-button {
+  height: 24px;
+  width: 24px;
+
+  @include tablet {
+    display: none;
   }
-  
-  /* Color/shape of close button cross */
-  .bm-cross {
-    background: #bdc3c7;
-  }
-  
-  /*
+}
+
+/* Color/shape of close button cross */
+.bm-cross {
+  background: #bdc3c7;
+}
+
+/*
   Sidebar wrapper styles
   Note: Beware of modifying this element as it can break the animations - you should not need to touch it in most cases
   */
-  .bm-menu-wrap {
-    height: 89% !important;
+.bm-menu-wrap {
+  height: 89% !important;
 
-    @include tablet{
-        display: none;
-    }
-  }
-  
-  /* General sidebar styles */
-  .bm-menu {
-    font-size: 1.15em;
-    height: 45% !important;
-    background: #002037;
-    font-size: 1.15em;
-    height: 45% !important;
-    border: 3px solid #fefefe;
-    border-radius: 1rem;
-
-
-    @include tablet{
-        display: none;
-    }
-  }
-  
-  /* Morph shape necessary with bubble or elastic */
-  .bm-morph-shape {
-    fill: #373a47;
-  }
-  
-  /* Wrapper for item list */
-  .bm-item-list {
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .bm-overlay{
+  @include tablet {
     display: none;
-    // position: absolute !important;
-    // height: 45% !important;
   }
+}
 
+/* General sidebar styles */
+.bm-menu {
+  font-size: 1.15em;
+  height: 45% !important;
+  background: #002037;
+  font-size: 1.15em;
+  height: 45% !important;
+  border: 3px solid #fefefe;
+  border-radius: 1rem;
 
+  @include tablet {
+    display: none;
+  }
+}
 
+/* Morph shape necessary with bubble or elastic */
+.bm-morph-shape {
+  fill: #373a47;
+}
 
+/* Wrapper for item list */
+.bm-item-list {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.bm-overlay {
+  display: none;
+  // position: absolute !important;
+  // height: 45% !important;
+}
+
+.coming-soon-text {
+  color: #6b0000;
+  font-family: "avenir-next", sans-serif;
+  margin-left: 12rem;
+  font-weight: bold;
+}
