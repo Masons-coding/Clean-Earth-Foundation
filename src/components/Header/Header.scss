@@ -433,6 +433,15 @@ a {
 .coming-soon-text {
   color: #6b0000;
   font-family: "avenir-next", sans-serif;
-  margin-left: 12rem;
+  margin-left: 10rem;
+  top: 14rem;
+  font-size: 0.8rem;
   font-weight: bold;
+  position: absolute;
+
+  @include desktop {
+    margin-left: 12rem;
+    top: 5.5rem;
+    font-size: 1rem;
+  }
 }
