@@ -35,9 +35,15 @@ const USER_CURRENT = process.env.REACT_APP_USER_CURRENT_URL;
 
 const urlForUserCurrent =`${USER_CURRENT}${API}`;
 
+const ALL_CLEAN_UPS_JOINED = process.env.REACT_APP_ALL_CLEAN_UPS_JOINED_URL;
+
+const urlForAllCleanUpsJoined = ALL_CLEAN_UPS_JOINED;
+
 export default function MarkerModal({ setOpenModal, cleanupId, userId, setZoom }) {
 
   const [user, setUser] = useState({});
+
+  const [joined, setJoined] = useState({});
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -139,6 +145,22 @@ export default function MarkerModal({ setOpenModal, cleanupId, userId, setZoom }
     })
 }, [authToken]);
 
+
+
+//   useEffect(() => {
+//     axios
+//     .get((`${urlForAllCleanUpsJoined}/${user.id}${API}`), {
+//     })
+//     .then((res) => {
+//       setJoined(res.data);
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//     })
+// }, [authToken]);
+
+
+
   const config = {
     headers: {
       Authorization: `Bearer ${authToken}`,
@@ -149,19 +171,28 @@ export default function MarkerModal({ setOpenModal, cleanupId, userId, setZoom }
     clean_up_id: cleanupId
   }
 
-  const joinConfirmClicked = () => {
-    if(user.clean_up_id === cleanupId){
-      setIsOpen(!isOpen);
-      setIsOpenAlreadyJoined(!isOpenAlreadyJoined);
-    }else{
-      axios
-      .post(urlForJoinCleanUp, data, config)
-      .catch((err) => {
-        console.log(err);
-      })
-      setIsOpen(!isOpen);
-      setIsOpenAfterJoin(!isOpenAfterJoin)
+  async function joinConfirmClicked() {
+    let found = false;
+    const allJoinedDataResponse = await axios.get(`${urlForAllCleanUpsJoined}/${user.id}${API}`);
+    const allJoinedData = await allJoinedDataResponse.data;
+    // console.log(allJoinedData.clean_up_id)
+    for (let p = 0; p < allJoinedData.length; p++) {
+      if(allJoinedData[p].clean_up_id === cleanupId){
+        found = true;
+        setIsOpen(!isOpen);
+        setIsOpenAlreadyJoined(!isOpenAlreadyJoined);
+        break;
+      }
     }
+    if(!found){
+        axios
+        .post(urlForJoinCleanUp, data, config)
+        .catch((err) => {
+          console.log(err);
+        })
+        setIsOpen(!isOpen);
+        setIsOpenAfterJoin(!isOpenAfterJoin)
+      }
   };
 
   const navigateCleanUpsPage = useNavigate();

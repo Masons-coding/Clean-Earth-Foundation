@@ -50,6 +50,26 @@ const Donate = () => {
     }
 
     const submitClick = () => {
+        if (moneyValue === "$10 donation (USD)"){
+            window.open("https://buy.stripe.com/6oE5nJeaddMR0mscMR");
+            setIsOpen(!isOpen);
+        }
+        else if(moneyValue==="$20 donation (USD)"){
+            window.open("https://buy.stripe.com/4gw17t1nr4ch5GM7sy");
+            setIsOpen(!isOpen);
+        }
+        else if(moneyValue==="Custom donation (USD)"){
+            window.open("https://buy.stripe.com/6oEeYj5DH9wB3yEfZ1");
+            setIsOpen(!isOpen);
+        }
+        else if(moneyValue==="$50 donation (USD)"){
+            window.open("https://buy.stripe.com/00g2bx6HL7otc5a9AH");
+            setIsOpen(!isOpen);
+        }
+        else if(moneyValue==="$20/month donation (USD)"){
+            window.open("https://buy.stripe.com/cN22bx0jnfUZ7OU001");
+            setIsOpen(!isOpen);
+        }
     }
 
     return (
@@ -91,7 +111,7 @@ const Donate = () => {
                 <img className="clean-earth-logo-pop-up" src={cleanEarthLogo} alt="CleanEarth Logo"/>
                 <h1 className="donate__pop-up-header">Confirm your donation</h1>
                 <p className="donate__pop-up-donate-value">{moneyValue}</p>
-                <a onClick={submitClick} href={moneyValue === "$10 donation (USD)"? "https://buy.stripe.com/6oE5nJeaddMR0mscMR" : moneyValue==="$20 donation (USD)"? "https://buy.stripe.com/4gw17t1nr4ch5GM7sy" : moneyValue==="Custom donation (USD)"? "https://buy.stripe.com/6oEeYj5DH9wB3yEfZ1" : moneyValue==="$50 donation (USD)"? "https://buy.stripe.com/00g2bx6HL7otc5a9AH" : moneyValue==="$20/month donation (USD)"? "https://buy.stripe.com/cN22bx0jnfUZ7OU001" : null} className="donate__submit-button">Continue to payment</a>
+                <button onClick={submitClick} className="donate__submit-button">Continue to payment</button>
             </>}
             handleClose={togglePopup}
             />}

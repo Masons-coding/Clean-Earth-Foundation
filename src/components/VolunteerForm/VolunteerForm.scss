@@ -202,10 +202,11 @@
       align-self: center;
       width: 100%;
       justify-content: center;
+      align-items: baseline;
     }
   }
 
-  &__inputs-container {
+  &__inputs-container-city-state-country {
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -219,10 +220,29 @@
 
     @include desktop {
       border-right: 3px solid #2e66e5;
+      border-left: 3px solid #2e66e5;
       min-width: 30%;
       align-items: center;
       justify-content: center;
-      height: 30rem;
+    }
+  }
+
+  &__inputs-container-name-email {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+
+    @include tablet {
+      min-width: 30%;
+      align-items: center;
+      justify-content: center;
+    }
+
+    @include desktop {
+      min-width: 30%;
+      align-items: center;
+      justify-content: center;
     }
   }
 
@@ -237,7 +257,6 @@
     @include tablet {
       border-bottom: none;
       margin-bottom: 0;
-      margin-bottom: 2rem;
       min-width: 30%;
       align-items: center;
       justify-content: center;

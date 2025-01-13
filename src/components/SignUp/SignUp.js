@@ -39,11 +39,11 @@ const Signup = () => {
         setPasswordShown(!passwordShown);
       };
   
-     const [showOrHidePassword, setShowOrHidePassword] = useState(showIcon)
+  const [showOrHidePassword, setShowOrHidePassword] = useState(showIcon)
 
   const [success, setSuccess] = useState(false);
 
-  const navigateHomePage = useNavigate();
+  const navigateLoginPage = useNavigate();
 
   const [firstNameErrorMessage, setFirstNameErrorMessage] = useState("")
 
@@ -177,7 +177,7 @@ const Signup = () => {
           setEmail("")
           setPassword("")
           setTimeout(() => {
-            navigateHomePage("/");
+            navigateLoginPage("/login");
             window.scrollTo(0, 0)
           }, 2000);
         })
@@ -192,7 +192,7 @@ const Signup = () => {
   }
 
   const handleCancelClick = () => {
-    navigateHomePage("/")
+    navigateLoginPage("/login")
     window.scrollTo(0, 0)
   };
 

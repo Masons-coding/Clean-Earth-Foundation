@@ -18,7 +18,11 @@ import leadCleanUpIcon from "../../assets/images/icons/LeadCleanUpIcon.svg";
 import joinCleanUpIcon from "../../assets/images/icons/JoinCleanUpIcon.svg"
 import cleanEarthLogo from "../../assets/images/cleanEarthLogo.png";
 import trashIcon from "../../assets/images/icons/TrashIcon2.svg";
+import shareIcon from "../../assets/images/icons/Share-icon.svg";
 import editIcon from "../../assets/images/icons/EditIcon.svg";
+import instagramLogo from "../../assets/images/icons/InstagramIcon.svg";
+import facebookLogo from "../../assets/images/icons/FacebookIcon.svg";
+import twitterLogo from "../../assets/images/icons/TwitterIcon.svg";
 
 const GEO_CODE = process.env.REACT_APP_GOOGLE_GEO_CODE_KEY;
 const geoCode = `${GEO_CODE}`;
@@ -41,9 +45,13 @@ const CLEAN_UP_DELETE = process.env.REACT_APP_DELETE_URL;
 
 const urlForDelete =`${CLEAN_UP_DELETE}`;
 
-const JOIN_CLEAN_UP = process.env.REACT_APP_JOIN_URL;
+const CLEAN_UP_JOINED_DELETE = process.env.REACT_APP_DELETE_JOINED_URL;
 
-const urlForJoinCleanUp =`${JOIN_CLEAN_UP}${API}`;
+const urlForDeleteJoined =`${CLEAN_UP_JOINED_DELETE}`;
+
+const ALL_CLEAN_UPS_JOINED = process.env.REACT_APP_ALL_CLEAN_UPS_JOINED_URL;
+
+const urlForAllCleanUpsJoined = ALL_CLEAN_UPS_JOINED;
 
 const CleanUpsPage = () => {
 
@@ -61,6 +69,10 @@ const CleanUpsPage = () => {
     
     const [deletedCleanUp, setDeletedCleanUp] = useState(0)
 
+    const [deletedCleanUpJoined, setDeletedCleanUpJoined] = useState(0)
+
+    const [shareCleanUpId, setShareCleanUpId] = useState(0)
+
     const [isOpenDelete, setIsOpenDelete] = useState(false);
 
     const togglePopupDelete = () => {
@@ -71,6 +83,12 @@ const CleanUpsPage = () => {
 
     const togglePopupDeleteJoined = () => {
         setIsOpenDeleteJoined(!isOpenDeleteJoined);
+    }
+
+    const [isOpenShare, setIsOpenShare] = useState(false);
+
+    const togglePopupShare = () => {
+        setIsOpenShare(!isOpenShare);
     }
 
     const [user, setUser] = useState({});
@@ -151,8 +169,8 @@ const CleanUpsPage = () => {
                 let address = GeocodeGetAddress.results[0].formatted_address;
                 locationArrayJoined.push(address);
                 if(locationArrayJoined.length === data.length){
-                setLocationJoined(locationArrayJoined)
-                setIsReadyJoinedCleanUps(true)
+                    setLocationJoined(locationArrayJoined)
+                    setIsReadyJoinedCleanUps(true)
                 }
         
             }
@@ -184,32 +202,47 @@ const CleanUpsPage = () => {
                 console.log(error)
             }
         }
+        
+        getAllDataJoined()
+        async function getAllDataJoined() {
+            try {
+                let allData = [];
+                const allJoinedDataResponse = await axios.get(`${urlForAllCleanUpsJoined}/${user.id}${API}`);
+                const allJoinedData = allJoinedDataResponse.data;
 
-        getDataJoined()
-        async function getDataJoined(){
-            try{
-                const response = await axios.get(`${urlForUserCleanUpsJoined}/${user.clean_up_id}${API}`)
-                const data = await response.data
-                setCleanUpDataJoined(data)
-                if(data.length !== 0){
-                    addressFunction(data)
-                    async function addressFunction(response) {
-                        for(let p = 0; p < response.length; p++){
-                            let lat = response[p].lat_map_value;
-                            let long = response[p].long_map_value;
-                            await getAddressJoined(lat, long, data);
+                if (!allJoinedData || allJoinedData.length === 0) {
+                    allData = [];
+                    setCleanUpDataJoined(allData);
+                    setIsReadyJoinedCleanUps(true);
+                } else {
+                    for (let m = 0; m < allJoinedData.length; m++) {
+                        try {
+                            const response = await axios.get(`${urlForUserCleanUpsJoined}/${allJoinedData[m].clean_up_id}${API}`);
+                            const joinedData = response.data;
+
+                            if (joinedData.length !== 0) {
+                                // Process addresses sequentially to maintain order
+                                for (let p = 0; p < joinedData.length; p++) {
+                                    const { lat_map_value: lat, long_map_value: long } = joinedData[p];
+                                    await getAddressJoined(lat, long, allJoinedData); // Ensure each address is awaited
+                                }
+                            } else {
+                                setIsReadyCreatedCleanUps(true);
+                            }
+                            // Add the new data to allData, flattening it directly
+                            allData.push(...joinedData);
+                        } catch (innerError) {
+                            console.error('Error processing joinedMapData:', innerError);
                         }
                     }
-                }else{
-                    setIsReadyJoinedCleanUps(true)
+                    setCleanUpDataJoined(allData);
                 }
-
-            } catch (error){
-                console.log(error)
+            } catch (error) {
+                console.error('Error fetching all joined data:', error);
             }
         }
             
-      },[user.id, user.clean_up_id]);
+      },[user.id]); //Add value in here to stop the joined clean ups from showing for the wrong person
 
 
       const handleLeadClick = () => {
@@ -229,10 +262,16 @@ const CleanUpsPage = () => {
 
     function deleteJoinedClicked(id){
         setIsOpenDeleteJoined(!isOpenDeleteJoined);
+        setDeletedCleanUpJoined(id);
     }
 
     const handleEditClicked = (id) => {
         navigateEditPage(`/cleanUps/edit/${id}`)
+    };
+
+    const handleShareClicked = (id) => {
+        setIsOpenShare(!isOpenShare);
+        setShareCleanUpId(id);
     };
 
     const confirmClicked = () => {
@@ -247,12 +286,27 @@ const CleanUpsPage = () => {
 
     const confirmClickedJoined = () => {
         axios
-        .post(urlForJoinCleanUp, data, config)
-        .catch((err) => {
-          console.log(err);
-        })
-        window.location.reload(false);
-        setIsOpenDeleteJoined(!isOpenDeleteJoined);
+          .delete(`${urlForDeleteJoined}/${deletedCleanUpJoined}${API}`)
+          .catch((err) => {
+            console.log(err);
+          });
+          window.location.reload(false);
+          setIsOpenDelete(!isOpenDeleteJoined);
+    };
+
+    const confirmInstagram = () => {
+        console.log("instagram");
+        setIsOpenShare(!isOpenShare);
+    };
+
+    const confirmFacebook = () => {
+        console.log("facebook");
+        setIsOpenShare(!isOpenShare);
+    };
+
+    const confirmTwitter = () => {
+        console.log("twitter");
+        setIsOpenShare(!isOpenShare);
     };
 
     if (!cleanUpData){
@@ -299,6 +353,7 @@ const CleanUpsPage = () => {
                                 <div className="clean-ups__del-edit-container">
                                     <img src={trashIcon} alt="Trash Can" onClick={() => deleteClicked(data.id)} className="clean-ups__del-edit-img"></img>
                                     <img src={editIcon} onClick={() => handleEditClicked(data.id)} alt="Pencil" className="clean-ups__del-edit-img"></img>
+                                    <img src={shareIcon} onClick={() => handleShareClicked(data.id)} alt="share-icon" className="clean-ups__del-edit-img"></img>
                                 </div>
                             </div>
                         </div>
@@ -324,6 +379,7 @@ const CleanUpsPage = () => {
                                 <div className="clean-ups__del-edit-container-mobile">
                                     <img src={trashIcon} alt="Trash Can" onClick={() => deleteClicked(data.id)} className="clean-ups__del-edit-img"></img>
                                     <img src={editIcon} alt="Pencil" onClick={() => handleEditClicked(data.id)} className="clean-ups__del-edit-img"></img>
+                                    <img src={shareIcon} onClick={() => handleShareClicked(data.id)} alt="share-icon" className="clean-ups__del-edit-img"></img>
                                 </div>
                                 </div>
                             </div>
@@ -418,6 +474,24 @@ const CleanUpsPage = () => {
                 handleClose={togglePopupDeleteJoined}
                 />}
                 </div>
+
+                <div>
+                {isOpenShare && <Popup
+                    content={<>
+                    <img className="clean-earth-logo-pop-up" src={cleanEarthLogo} alt="CleanEarth Logo"/>
+                    <h1 className="clean-ups__pop-up-header">Where would you like to share this?</h1>
+                    <div className="social-media-share-container">
+                        <img onClick={confirmInstagram} className="header__instagram-logo" src={instagramLogo} alt="Instagram logo"/>
+                        <img onClick={confirmFacebook} className="header__facebook-logo" src={facebookLogo} alt="Facebook logo"/>
+                        <img onClick={confirmTwitter} className="header__twitter-logo" src={twitterLogo} alt="Twitter logo"/>
+                    </div>
+                    <div className="clean-ups__pop-up-button-container">
+                    </div>
+                </>}
+                handleClose={togglePopupShare}
+                />}
+                </div>
+
             </div>
         </section>
         <Footer/>

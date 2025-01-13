@@ -280,7 +280,7 @@ const EditCleanUpsForm = ({cleanUpsToDisplay}) => {
                     <p className="volunteer__text">All changes made will be updated</p>
                 </div>
                 <div className="volunteer__form-everything-container">
-                    <div className="volunteer__inputs-container">
+                    <div className="volunteer__inputs-container-name-email">
                         <label className="volunteer__labels" htmlFor="name">Name:</label>
                         <input type="text" placeholder="Please enter your full name" value={name} onChange={handleNameChange} className={nameError === true ? 'volunteer__input-error' : 'volunteer__input' }  id="name" name="name"></input>
                         <div className="volunteer__error-message">{nameErrorMessage}</div>
@@ -290,7 +290,7 @@ const EditCleanUpsForm = ({cleanUpsToDisplay}) => {
                         <div className="volunteer__error-message">{emailErrorMessage}</div>
                     </div>
 
-                    <div className="volunteer__inputs-container">
+                    <div className="volunteer__inputs-container-city-state-country">
                         <label className="volunteer__labels" htmlFor="name">City:</label>
                         <input type="text" placeholder="Please enter your city" value={city} onChange={handleCityChange} className={cityError === true ? 'volunteer__input-error' : 'volunteer__input' } id="city" name="city"></input>
                         <div className="volunteer__error-message">{cityErrorMessage}</div>

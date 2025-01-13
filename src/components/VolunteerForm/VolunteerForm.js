@@ -307,7 +307,7 @@ const VolunteerForm = () => {
                         <p className="volunteer__text">Thank you for your commitment to making a difference. We are always looking for volunteers to participate in our vision of having a cleaner environment worldwide!</p>
                     </div>
                     <div className="volunteer__form-everything-container">
-                        <div className="volunteer__inputs-container">
+                        <div className="volunteer__inputs-container-name-email">
                             <label className="volunteer__labels" htmlFor="name">Name:</label>
                             <input type="text" placeholder="Please enter your full name" value={name} onChange={handleNameChange} className={nameError === true ? 'volunteer__input-error' : 'volunteer__input' }  id="name" name="name" disabled></input>
                             <div className="volunteer__error-message">{nameErrorMessage}</div>
@@ -317,7 +317,7 @@ const VolunteerForm = () => {
                             <div className="volunteer__error-message">{emailErrorMessage}</div>
                         </div>
     
-                        <div className="volunteer__inputs-container">
+                        <div className="volunteer__inputs-container-city-state-country">
                             <label className="volunteer__labels" htmlFor="name">City:</label>
                             <input type="text" placeholder="Please enter your city" value={city} onChange={handleCityChange} className={cityError === true ? 'volunteer__input-error' : 'volunteer__input' } id="city" name="city" disabled></input>
                             <div className="volunteer__error-message">{cityErrorMessage}</div>
@@ -377,7 +377,7 @@ const VolunteerForm = () => {
                     <p className="volunteer__text">Thank you for your commitment to making a difference. We are always looking for volunteers to participate in our vision of having a cleaner environment worldwide!</p>
                 </div>
                 <div className="volunteer__form-everything-container">
-                    <div className="volunteer__inputs-container">
+                    <div className="volunteer__inputs-container-name-email">
                         <label className="volunteer__labels" htmlFor="name">Name:</label>
                         <input type="text" placeholder="Please enter your full name" value={name} onChange={handleNameChange} className={nameError === true ? 'volunteer__input-error' : 'volunteer__input' }  id="name" name="name"></input>
                         <div className="volunteer__error-message">{nameErrorMessage}</div>
@@ -387,7 +387,7 @@ const VolunteerForm = () => {
                         <div className="volunteer__error-message">{emailErrorMessage}</div>
                     </div>
 
-                    <div className="volunteer__inputs-container">
+                    <div className="volunteer__inputs-container-city-state-country">
                         <label className="volunteer__labels" htmlFor="name">City:</label>
                         <input type="text" placeholder="Please enter your city" value={city} onChange={handleCityChange} className={cityError === true ? 'volunteer__input-error' : 'volunteer__input' } id="city" name="city"></input>
                         <div className="volunteer__error-message">{cityErrorMessage}</div>

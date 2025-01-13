@@ -19,6 +19,8 @@ import axios from 'axios';
 
 import { slide as Menu } from 'react-burger-menu'
 
+import { Navigate } from "react-router-dom";
+
 const USER_CURRENT = process.env.REACT_APP_USER_CURRENT_URL;
 
 const API = process.env.REACT_APP_API_KEY;
@@ -71,7 +73,8 @@ const Header = () => {
 
     const handleLogout = () => {
         sessionStorage.removeItem('authToken');
-        window.location.reload()
+        navigateHomePage("/")
+        window.scrollTo(0, 0)
     }
 
     const handleLogin = () => {
@@ -101,7 +104,7 @@ const Header = () => {
                         <a href="https://www.facebook.com/BeCleanEarth/"><img className="header__facebook-logo" src={facebookLogo} alt="Facebook logo"/></a>
                         <a href="https://www.twitter.com/BeCleanEarth/"><img className="header__twitter-logo" src={twitterLogo} alt="Twitter logo"/></a>
                     </div>
-                    <p className="coming-soon-text">*COMING SOON*</p>
+                    <p className={first_name === undefined ? "coming-soon-text" : "coming-soon-text-hidden"}>*COMING SOON*</p>
                     <div className={first_name === undefined ? "header__login-sign-up" : "header__login-sign-up-hidden"}>
                         <div onClick={handleLogin} className="header__icon-div-login">
                             <button onClick={handleLogin} className="header__login-button">Login/Sign-up</button>
