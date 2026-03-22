@@ -18,6 +18,8 @@ import Popup from '../PopUp/PopUp.js';
 
 import PopupNoClose from '../PopUp/PopUpNoClose.js';
 
+import PopUpTerms from '../PopUp/PopUpTerms.js';
+
 const USER_REGISTER = process.env.REACT_APP_USER_REGISTER_URL;
 
 const API = process.env.REACT_APP_API_KEY;
@@ -39,7 +41,13 @@ const VolunteerForm = () => {
         setIsOpen(!isOpen);
       }
 
+    const toggleTermsPopup = () => {
+        setTermsOpen(!termsOpen);
+      }
+
     const [isOpenAfterSuccess, setIsOpenAfterSuccess] = useState(false);
+
+    const [termsOpen, setTermsOpen] = useState(false);
 
     const noLoginFormClicked = () => {
         setIsOpen(!isOpen);
@@ -196,6 +204,58 @@ const VolunteerForm = () => {
         return <LoadingScreen/>;
       } 
 
+    const handleDeclineClick = () => {
+        setTermsOpen(!termsOpen);
+    }
+
+    const handleAcceptClick = () => {
+            let timeSplit = time.split(':');
+            let hours = Number(timeSplit[0]);
+            let minutes = Number(timeSplit[1]);
+            // calculate
+            let timeValue = "";
+            if (hours > 0 && hours <= 12) {
+            timeValue= "" + hours;
+            } else if (hours > 12) {
+            timeValue= "" + (hours - 12);
+            } else if (hours === 0) {
+            timeValue= "12";
+            }
+            timeValue += (minutes < 10) ? ":0" + minutes : ":" + minutes;  // get minutes
+            timeValue += (hours >= 12) ? " P.M." : " A.M.";  // get AM/PM
+
+            axios
+            .post((urlForUserRegister), {
+                name: name,
+                email: email,
+                city: city,
+                state: state,
+                country: country,
+                date_of_clean_up: date,
+                time_of_clean_up: timeValue,
+                long_map_value: longValue,
+                lat_map_value:  latValue,
+                user_id: user.id
+            })
+            .then(() => {
+              setIsOpenAfterSuccess(!isOpenAfterSuccess);
+              setName("")
+              setEmail("")
+              setCity("")
+              setState("")
+              setCountry("")
+              setDate("")
+              setTime("00:00")
+              setTimeout(() => {
+                navigateHomePage("/");
+                window.scrollTo(0, 0)
+              }, 2000);
+            })
+            .catch((error) => {
+                setSuccess(false)
+            });
+    } 
+
 
       const handleSubmitForm = (event) => {
         event.preventDefault()
@@ -244,52 +304,9 @@ const VolunteerForm = () => {
         }
 
         if(latLongError === false && timeError === false && dateError === false && countryError === false && stateError === false && cityError === false & emailError === false && nameError === false && emailValid === true){
-            let timeSplit = time.split(':');
-            let hours = Number(timeSplit[0]);
-            let minutes = Number(timeSplit[1]);
-            // calculate
-            let timeValue = "";
-            if (hours > 0 && hours <= 12) {
-            timeValue= "" + hours;
-            } else if (hours > 12) {
-            timeValue= "" + (hours - 12);
-            } else if (hours === 0) {
-            timeValue= "12";
-            }
-            timeValue += (minutes < 10) ? ":0" + minutes : ":" + minutes;  // get minutes
-            timeValue += (hours >= 12) ? " P.M." : " A.M.";  // get AM/PM
-
-            axios
-            .post((urlForUserRegister), {
-                name: name,
-                email: email,
-                city: city,
-                state: state,
-                country: country,
-                date_of_clean_up: date,
-                time_of_clean_up: timeValue,
-                long_map_value: longValue,
-                lat_map_value:  latValue,
-                user_id: user.id
-            })
-            .then(() => {
-              setIsOpenAfterSuccess(!isOpenAfterSuccess);
-              setName("")
-              setEmail("")
-              setCity("")
-              setState("")
-              setCountry("")
-              setDate("")
-              setTime("00:00")
-              setTimeout(() => {
-                navigateHomePage("/");
-                window.scrollTo(0, 0)
-              }, 2000);
-            })
-            .catch((error) => {
-                setSuccess(false)
-            });
+            setTermsOpen(!termsOpen);
         }
+
       };
 
       if(user.id === undefined){
@@ -431,6 +448,29 @@ const VolunteerForm = () => {
                         <img className="clean-earth-logo-pop-up" src={cleanEarthLogo} alt="CleanEarth Logo"/>
                         <p className="volunteer__registered">Clean up registered!</p>
                     </>}
+                    />}
+                </div>
+                <div>
+                    {termsOpen && <PopUpTerms
+                        content={<>
+                        <img className="clean-earth-logo-pop-up" src={cleanEarthLogo} alt="CleanEarth Logo"/>
+                        <p className="volunteer__terms-text">Terms</p>
+                        <p className="volunteer__terms-text">By clicking ACCEPT you agree to the following:</p>
+                        <div className="terms-list">
+                            <li className="terms-list-items">The information provided in the form above will be publicly displayed on the CleanEarthFoundation website's main page map for all visitors.</li>
+                            <li className="terms-list-items">You grant permission for others to join your cleanup event via the main page map.</li>
+                            <li className="terms-list-items">You agree to uphold ethical standards in all actions related to your cleanup effort.</li>
+                            <li className="terms-list-items">You take full responsibility for the cleanup event listed above, including the specified time and location.</li>
+                            <li className="terms-list-items">You confirm that the information entered is accurate and complete.</li>
+                        </div>
+                        <p className="volunteer__terms-text-final">You may edit or delete your cleanup at any time through the "My Clean Ups" tab, located in the top-right corner of your screen.</p>
+                        
+                        <div className='terms-buttons-container'>
+                            <button onClick={handleAcceptClick} className='terms-button'>ACCEPT</button>
+                            <button onClick={handleDeclineClick} className='terms-button'>DECLINE</button>
+                        </div>
+                    </>}
+                    handleClose={toggleTermsPopup}
                     />}
                 </div>
             </form>

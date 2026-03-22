@@ -1,86 +1,86 @@
-@use '../../styles/partials/mixins.scss' as *;
-@use '../../styles/partials/letters' as *;
+@use "../../styles/partials/mixins.scss" as *;
+@use "../../styles/partials/letters" as *;
 
-.initiatives-list{
+.initiatives-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+
+  &__container {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
+    margin: 1rem;
 
-    &__container{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        margin: 1rem;
+    @include tablet {
+      flex-basis: 45%;
+    }
+  }
 
-        @include tablet{
-            flex-basis: 45%;
-        }
+  &__picture {
+    max-width: 100%;
+    border-radius: 0.5rem;
+    border: 3px solid #fffefe;
 
+    @include tablet {
+      max-height: 60rem;
+    }
+  }
+
+  &__content {
+    background-color: #bdc1c7;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 0.5rem;
+    margin-top: 0.5rem;
+    height: 14rem;
+    overflow: scroll;
+    scrollbar-width: thin;
+    overflow-x: hidden;
+
+    @include tablet-medium {
+      height: 27rem;
+      overflow-x: hidden;
+      overflow-y: hidden;
     }
 
-    &__picture{
-        max-width: 100%;
-        border-radius: 0.5rem;
-        border: 3px solid #fffefe;
-
-        @include tablet{
-            max-height: 60rem;
-        }
-
+    @include desktop {
+      height: 20rem;
     }
+  }
 
-    &__content{
-        background-color: #BDC1C7;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        border-radius: 0.5rem;
-        margin-top: 0.5rem;
-        height: 14rem;
-        text-overflow: scroll;
-        overflow: scroll;
-        overflow-x: hidden;
+  &__content::-webkit-scrollbar {
+    width: 0.3rem;
+  }
 
-        @include tablet{
-            height: 27rem;
-        }
+  &__content::-webkit-scrollbar-thumb {
+    background-color: #002037;
+  }
 
-        @include desktop{
-            height: 20rem;
-        }
+  &__heading {
+    font-family: "avenir-next", sans-serif;
+    font-weight: bold;
+    color: #323232;
+    padding-top: 1rem;
+    font-size: 1.4rem;
+
+    @include tablet {
+      font-size: 1.5rem;
     }
+  }
 
-    &__content::-webkit-scrollbar {
-        width: 0.3rem;
-      }
-       
-    &__content::-webkit-scrollbar-thumb {
-        background-color: #002037;
-    }
+  &__text {
+    font-family: "avenir-next", sans-serif;
+    font-weight: normal;
+    color: #323232;
+    padding-top: 0.5rem;
+    font-size: 1rem;
+    padding: 1rem;
+  }
 
-    &__heading{
-        font-family: 'avenir-next', sans-serif;
-        font-weight: bold;
-        color: #323232;
-        padding-top: 1rem;
-        font-size: 1.4rem;
-
-        @include tablet{
-            font-size: 1.5rem;
-        }
-    }
-
-    &__text{
-        font-family: "avenir-next", sans-serif;
-        font-weight: normal;
-        color: #323232;
-        padding-top: 0.5rem;
-        font-size: 1rem;
-        padding: 1rem;
-    }
-
-    &__button{
+  &__button {
     text-align: center;
     border-radius: 0.5rem;
     background-color: #002037;
@@ -97,91 +97,90 @@
     align-items: center;
     margin-bottom: 0.5rem;
 
-    @include tablet{
-        width: 45%;
+    @include tablet {
+      width: 45%;
     }
 
-    @include desktop{
-        width: 30%;
+    @include desktop {
+      width: 30%;
     }
+  }
+
+  &__button:hover {
+    background-color: #0095ff;
+  }
+
+  &__lead-container {
+    background-color: #002037;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border-radius: 1rem;
+    width: 13rem;
+    height: 2rem;
+    padding: 1rem;
+    cursor: grab;
+    margin-bottom: 1rem;
+
+    @include tablet {
+      margin-bottom: 0rem;
     }
+  }
 
-    &__button:hover{
-        background-color: #0095FF;
+  &__button-lead {
+    background-color: #002037;
+    text-align: center;
+    border-radius: 0.5rem;
+    border: none;
+    font-family: "avenir-next", sans-serif;
+    font-weight: normal;
+    cursor: grab;
+    color: #fffefe;
+    font-size: 1rem;
+    flex-basis: 100%;
+
+    @include tablet {
+      width: 13rem;
+      font-size: 1.1rem;
     }
+  }
 
-    &__lead-container{
-        background-color: #002037;
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        border-radius: 1rem;
-        width: 13rem;
-        height: 2rem;
-        padding: 1rem;
-        cursor: grab;
-        margin-bottom: 1rem;
+  &__donate-container {
+    background-color: #002037;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border-radius: 1rem;
+    width: 9rem;
+    height: 3rem;
+    padding: 1rem;
+    cursor: grab;
+    margin-bottom: 1rem;
 
-        @include tablet{
-            margin-bottom: 0rem;
-        }
-      }
-
-      &__button-lead{
-        background-color: #002037;
-        text-align: center;
-        border-radius: 0.5rem;
-        border: none;
-        font-family: "avenir-next", sans-serif;
-        font-weight: normal;
-        cursor: grab;
-        color: #fffefe;
-        font-size: 1rem;
-        flex-basis: 100%;
-      
-        @include tablet{
-          width: 13rem;
-          font-size: 1.1rem;
-        }
-      }
-
-      &__donate-container{
-        background-color: #002037;
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        border-radius: 1rem;
-        width: 9rem;
-        height: 3rem;
-        padding: 1rem;
-        cursor: grab;
-        margin-bottom: 1rem;
-        
-        @include tablet{
-            margin-bottom: 0rem;
-        }
-      }
-
-      &__button-donate{
-        background-color: #002037;
-        text-align: center;
-        border-radius: 0.5rem;
-        border: none;
-        font-family: "avenir-next", sans-serif;
-        font-weight: normal;
-        cursor: grab;
-        color: #fffefe;
-        font-size: 1rem;
-        flex-basis: 100%;
-      
-        @include tablet{
-          width: 13rem;
-          font-size: 1.1rem;
-        }
-      }
-
-      &__donate-icon{
-        max-height: 2rem;
-
+    @include tablet {
+      margin-bottom: 0rem;
     }
+  }
+
+  &__button-donate {
+    background-color: #002037;
+    text-align: center;
+    border-radius: 0.5rem;
+    border: none;
+    font-family: "avenir-next", sans-serif;
+    font-weight: normal;
+    cursor: grab;
+    color: #fffefe;
+    font-size: 1rem;
+    flex-basis: 100%;
+
+    @include tablet {
+      width: 13rem;
+      font-size: 1.1rem;
+    }
+  }
+
+  &__donate-icon {
+    max-height: 2rem;
+  }
 }

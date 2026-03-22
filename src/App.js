@@ -10,6 +10,8 @@ import VolunteerPage from "./pages/VolunteerPage/VolunteerPage.js";
 import LoginPage from "./pages/LoginPage/LoginPage.js";
 import CleanUpsPage from "./pages/CleanUpsPage/CleanUpsPage.js"
 
+import SocialMediaPage from "./pages/SocialMediaPage/SocialMediaPage.js"
+
 import EditCleanUpsPage from "./pages/EditCleanUpsPage/EditCleanUpsPage.js"
 
 import SignUpPage from "./pages/SignUpPage/SignUpPage.js";
@@ -48,6 +50,7 @@ function App() {
         <Route path="/volunteer" element={<VolunteerPage/>} />
         <Route path="/login" element={<LoginPage/>} />
         <Route path="/signup" element={<SignUpPage/>} />
+        <Route path="/socialmedia" element={<SocialMediaPage/>} />
         <Route path="*" element={<ErrorPage/>} />
       </Routes>
     </Suspense>
